@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "R丨数据分析基础版",
+  
+  "datePublished": "2022-10-30T00:00:00Z",
+  "dateModified": "2022-10-30T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2022\/10\/r%E4%B8%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80%E7%89%88\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "小可爱们好，萜妹2022年度Flag中有一条是“熟练运用R进行数据分析”，所以今年我有在这方面进行些学习和尝试，今天来和大家分享、交流吖。\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="小可爱们好，萜妹2022年度Flag中有一条是“熟练运用R进行数据分析”，所以今年我有在这方面进行些学习和尝试，今天来和大家分享、交流吖。">
+
+
+<meta property="og:description" content="小可爱们好，萜妹2022年度Flag中有一条是“熟练运用R进行数据分析”，所以今年我有在这方面进行些学习和尝试，今天来和大家分享、交流吖。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R丨数据分析基础版">
+<meta name="twitter:title" content="R丨数据分析基础版">
+<meta property="og:url" content="https://tie-blog.netlify.app/2022/10/r%E4%B8%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80%E7%89%88/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2022/10/r%E4%B8%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80%E7%89%88/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="小可爱们好，萜妹2022年度Flag中有一条是“熟练运用R进行数据分析”，所以今年我有在这方面进行些学习和尝试，今天来和大家分享、交流吖。">
+<meta name="twitter:description" content="小可爱们好，萜妹2022年度Flag中有一条是“熟练运用R进行数据分析”，所以今年我有在这方面进行些学习和尝试，今天来和大家分享、交流吖。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2022-10-30T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2022-10-30T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="干货">
+    
+      <meta property="article:section" content="软件技巧">
+    
+  
+  
+    
+      <meta property="article:tag" content="R">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>R丨数据分析基础版</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2022/10/r%E4%B8%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80%E7%89%88/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      R丨数据分析基础版
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-10-30T00:00:00Z">
+        
+  
+  
+  
+  
+    2022-10-30
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%b9%b2%e8%b4%a7">干货</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e8%bd%af%e4%bb%b6%e6%8a%80%e5%b7%a7">软件技巧</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>小可爱们好，萜妹2022年度Flag中有一条是“熟练运用R进行数据分析”，所以今年我有在这方面进行些学习和尝试，今天来和大家分享、交流吖。</p>
+<p>我们先从最基础的数据分析开始，本次仅介绍单层模型（阅读量过3k更新进阶版）。</p>
+<p>注：【】内字符为可根据模型与喜好替换。</p>
+<h1 id="各部分语法介绍">各部分语法介绍</h1>
+<h2 id="step-1导入原始数据">Step 1：导入原始数据</h2>
+<p>首先，我自己的习惯是将数据文件和Rproject放在同一个文件夹，这样方便后续调用。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322545.png" alt="img"></p>
+<p>其次，要提醒大家的是，如果第一次使用R包，需要先安装它（系统自带的除外，不知道是不是自带的，你就都安装试试）。</p>
+<p>安装R包的语句示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">install.packages<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;openxlsx&#34;</span><span style="color:#f92672">)</span>
+</code></pre></div><p>后续我就不再强调这个问题了。</p>
+<p>最后，数据导入的方式千千万万种，我这里仅介绍几种，掌握一种就行。</p>
+<h3 id="xlsx格式">xlsx格式</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">library(openxlsx)
+<span style="color:#66d9ef">data</span> &lt;- read.xlsx(<span style="color:#e6db74">&#34;R.xlsx&#34;</span>, )
+</code></pre></div><p><strong>所用R包</strong>：openxlsx。</p>
+<ul>
+<li>第一行：调用openxlsx包。</li>
+<li>第二行：将【R.xlsx】读取，并命名为【data】。</li>
+</ul>
+<h3 id="csv格式">csv格式</h3>
+<p>如果使用csv格式，也可以用readr包。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">library(readr)
+<span style="color:#66d9ef">data</span> &lt;- read_csv(<span style="color:#e6db74">&#34;data/Study 1 Data.csv&#34;</span>)
+</code></pre></div><p><strong>所用R包</strong>：readr。</p>
+<ul>
+<li>第一行：调用readr包。</li>
+<li>第二行：将【data/Study 1 Data.csv】读取，并命名为【data】。</li>
+</ul>
+<p>运行后可以在Environment里看到data。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322539.png" alt="img"></p>
+<h3 id="点击版">点击版</h3>
+<p>如果不想写语法，大家还可以在RStudio里找到文件点击Import Dataset。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322531.png" alt="img"></p>
+<p>点击Import。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322291.png" alt="img"></p>
+<p>不过这样导入的数据名是原始的，所以我们可以在import options里进行修改。</p>
+<h2 id="step-2信效度">Step 2：信效度</h2>
+<h3 id="信度">信度</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">library</span><span style="color:#f92672">(</span><span style="color:#f92672">dplyr</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">alphaX</span> <span style="color:#f92672">&lt;-</span> <span style="color:#f92672">data</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">select</span><span style="color:#f92672">(</span><span style="color:#f92672">X1</span><span style="color:#a6e22e">:X4</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">library</span><span style="color:#f92672">(</span><span style="color:#f92672">psych</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">alpha</span><span style="color:#f92672">(</span><span style="color:#f92672">alphaX</span><span style="color:#f92672">)</span> 
+</code></pre></div><p><strong>所用R包</strong>：dplyr、psych。</p>
+<ul>
+<li>第一行：调用dplyr包。</li>
+<li>第二行：在【data】中，选择【X1至X4】这几列，其将形成新的数据文件，并命名为【alphaX】。</li>
+<li>第三行：调用psych包。</li>
+<li>第四行：计算【alphaX】的信度。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322991.png" alt="img"></p>
+<p>不过，可以看到上面的输出结果很长，并且每次都会新生成一个数据文件。</p>
+<p>所以，我们可以改成下面这种形式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">data <span style="color:#f92672">%&gt;%</span> dplyr<span style="color:#f92672">::</span>select(X1:X4) <span style="color:#f92672">%&gt;%</span> psych<span style="color:#f92672">::</span>alpha() <span style="color:#f92672">%&gt;%</span> summary
+data <span style="color:#f92672">%&gt;%</span> dplyr<span style="color:#f92672">::</span>select(M1:M3) <span style="color:#f92672">%&gt;%</span> psych<span style="color:#f92672">::</span>alpha() <span style="color:#f92672">%&gt;%</span> summary
+data <span style="color:#f92672">%&gt;%</span> dplyr<span style="color:#f92672">::</span>select(Y1:Y5) <span style="color:#f92672">%&gt;%</span> psych<span style="color:#f92672">::</span>alpha() <span style="color:#f92672">%&gt;%</span> summary
+data <span style="color:#f92672">%&gt;%</span> dplyr<span style="color:#f92672">::</span>select(W1:W3) <span style="color:#f92672">%&gt;%</span> psych<span style="color:#f92672">::</span>alpha() <span style="color:#f92672">%&gt;%</span> summary
+</code></pre></div><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322523.png" alt="img"></p>
+<h3 id="效度">效度</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">library(lavaan) 
+model4 <span style="color:#f92672">&lt;-</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>CFAX =<span style="color:#f92672">~</span> X1 <span style="color:#f92672">+</span> X2 <span style="color:#f92672">+</span> X3 <span style="color:#f92672">+</span> X4
+CFAM =<span style="color:#f92672">~</span> M1 <span style="color:#f92672">+</span> M2 <span style="color:#f92672">+</span> M3
+CFAY =<span style="color:#f92672">~</span> Y1 <span style="color:#f92672">+</span> Y2 <span style="color:#f92672">+</span> Y3 <span style="color:#f92672">+</span> Y4 <span style="color:#f92672">+</span> Y5
+CFAW =<span style="color:#f92672">~</span> W1 <span style="color:#f92672">+</span> W2 <span style="color:#f92672">+</span> W3<span style="color:#960050;background-color:#1e0010">&#39;</span>
+fit4 <span style="color:#f92672">&lt;-</span>cfa(model4, data=data)
+summary(fit4, fit.measures=TRUE)
+</code></pre></div><p><strong>所用R包</strong>：lavaan。</p>
+<ul>
+<li>第一行：调用lavaan包。</li>
+<li>第二行：构建一个CFA的model，并命名为【model4】。</li>
+<li>第三行：利用【data】中的数据，计算【model4】的拟合指数，并将结果命名为【fit4】。</li>
+<li>第四行：汇报【fit4】的各指标。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322573.png" alt="img"></p>
+<p>后续大家还要按需来汇报替代模型的CFA结果。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">model31 <span style="color:#f92672">&lt;-</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>CFAX =<span style="color:#f92672">~</span> X1 <span style="color:#f92672">+</span> X2 <span style="color:#f92672">+</span> X3 <span style="color:#f92672">+</span> X4
+CFAM =<span style="color:#f92672">~</span> M1 <span style="color:#f92672">+</span> M2 <span style="color:#f92672">+</span> M3 <span style="color:#f92672">+</span> Y1 <span style="color:#f92672">+</span> Y2 <span style="color:#f92672">+</span> Y3 <span style="color:#f92672">+</span> Y4 <span style="color:#f92672">+</span> Y5
+CFAW =<span style="color:#f92672">~</span> W1 <span style="color:#f92672">+</span> W2 <span style="color:#f92672">+</span> W3<span style="color:#960050;background-color:#1e0010">&#39;</span>
+fit31 <span style="color:#f92672">&lt;-</span>cfa(model31, data=data)
+summary(fit31, fit.measures=TRUE)
+
+model32 <span style="color:#f92672">&lt;-</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>CFAX =<span style="color:#f92672">~</span>X1 <span style="color:#f92672">+</span> X2 <span style="color:#f92672">+</span> X3 <span style="color:#f92672">+</span> X4 <span style="color:#f92672">+</span> W1 <span style="color:#f92672">+</span> W2 <span style="color:#f92672">+</span> W3
+CFAM =<span style="color:#f92672">~</span> M1 <span style="color:#f92672">+</span> M2 <span style="color:#f92672">+</span> M3
+CFAY =<span style="color:#f92672">~</span> Y1 <span style="color:#f92672">+</span> Y2 <span style="color:#f92672">+</span> Y3 <span style="color:#f92672">+</span> Y4 <span style="color:#f92672">+</span> Y5<span style="color:#960050;background-color:#1e0010">&#39;</span>
+fit32 <span style="color:#f92672">&lt;-</span>cfa(model32, data=data)
+summary(fit32, fit.measures=TRUE)
+</code></pre></div><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322882.png" alt="img"></p>
+<h2 id="step-2描述性统计">Step 2：描述性统计</h2>
+<h3 id="均值标准差">均值、标准差</h3>
+<p>确定信效度都通过检验后，我们再来进行描述性分析和假设检验。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">subset <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">data</span> <span style="color:#f92672">%&gt;%</span> <span style="color:#66d9ef">select</span>(X:W)
+<span style="color:#66d9ef">describe</span>(subset)
+</code></pre></div><p><strong>所用R包</strong>：dplyr、psych。</p>
+<ul>
+<li>第一行：在【data】中，选择【X至W】这几列，其将形成新的数据文件，并命名为【subset】。</li>
+<li>第二行：汇报【subset】的描述性信息。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322605.png" alt="img"></p>
+<p>这里也可以一行到位，不过【subset】后续在计算相关时也会用到，所以我们还是不简化了。</p>
+<h3 id="相关系数">相关系数</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objectivec" data-lang="objectivec">correlation<span style="color:#f92672">&lt;-</span>corr.test(x<span style="color:#f92672">=</span>subset)
+print(x <span style="color:#f92672">=</span> correlation, <span style="color:#66d9ef">short</span> <span style="color:#f92672">=</span> FALSE, digits<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</code></pre></div><p><strong>所用R包</strong>：psych。</p>
+<ul>
+<li>第一行：计算【subset】的相关矩阵，将其结果命名为【correlation】。</li>
+<li>第二行：汇报【subset】的描述性信息。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322490.png" alt="img"></p>
+<p>为了便于汇报，我们也可以直接输出对应指标的下三角形。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lowerMat<span style="color:#f92672">(</span>correlation$r, digits<span style="color:#f92672">=</span>3<span style="color:#f92672">)</span>
+lowerMat<span style="color:#f92672">(</span>correlation$p, digits<span style="color:#f92672">=</span>3<span style="color:#f92672">)</span>
+</code></pre></div><ul>
+<li>digits=3，即为保留3位小数。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322979.png" alt="img"></p>
+<h2 id="step-4假设检验">Step 4：假设检验</h2>
+<h3 id="变量标准化">变量标准化</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#a6e22e">data</span>$ZX<span style="color:#f92672">=</span><span style="color:#a6e22e">scale</span>(<span style="color:#a6e22e">data</span>$X,<span style="color:#a6e22e">center</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, <span style="color:#a6e22e">scale</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+<span style="color:#a6e22e">data</span>$ZW<span style="color:#f92672">=</span><span style="color:#a6e22e">scale</span>(<span style="color:#a6e22e">data</span>$W,<span style="color:#a6e22e">center</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, <span style="color:#a6e22e">scale</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+<span style="color:#a6e22e">data</span>$int<span style="color:#f92672">=</span><span style="color:#a6e22e">data</span>$ZX <span style="color:#f92672">*</span> <span style="color:#a6e22e">data</span>$ZW
+</code></pre></div><ul>
+<li>第一行：将【data】中的【X】标准化，并将其结果储存为【data】中的【ZX】。</li>
+<li>第二行：将【data】中的【W】标准化，并将其结果储存为【data】中的【ZW】。</li>
+<li>第三行：将【data】中的【ZX】和【ZW】相乘，并将其结果储存为【data】中的【int】。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322242.png" alt="img"></p>
+<h3 id="路径分析">路径分析</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">mome &lt;-&#39;M~ a0* X + W +a1*int</span>
+<span style="color:#66d9ef">Y</span> <span style="color:#ae81ff">~ b*M + X + W +int</span>
+    <span style="color:#f92672">slope_h</span>: <span style="color:#ae81ff">= a0+a1*(2.05)</span>
+    <span style="color:#f92672">slope_l</span>: <span style="color:#ae81ff">= a0-a1*(2.05)</span>
+    <span style="color:#f92672">ind_h</span>: <span style="color:#ae81ff">= slope_h*b</span>
+    <span style="color:#f92672">ind_l</span>: <span style="color:#ae81ff">= slope_l*b</span>
+    <span style="color:#f92672">ind_d</span>: <span style="color:#ae81ff">=ind_h-ind_l&#39;</span>
+</code></pre></div><p><strong>所用R包</strong>：lavaan。</p>
+<ul>
+<li>第一行：根据假设，构建一个结构方程模型的model，并命名为【mome】。</li>
+</ul>
+<p>这里的编写逻辑其实和Mplus中很像，【a0】、【a1】、【b】是指模型估算出的系数，用于后续效应量的计算。【2.05】是我们前文计算出的W的标准差。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322500.png" alt="img"></p>
+<h4 id="自定义重复抽样种子">自定义重复抽样种子</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">set.seed(<span style="color:#ae81ff">1</span>)
+</code></pre></div><p>如果不写这一句，每次Bootstrap的结果都可能会不同，所以为了结果可重复性，我个人还是建议加上这句。不过括号中的数字是【1】还是【1234567】，这就无所谓了。</p>
+<h4 id="计算bootstrap">计算bootstrap</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">mome.fit&lt;-sem(mome,<span style="color:#66d9ef">data</span>=<span style="color:#66d9ef">data</span>,se=<span style="color:#e6db74">&#34;bootstrap&#34;</span>, bootstrap=<span style="color:#ae81ff">5000</span>)
+</code></pre></div><p>利用【data】中的数据，计算【mode】，进行Bootstrap【5000】次的结果，并命名为【mome.fit】。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322714.png" alt="img"></p>
+<p>这种方式计算Bootstrap会有些慢。在软件运算时，右上角会显示一个小红点，等红点消失才代表运算完成，大家要耐心等待。</p>
+<h4 id="输出结果">输出结果</h4>
+<pre tabindex="0"><code class="language-less" data-lang="less">summary(mome.fit,fit.measures=&quot;TRUE&quot;,rsquare=&quot;TRUE&quot;)
+</code></pre><p>输出【mome.fit】的结果。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322115.png" alt="img"></p>
+<p>直到这一步，才会在输出区域有显示。</p>
+<h4 id="置信区间">置信区间</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">parameterestimates</span>(<span style="color:#a6e22e">mome</span>.<span style="color:#a6e22e">fit</span>,<span style="color:#a6e22e">boot</span>.<span style="color:#a6e22e">ci</span>.<span style="color:#66d9ef">type</span>=<span style="color:#e6db74">&#34;perc&#34;</span>,<span style="color:#a6e22e">standardize</span>=<span style="color:#a6e22e">TRUE</span>)
+</code></pre></div><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322998.png" alt="img"></p>
+<p>在涉及变量较多时，有时候结果会显示不全。我们在任意位置运行以下语句即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lua" data-lang="lua">options(max.print<span style="color:#f92672">=</span><span style="color:#ae81ff">1000000</span>)
+</code></pre></div><h1 id="整体语法汇总">整体语法汇总</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">## Step 1：导入原始数据
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">library</span>(<span style="color:#a6e22e">openxlsx</span>)
+<span style="color:#a6e22e">data</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read</span><span style="color:#f92672">.</span><span style="color:#a6e22e">xlsx</span>(<span style="color:#e6db74">&#34;R.xlsx&#34;</span>, )
+
+
+<span style="color:#75715e">## Step 2：信效度+描述性统计
+</span><span style="color:#75715e">### 信度
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">library</span>(<span style="color:#a6e22e">dplyr</span>)
+<span style="color:#a6e22e">library</span>(<span style="color:#a6e22e">psych</span>)
+<span style="color:#a6e22e">data</span> <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">dplyr</span><span style="color:#f92672">::</span><span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">X1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">X4</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">psych</span><span style="color:#f92672">::</span><span style="color:#a6e22e">alpha</span>() <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">summary</span>
+<span style="color:#a6e22e">data</span> <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">dplyr</span><span style="color:#f92672">::</span><span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">M1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">M3</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">psych</span><span style="color:#f92672">::</span><span style="color:#a6e22e">alpha</span>() <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">summary</span>
+<span style="color:#a6e22e">data</span> <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">dplyr</span><span style="color:#f92672">::</span><span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">Y1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">Y5</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">psych</span><span style="color:#f92672">::</span><span style="color:#a6e22e">alpha</span>() <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">summary</span>
+<span style="color:#a6e22e">data</span> <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">dplyr</span><span style="color:#f92672">::</span><span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">W1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">W3</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">psych</span><span style="color:#f92672">::</span><span style="color:#a6e22e">alpha</span>() <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">summary</span>
+
+<span style="color:#75715e">### CFA
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">library</span>(<span style="color:#a6e22e">lavaan</span>) 
+<span style="color:#a6e22e">model4</span> <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#39;CFAX =~ X1 + X2 + X3 + X4
+</span><span style="color:#e6db74">CFAM =~ M1 + M2 + M3
+</span><span style="color:#e6db74">CFAY =~ Y1 + Y2 + Y3 + Y4 + Y5
+</span><span style="color:#e6db74">CFAW =~ W1 + W2 + W3&#39;</span>
+<span style="color:#a6e22e">fit4</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">cfa</span>(<span style="color:#a6e22e">model4</span>, <span style="color:#a6e22e">data</span><span style="color:#f92672">=</span><span style="color:#a6e22e">data</span>)
+<span style="color:#a6e22e">summary</span>(<span style="color:#a6e22e">fit4</span>, <span style="color:#a6e22e">fit</span><span style="color:#f92672">.</span><span style="color:#a6e22e">measures</span><span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+
+<span style="color:#a6e22e">model31</span> <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#39;CFAX =~ X1 + X2 + X3 + X4
+</span><span style="color:#e6db74">CFAM =~ M1 + M2 + M3 + Y1 + Y2 + Y3 + Y4 + Y5
+</span><span style="color:#e6db74">CFAW =~ W1 + W2 + W3&#39;</span>
+<span style="color:#a6e22e">fit31</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">cfa</span>(<span style="color:#a6e22e">model31</span>, <span style="color:#a6e22e">data</span><span style="color:#f92672">=</span><span style="color:#a6e22e">data</span>)
+<span style="color:#a6e22e">summary</span>(<span style="color:#a6e22e">fit31</span>, <span style="color:#a6e22e">fit</span><span style="color:#f92672">.</span><span style="color:#a6e22e">measures</span><span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+
+<span style="color:#a6e22e">model32</span> <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#39;CFAX =~X1 + X2 + X3 + X4 + W1 + W2 + W3
+</span><span style="color:#e6db74">CFAM =~ M1 + M2 + M3
+</span><span style="color:#e6db74">CFAY =~ Y1 + Y2 + Y3 + Y4 + Y5&#39;</span>
+<span style="color:#a6e22e">fit32</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">cfa</span>(<span style="color:#a6e22e">model32</span>, <span style="color:#a6e22e">data</span><span style="color:#f92672">=</span><span style="color:#a6e22e">data</span>)
+<span style="color:#a6e22e">summary</span>(<span style="color:#a6e22e">fit32</span>, <span style="color:#a6e22e">fit</span><span style="color:#f92672">.</span><span style="color:#a6e22e">measures</span><span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+
+<span style="color:#75715e">## 均值、标准差
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">options</span>(<span style="color:#a6e22e">max</span><span style="color:#f92672">.</span><span style="color:#66d9ef">print</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1000000</span>)
+<span style="color:#a6e22e">subset</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">X</span><span style="color:#f92672">:</span><span style="color:#a6e22e">W</span>)
+<span style="color:#a6e22e">describe</span>(<span style="color:#a6e22e">subset</span>)
+
+<span style="color:#75715e">## 相关系数
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">correlation</span><span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">corr</span><span style="color:#f92672">.</span><span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">x</span><span style="color:#f92672">=</span><span style="color:#a6e22e">subset</span>)
+<span style="color:#66d9ef">print</span>(<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">correlation</span>, <span style="color:#a6e22e">short</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, <span style="color:#a6e22e">digits</span><span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+
+<span style="color:#75715e">#### 输出下三角形
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">lowerMat</span>(<span style="color:#a6e22e">correlation</span>$r, <span style="color:#a6e22e">digits</span><span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+
+<span style="color:#75715e">#### 输出P值
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">lowerMat</span>(<span style="color:#a6e22e">correlation</span>$p, <span style="color:#a6e22e">digits</span><span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+
+<span style="color:#75715e"># Step 3：路径分析
+</span><span style="color:#75715e">## 中心化
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">data</span>$ZX<span style="color:#f92672">=</span><span style="color:#a6e22e">scale</span>(<span style="color:#a6e22e">data</span>$X,<span style="color:#a6e22e">center</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, <span style="color:#a6e22e">scale</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+<span style="color:#a6e22e">data</span>$ZW<span style="color:#f92672">=</span><span style="color:#a6e22e">scale</span>(<span style="color:#a6e22e">data</span>$W,<span style="color:#a6e22e">center</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, <span style="color:#a6e22e">scale</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+<span style="color:#a6e22e">data</span>$int<span style="color:#f92672">=</span><span style="color:#a6e22e">data</span>$ZX <span style="color:#f92672">*</span> <span style="color:#a6e22e">data</span>$ZW
+
+<span style="color:#75715e">## 路径分析
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">library</span>(<span style="color:#a6e22e">lavaan</span>) 
+<span style="color:#a6e22e">mome</span> <span style="color:#f92672">&lt;-</span><span style="color:#e6db74">&#39;M~ a0* X + W +a1*int
+</span><span style="color:#e6db74">Y ~ b*M + X + W +int
+</span><span style="color:#e6db74">    slope_h: = a0+a1*(2.05)
+</span><span style="color:#e6db74">    slope_l: = a0-a1*(2.05)
+</span><span style="color:#e6db74">    ind_h: = slope_h*b
+</span><span style="color:#e6db74">    ind_l: = slope_l*b
+</span><span style="color:#e6db74">    ind_d: =ind_h-ind_l&#39;</span>
+
+<span style="color:#75715e">### 自定义重复抽样种子
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">set</span><span style="color:#f92672">.</span><span style="color:#a6e22e">seed</span>(<span style="color:#ae81ff">1</span>)
+
+<span style="color:#75715e">### 计算bootstrap
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">mome</span><span style="color:#f92672">.</span><span style="color:#a6e22e">fit</span><span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">sem</span>(<span style="color:#a6e22e">mome</span>,<span style="color:#a6e22e">data</span><span style="color:#f92672">=</span><span style="color:#a6e22e">data</span>,<span style="color:#a6e22e">se</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bootstrap&#34;</span>, <span style="color:#a6e22e">bootstrap</span><span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span>)
+
+<span style="color:#75715e">### 输出结果
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">summary</span>(<span style="color:#a6e22e">mome</span><span style="color:#f92672">.</span><span style="color:#a6e22e">fit</span>,<span style="color:#a6e22e">fit</span><span style="color:#f92672">.</span><span style="color:#a6e22e">measures</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;TRUE&#34;</span>,<span style="color:#a6e22e">rsquare</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;TRUE&#34;</span>)
+
+<span style="color:#75715e">### 置信区间
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">parameterestimates</span>(<span style="color:#a6e22e">mome</span><span style="color:#f92672">.</span><span style="color:#a6e22e">fit</span>,<span style="color:#a6e22e">boot</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ci</span><span style="color:#f92672">.</span><span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;perc&#34;</span>,<span style="color:#a6e22e">standardize</span><span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>)
+</code></pre></div><hr>
+<p>啦啦啦，这篇推送就到这里啦。</p>
+<p>萜妹在学习新方法和新技术的时候，是一个非常目标导向的人，所以我对R数据分析的学习几乎都是依靠复现他人结果。</p>
+<p>我在这个过程中，实现了R数据分析的入门，所以我想把经验整理出来，让小可爱们也试试。</p>
+<p>我们先成功复现出他人结果，再依葫芦画瓢，去分析自己的模型吧。祝大家都顺利。</p>
+<p>最后，如果大家对R数据分析有兴趣，欢迎多多留言分享。等阅读量过3k，我就更新进阶版！</p>
+<p><strong>相关资料参考：</strong></p>
+<p>部分语法改编于：https://b23.tv/cZt2A0Q</p>
+<p>操作数据改编于：Heng &amp; Fehr(2022)中的Study 3A。</p>
+<blockquote>
+<p>Heng, Y. T., &amp; Fehr, R. (2022). When you try your best to help but don’t succeed: How self-compassionate reflection influences reactions to interpersonal helping failures. Organizational Behavior and Human Decision Processes, 171. <a href="https://doi.org/10.1016/j.obhdp.2022.104151">https://doi.org/10.1016/j.obhdp.2022.104151</a></p>
+</blockquote>
+<p><strong>往期推送</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486620&amp;idx=1&amp;sn=cd74ffc016d143f134d8add8eac419cf&amp;chksm=96f4787aa183f16c03596223e0ff7c271ff7708eacc209d59953408b470955ad69372254590a#rd">复现丨基于R的实验检验</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487229&amp;idx=1&amp;sn=f56da1d5bc7a610dce084c945d45797d&amp;chksm=96f47a1ba183f30da1372b287af3155691db12f9c2b6ee3fb219e1526908217e46ab8deb3a34&amp;token=148933034&amp;lang=zh_CN#rd">复现丨类别变量的三阶交互</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485352&amp;idx=1&amp;sn=77bd6fff81e432656c2a62c5ecc5e8ae&amp;chksm=96f4734ea183fa58a642feb3a16716892f135e9787ac6b600d2a4f6ec2036ab33070976157d1&amp;token=1897272759&amp;lang=zh_CN#rd">经验丨我如何学习新方法</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487571&amp;idx=1&amp;sn=677af6156f30ae1082f05432009a3741&amp;chksm=96f464b5a183eda3bc50c5ef7c762cb1fc84e4d5135d4d3cebe6fbf061ed7a7f7e25422f57ff&amp;token=1897272759&amp;lang=zh_CN#rd">范文丨顶刊引言精读（八）</a></strong></p>
+<p><strong>原文链接：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487615&amp;idx=1&amp;sn=1bb580d5076098680606970eaeeedf34&amp;chksm=96f46499a183ed8f7a238aceaf70d35e6ef6ef3eebdfe14bc8222b4e4e010a8ac7a30e23f0f5&amp;token=1897272759&amp;lang=zh_CN#rd">R丨数据分析-基础版</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/r/">R</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/11/%E8%A7%A3%E9%87%8A%E6%B0%B4%E5%B9%B3%E7%90%86%E8%AE%BA%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/" data-tooltip="解释水平理论：概念介绍" aria-label="下一篇: 解释水平理论：概念介绍">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/10/%E8%B4%A1%E7%8C%AE%E6%B8%85%E6%99%B0jom-%E5%8D%B1%E6%9C%BA%E4%B8%8E%E9%A2%86%E5%AF%BC%E5%8A%9B/" data-tooltip="贡献清晰：JOM-危机与领导力" aria-label="上一篇: 贡献清晰：JOM-危机与领导力">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/11/%E8%A7%A3%E9%87%8A%E6%B0%B4%E5%B9%B3%E7%90%86%E8%AE%BA%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/" data-tooltip="解释水平理论：概念介绍" aria-label="下一篇: 解释水平理论：概念介绍">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/10/%E8%B4%A1%E7%8C%AE%E6%B8%85%E6%99%B0jom-%E5%8D%B1%E6%9C%BA%E4%B8%8E%E9%A2%86%E5%AF%BC%E5%8A%9B/" data-tooltip="贡献清晰：JOM-危机与领导力" aria-label="上一篇: 贡献清晰：JOM-危机与领导力">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

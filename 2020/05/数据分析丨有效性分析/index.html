@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "数据分析丨有效性分析",
+  
+  "datePublished": "2020-05-10T00:00:00Z",
+  "dateModified": "2020-05-10T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2020\/05\/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%A8%E6%9C%89%E6%95%88%E6%80%A7%E5%88%86%E6%9E%90\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "等了这么久，我们终于要开始对数据进行分析啦！\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="等了这么久，我们终于要开始对数据进行分析啦！">
+
+
+<meta property="og:description" content="等了这么久，我们终于要开始对数据进行分析啦！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据分析丨有效性分析">
+<meta name="twitter:title" content="数据分析丨有效性分析">
+<meta property="og:url" content="https://tie-blog.netlify.app/2020/05/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%A8%E6%9C%89%E6%95%88%E6%80%A7%E5%88%86%E6%9E%90/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2020/05/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%A8%E6%9C%89%E6%95%88%E6%80%A7%E5%88%86%E6%9E%90/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="等了这么久，我们终于要开始对数据进行分析啦！">
+<meta name="twitter:description" content="等了这么久，我们终于要开始对数据进行分析啦！">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2020-05-10T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-05-10T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="系列">
+    
+      <meta property="article:section" content="保姆级毕业论文教程">
+    
+  
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>数据分析丨有效性分析</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2020/05/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%A8%E6%9C%89%E6%95%88%E6%80%A7%E5%88%86%E6%9E%90/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      数据分析丨有效性分析
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2020-05-10T00:00:00Z">
+        
+  
+  
+  
+  
+    2020-05-10
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e7%b3%bb%e5%88%97">系列</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e4%bf%9d%e5%a7%86%e7%ba%a7%e6%af%95%e4%b8%9a%e8%ae%ba%e6%96%87%e6%95%99%e7%a8%8b">保姆级毕业论文教程</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>等了这么久，我们终于要开始对数据进行分析啦！</p>
+<p>写这篇推送前，萜妹回顾了自己本科毕业那段时间的推送。我感觉，该写的，其实我都写过了。可是为什么萜妹自认为已经对数据操作示范的很详细了，数据小白来看我的推送还是一头雾水。</p>
+<p>认真反思后，我觉得最大的原因是，小白根本不知道自己要做什么，以及最终要做成什么样。所以我的示范好像是告诉他们1+1=2，但是实际上，他们都不理解1是什么，以及为什么要算1+1=2。</p>
+<p>所以这一次，萜妹想用通俗的话，来帮小可爱们搭建个框架，并且告诉小可爱们要做成什么样，为什么要这么做，以及怎么做~</p>
+<p>接下来萜妹会具体的介绍每个要做的步骤。萜妹把它们分为了三个大类，分别是：数据有效性分析、样本基本描述、数据具体分析（这周只够数据有效性分析）。</p>
+<ul>
+<li>数据有效性分析：信度检验、验证性因子分析、共同方法偏差检验。</li>
+<li>样本基础描述：描述性分析、相关分析。</li>
+<li>数据具体分析：回归分析、bootstrap法、简单斜率分析（涉及调节时使用）。</li>
+</ul>
+<p>注：以上为至少要完成的操作，面对特殊情况的额外操作，这里未提及。如无特殊情况，完成上述操作即可。</p>
+<hr>
+<h1 id="信度分析"><strong>信度分析</strong></h1>
+<h2 id="步骤目标"><strong>【步骤目标】</strong></h2>
+<p>得到内部一致性系数，又称克伦巴赫α系数。通常报告于变量测量部分。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112346697.png" alt="img"></p>
+<p>来源：参考文献[1]</p>
+<h2 id="步骤目的"><strong>【步骤目的】</strong></h2>
+<p>官方定义：检验测量样本回答结果的可靠性。</p>
+<p>萜妹理解：信度分析可以被理解为<strong>检验各题项测的是不是同一个东西</strong>。如果信度不高，则测的并非一个东西。</p>
+<ul>
+<li>一个不一定恰当的比喻：你以为发出去的卷子都是数学题，通过卷子能知道别人的数学水平。结果卷子里，有的是文学题、有的是英语题。聚在一起不伦不类，最后得分没有任何意义。</li>
+</ul>
+<h2 id="具体操作"><strong>【具体操作】</strong></h2>
+<p>使用软件：SPSS</p>
+<p>①【分析(A)】-【度量(S)】-【可靠性分析(R)】；</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112346677.png" alt="img"></p>
+<p>②模型选择：【α】➔将目标题项从左侧拖入右侧项目框➔点击【确定】，得结果。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112346416.png" alt="img"></p>
+<h2 id="数据解读"><strong>【数据解读】</strong></h2>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112346135.png" alt="img"></p>
+<p>红框内数据为结果，α数值越高，信度越好。</p>
+<h2 id="判断标准"><strong>【判断标准】</strong></h2>
+<p>0.8以上较好，0.7勉强接受。</p>
+<h1 id="验证性因子分析cfa"><strong>验证性因子分析（CFA）</strong></h1>
+<p>研究过程中，如果涉及量表开发，则需要提前进行探索性因子分析。如果各变量使用的均是成熟量表，则可仅进行验证性因子分析。第二种情况更为常见，所以这里萜妹仅介绍验证性因子分析。</p>
+<h2 id="步骤目标-1"><strong>【步骤目标】</strong></h2>
+<p>计算出<em>χ2 、df、χ2 /df、CFI、RMSEA</em>等值，绘制出下表，或使用文字描述。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112346496.png" alt="img"></p>
+<p>注：红框内为必要部分，使用mplus时，NNFI可替换为TLI。</p>
+<p>来源：参考文献[2]</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112346710.png" alt="img"></p>
+<p>来源：参考文献[1]</p>
+<h2 id="步骤目的-1"><strong>【步骤目的】</strong></h2>
+<p>官方定义：验证因子与测量项之间的对应关系。</p>
+<p>萜妹理解：这里则是既<strong>检验各题项是否测的真的是一个变量</strong>（通过看基准模型的结果），又<strong>检验变量之间是否真的不同</strong>（通过比较各模型间的变化）。</p>
+<ul>
+<li>一个不一定恰当的比喻：假设你发了10道题目出去，分别为3题数学题、3题文学题和4题英语题，想得到别人的数学、文学和英语水平。</li>
+<li>你先要检验每个题目是不是真的测的是预期的能力，即3道数学题是不是测的一个东西（A）、3道文学题是不是测的一个东西（B）、4道英语题是不是测的一个东西（C）。如果做不出这个结果，则和信度低一样，说明测的东西没有意义。</li>
+<li>又要检验测出了三个东西各不相同，即A跟B是不一样的。如果二者一样，则说明6道题测的是一个东西，那么后续验证出A能影响B也是无意义的。</li>
+</ul>
+<h2 id="具体操作-1"><strong>【具体操作】</strong></h2>
+<h3 id="方法一使用软件mplus"><strong>方法一</strong>：使用软件：Mplus</h3>
+<p>关于mplus的语句说明，萜妹有专门写过一次推送，可在文末往期推送中查阅。要先有mplus的基础，才能理解下面的语句。</p>
+<p>基准模型语句：</p>
+<pre tabindex="0"><code class="language-Mplus" data-lang="Mplus">TITLE: CFA
+DATA: FILE IS 1.dat;
+VARIABLE: NAMES ARE id a1-a3 b1-b3 c1-c4;
+Usevariables are a1-a3 b1-b3 c1-c4;
+MODEL:
+ a by a1-a3;
+ b by b1-b3;
+ c by c1-c4;
+OUTPUT: Standardized；
+</code></pre><p>双因子模型语句：</p>
+<pre tabindex="0"><code class="language-Mplus" data-lang="Mplus">TITLE: CFA
+DATA: FILE IS 1.dat;
+VARIABLE: NAMES ARE id a1-a3 b1-b3 c1-c4;
+Usevariables are a1-a3 b1-b3 c1-c4;
+MODEL:
+ a by a1-a3 b1-b3;
+ c by c1-c4;
+OUTPUT: Standardized；
+</code></pre><p>注：蓝字部分为变化部分。</p>
+<p>我们只用在基准模型的基础上，不断修改、合并，即可得到各因子模型，最后把结果进行比较即可。</p>
+<p>此处萜妹建议大家每次更改语句后都保存成一个新的input文件，否则只能保存住最后一次语句的输出结果。</p>
+<h3 id="方法二使用软件amos"><strong>方法二</strong>：使用软件：Amos</h3>
+<p>萜妹昨天晚上才在B站上学的Amos，所以Amos的基础介绍还没来得及写。不过都说Amos比Mplus简单，上手还是非常容易的。考虑到篇幅原因，我这里也只给出对应的模型，其他的基本操作还需要小可爱们自学或者等我的推送介绍。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112346340.png" alt="img"></p>
+<p>基准模型</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112347003.png" alt="img"></p>
+<p>双因子模型</p>
+<h2 id="数据解读-1"><strong>【数据解读】</strong></h2>
+<h3 id="方法一使用软件mplus-1"><strong>方法一</strong>：使用软件：Mplus</h3>
+<p>MODEL FIT INFORMATION 部分</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112346774.png" alt="img"></p>
+<h3 id="方法二使用软件amos-1"><strong>方法二</strong>：使用软件：Amos</h3>
+<p>Notes for Model 部分</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112347153.png" alt="img"></p>
+<p>MODEL FIT 部分</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112347196.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112347213.png" alt="img"></p>
+<h2 id="判断标准-1"><strong>【判断标准】</strong></h2>
+<ul>
+<li>卡方/自由度：小一点更好，最好在2~5以内；</li>
+<li><em>CFI/TLI</em>：大于0.9；</li>
+<li><em>RMSEA</em>：小于0.08。</li>
+</ul>
+<h1 id="共同方法偏差检验"><strong>共同方法偏差检验</strong></h1>
+<h2 id="步骤目标-2"><strong>【步骤目标】</strong></h2>
+<p>计算出相应的指标，在文中进行描述：是否存在共同方法偏差。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112347226.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112347818.png" alt="img"></p>
+<p>注：此处采用了两种检验方法，仅用一种方法时，目前通常使用第二种。</p>
+<p>来源：参考文献[3]</p>
+<h2 id="步骤目的-2"><strong>【步骤目的】</strong></h2>
+<p>官方定义：检验是否因为同样的数据来源或评分者、同样的测量环境、项目语境以及项目本身特征所造成的预测变量与效标变量之间人为的共变。</p>
+<p>萜妹理解：其实官方定义挺明白的，我就用例子介绍的更通俗一点。</p>
+<ul>
+<li>比如：如果所有的测量都是通过问卷进行的，那么问卷这种方式对你的结果会不会有影响？</li>
+<li>再比如：如果所有的问题都是员工自我报告的，那么这会不会又产生影响？</li>
+</ul>
+<h2 id="具体操作--数据解读--判断标准"><strong>【具体操作 / 数据解读 / 判断标准】</strong></h2>
+<h3 id="方法一单因子检验"><strong>方法一：单因子检验</strong></h3>
+<p>（一）使用软件：SPSS</p>
+<p>这是最简单的方法，以前的文章用这种方法的比较多，现在感觉用的少了。如果选用这种方法，文章撰写时参考文献可写：周浩, 龙立荣. 共同方法偏差的统计检验与控制方法[J]. 心理科学进展, 2004, 12(6):942-942.</p>
+<p>①【分析(A)】-【降维】-【因子分析(F)】；</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112347880.png" alt="img"></p>
+<p>②将所有题项从左侧拖入右侧变量框➔点击【确定】，得结果。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112347128.png" alt="img"></p>
+<p>结果：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112347266.png" alt="img"></p>
+<p>红框部分小于40，说明不存在严重的共同方法偏差。</p>
+<p>（二）使用软件：Mplus</p>
+<p>单因子检验语句：</p>
+<pre tabindex="0"><code class="language-Mplus" data-lang="Mplus">TITLE: CFA
+DATA: FILE IS 1.dat;
+VARIABLE: NAMES ARE id a1-a3 b1-b3 c1-c4;
+Usevariables are a1-a3 b1-b3 c1-c4;
+MODEL:
+ a by a1-a3 b1-b3 c1-c4;
+OUTPUT: Standardized；
+</code></pre><p>模型结果依旧是看<em>χ2 、df、χ2 /df、CFI、RMSEA</em>等值。模型拟合不好，则说明没有共同方法偏差。</p>
+<p>（三）使用软件：Amos</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112346340.png" alt="img"></p>
+<p>基准模型</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112347311.png" alt="img"></p>
+<p>单因子模型</p>
+<p>模型结果解读同上。<em>χ2 、df、χ2 /df、CFI、RMSEA</em>等值不好，则说明没有共同方法偏差。</p>
+<h3 id="方法二加入方法因子-使用软件amos"><strong>方法二：加入方法因子</strong>-使用软件：Amos</h3>
+<p>如果选用这种方法，文章撰写时参考文献可写：Podsakoff P M , Mackenzie S B , Lee J Y , et al. Common method biases in behavioral research: A critical review of the literature and recommended remedies.[J]. Journal of Applied Psychology, 2003, 88(5):879-903.</p>
+<p>这里想说明一下，加入方法因子在Mplus中，虽然可以写出语句，但是运算结果容易报错（我不知道是偶然还是必然），所以稳妥起见还是用Amos比较好，这也是我为什么突然去学了Amos的原因。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112346340.png" alt="img"></p>
+<p>基准模型</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112347807.png" alt="img"></p>
+<p>加入方法因子模型</p>
+<p>模型结果仍是是看<em>χ2 、df、χ2 /df、CFI、RMSEA</em>等值。但是此时数据肯定会比基准模型要好。不过如果模型各指标改善程度均在0.02以内就可以被认为不存在严重的共同方法偏差。</p>
+<p>0.02是萜妹看过的优质文章中，变化最大的值，至于能不能更大，这萜妹就无法确定了。</p>
+<hr>
+<p>啦啦啦，这又是一篇耗时5小时的推送，所以数据分析的分篇是必然啦。至于视频，由于整个数据分析过程中会有很多重复性、或者相似度较高的操作，所以我准备全写完再一起示范呀，这篇就不单独录了~</p>
+<p>这篇推送和之前的操作示例相比，萜妹认为最大的差别在于，我在这里想让没有基础的小可爱们真正的去理解，每一步的意义和目的，而不仅仅是一个工具人。希望这真的能对小可爱们有所帮助。如果有什么建议或者问题，也可以留言跟萜妹反馈哦~</p>
+<p>另外，萜妹用的是SPSS20的版本，有些说法可能和现在的版本不一样。但是位置一般没变，小可爱们可以对照位置查看。</p>
+<p>最后再提一嘴，今年毕业急着想看后续处理步骤的小可爱们，可以先在往期推送里，看萜妹以前的经验吼~</p>
+<p>小可爱们，我们下周见吧~</p>
+<p>参考文献：</p>
+<p>[1]马君,闫嘉妮.正面反馈的盛名综合症效应：正向激励何以加剧绩效报酬对创造力的抑制？[J].管理世界,2020,36(01):105-121+237.</p>
+<p>[2]沈伊默,诸彦含,周婉茹,张昱城,刘军.团队差序氛围如何影响团队成员的工作表现？——一个有调节的中介作用模型的构建与检验[J].管理世界,2019,35(12):104-115+136+215.</p>
+<p>[3]王震,许灏颖,宋萌.“说话算话”的领导让下属更效忠:中国传统“报”文化视角下的领导言行一致与下属忠诚[J].管理评论,2018,30(04):106-119</p>
+<p><strong>往期推送</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484235&amp;idx=1&amp;sn=0ace762b0e165c0e085c5e72b5f34942&amp;chksm=96f477ada183febb4d6cc03fdbc3d37ce21eb6fa16ca5428ffbf8d8563e2604b1e2d2441a24b&amp;token=1322132591&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨Mplus基础使用指南</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484270&amp;idx=1&amp;sn=a65811f24e754606fd7de5f347dfe505&amp;chksm=96f47788a183fe9ec1cc2de02c07d435391aa0e15f364cd2e8a7a4e63cfe687fbff99a73a511&amp;token=1322132591&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨论文写作常用数据分析</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484286&amp;idx=1&amp;sn=a9a611cf297c4eb22aed30f84b3e6f75&amp;chksm=96f47798a183fe8ebd7600799769366a325ef5430ae6b0e4859c9bf01002a52ac48a55a61119&amp;token=1322132591&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨论文写作常用假设分析</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484197&amp;idx=1&amp;sn=035737972b91ec725c37d55cfd4a0fea&amp;chksm=96f477c3a183fed58379221d5717f7520715c7525f6b7aa3a6c4ac92d54e65cc77ef379def44&amp;token=1322132591&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨SPSS数据分析之分析篇</a></strong></p>
+<p><strong>原文链接：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485170&amp;idx=1&amp;sn=53222cd9ffd1fa208a5b717d268cb5d1&amp;chksm=96f47214a183fb021414cfaaebe705fc02447bb06a8cd18748e385c2bfd55aa8ab2287d4a139&amp;token=2073904873&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨数据分析之有效性分析</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/05/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%A8%E5%9F%BA%E7%A1%80%E5%88%86%E6%9E%90/" data-tooltip="数据分析丨基础分析" aria-label="下一篇: 数据分析丨基础分析">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/05/%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87%E4%B8%A8%E5%8F%98%E9%87%8F%E8%AE%A1%E7%AE%97/" data-tooltip="前期准备丨变量计算" aria-label="上一篇: 前期准备丨变量计算">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/05/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%A8%E5%9F%BA%E7%A1%80%E5%88%86%E6%9E%90/" data-tooltip="数据分析丨基础分析" aria-label="下一篇: 数据分析丨基础分析">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/05/%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87%E4%B8%A8%E5%8F%98%E9%87%8F%E8%AE%A1%E7%AE%97/" data-tooltip="前期准备丨变量计算" aria-label="上一篇: 前期准备丨变量计算">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

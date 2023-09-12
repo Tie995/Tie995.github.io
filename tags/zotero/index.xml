@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zotero on TIE&#39;s Blog</title>
+    <link>https://tie-blog.netlify.app/tags/zotero/</link>
+    <description>Recent content in Zotero on TIE&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 20 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://tie-blog.netlify.app/tags/zotero/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何将文献库从EndNote迁移至Zotero</title>
+      <link>https://tie-blog.netlify.app/2023/08/%E5%A6%82%E4%BD%95%E5%B0%86%E6%96%87%E7%8C%AE%E5%BA%93%E4%BB%8Eendnote%E8%BF%81%E7%A7%BB%E8%87%B3zotero/</link>
+      <pubDate>Sun, 20 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://tie-blog.netlify.app/2023/08/%E5%A6%82%E4%BD%95%E5%B0%86%E6%96%87%E7%8C%AE%E5%BA%93%E4%BB%8Eendnote%E8%BF%81%E7%A7%BB%E8%87%B3zotero/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;amp;mid=2247488425&amp;amp;idx=1&amp;amp;sn=e30d03caba54f866f21bf9b31a3f9530&amp;amp;chksm=96f4674fa183ee594442b547394cc1875265fe5c14ca8caeeb573770f4bc54b31ea02b29df9e&amp;amp;token=1434297486&amp;amp;lang=zh_CN&amp;amp;scene=21#wechat_redirect&#34;&gt;经验丨如何进行文献阅读 2.0&lt;/a&gt;得到了很多小可爱的喜欢，所以萜妹准备新开个系列，分享我自己搭建这套系统的细节，以及一些经验。&lt;/p&gt;
+&lt;p&gt;今天更新第一部分，如何将文献库从EndNote迁移至Zotero。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>如何进行文献阅读 2.0</title>
+      <link>https://tie-blog.netlify.app/2023/07/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-2.0/</link>
+      <pubDate>Sun, 23 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://tie-blog.netlify.app/2023/07/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-2.0/</guid>
+      <description>&lt;p&gt;大家好，更完&lt;a href=&#34;https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;amp;mid=2247488266&amp;amp;idx=1&amp;amp;sn=0d169d6f487335831266b2cf90b7fc44&amp;amp;chksm=96f467eca183eefa31b1ff3e2e14c1802869331438baa53102bb332eda8c2a5a3664cd32a21f&amp;amp;token=1130884878&amp;amp;lang=zh_CN&amp;amp;scene=21#wechat_redirect&#34;&gt;经验丨Obsidian中的科研库&lt;/a&gt;后，有小可爱来和我交流Obsidian的使用经验。我发现，除了详细的代码和模板，或许使用思路也能互相启发。&lt;/p&gt;
+&lt;p&gt;正好，时隔一年，我的工作流在&lt;a href=&#34;https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;amp;mid=2247487355&amp;amp;idx=1&amp;amp;sn=8b7d29da8724e5b54455fbc1bbab0d6c&amp;amp;chksm=96f47b9da183f28b6beabad99e938907dd7a43fa2821bc2543266206acc93cbcdef60664b80c&amp;amp;token=58583469&amp;amp;lang=zh_CN&amp;amp;scene=21#wechat_redirect&#34;&gt;经验丨如何进行文献阅读&lt;/a&gt;（以下简称1.0版）上，又有了迭代。于是我决定先分享下我最新的阅读流程和使用技巧吖。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Obsidian丨笔记管理参考</title>
+      <link>https://tie-blog.netlify.app/2023/07/obsidian%E4%B8%A8%E7%AC%94%E8%AE%B0%E7%AE%A1%E7%90%86%E5%8F%82%E8%80%83/</link>
+      <pubDate>Sun, 02 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://tie-blog.netlify.app/2023/07/obsidian%E4%B8%A8%E7%AC%94%E8%AE%B0%E7%AE%A1%E7%90%86%E5%8F%82%E8%80%83/</guid>
+      <description>&lt;p&gt;小可爱们好，之前有和大家分享过我如何利用Notion搭建学术库，现在萜妹的学术库已经完全由Notion转入Obsidian，所以重新来和大家分享一下。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>如何进行笔记管理</title>
+      <link>https://tie-blog.netlify.app/2023/04/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%AC%94%E8%AE%B0%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Sun, 23 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://tie-blog.netlify.app/2023/04/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%AC%94%E8%AE%B0%E7%AE%A1%E7%90%86/</guid>
+      <description>&lt;p&gt;小可爱们好，不知道小可爱们是怎么阅读文献、整理笔记的。&lt;/p&gt;
+&lt;p&gt;萜妹有被问过这方面的问题，所以想着来和小可爱们分享分享我的经验吖。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

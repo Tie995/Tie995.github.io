@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "类别变量的三阶交互",
+  
+  "datePublished": "2022-07-17T00:00:00Z",
+  "dateModified": "2022-07-17T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2022\/07\/%E7%B1%BB%E5%88%AB%E5%8F%98%E9%87%8F%E7%9A%84%E4%B8%89%E9%98%B6%E4%BA%A4%E4%BA%92\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": " Kundro, T. G., \u0026amp; Rothbard, N. P. (2022). Does Power Protect Female Moral Objectors? How and When Moral Objectors’ Gender, Power, and Use of Organizational Frames Influence Perceived Self-Control and Experienced Retaliation. Academy of Management Journal. https://doi.org/10.5465/amj.2019.1383\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="
+Kundro, T. G., &amp; Rothbard, N. P. (2022). Does Power Protect Female Moral Objectors? How and When Moral Objectors’ Gender, Power, and Use of Organizational Frames Influence Perceived Self-Control and Experienced Retaliation. Academy of Management Journal. https://doi.org/10.5465/amj.2019.1383
+">
+
+
+<meta property="og:description" content="
+Kundro, T. G., &amp; Rothbard, N. P. (2022). Does Power Protect Female Moral Objectors? How and When Moral Objectors’ Gender, Power, and Use of Organizational Frames Influence Perceived Self-Control and Experienced Retaliation. Academy of Management Journal. https://doi.org/10.5465/amj.2019.1383
+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类别变量的三阶交互">
+<meta name="twitter:title" content="类别变量的三阶交互">
+<meta property="og:url" content="https://tie-blog.netlify.app/2022/07/%E7%B1%BB%E5%88%AB%E5%8F%98%E9%87%8F%E7%9A%84%E4%B8%89%E9%98%B6%E4%BA%A4%E4%BA%92/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2022/07/%E7%B1%BB%E5%88%AB%E5%8F%98%E9%87%8F%E7%9A%84%E4%B8%89%E9%98%B6%E4%BA%A4%E4%BA%92/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="
+Kundro, T. G., &amp; Rothbard, N. P. (2022). Does Power Protect Female Moral Objectors? How and When Moral Objectors’ Gender, Power, and Use of Organizational Frames Influence Perceived Self-Control and Experienced Retaliation. Academy of Management Journal. https://doi.org/10.5465/amj.2019.1383
+">
+<meta name="twitter:description" content="
+Kundro, T. G., &amp; Rothbard, N. P. (2022). Does Power Protect Female Moral Objectors? How and When Moral Objectors’ Gender, Power, and Use of Organizational Frames Influence Perceived Self-Control and Experienced Retaliation. Academy of Management Journal. https://doi.org/10.5465/amj.2019.1383
+">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2022-07-17T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2022-07-17T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="复现">
+    
+      <meta property="article:section" content="数据分析">
+    
+  
+  
+    
+      <meta property="article:tag" content="R">
+    
+      <meta property="article:tag" content="Experiment">
+    
+      <meta property="article:tag" content="Three-way Interaction">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>类别变量的三阶交互</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2022/07/%E7%B1%BB%E5%88%AB%E5%8F%98%E9%87%8F%E7%9A%84%E4%B8%89%E9%98%B6%E4%BA%A4%E4%BA%92/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      类别变量的三阶交互
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-07-17T00:00:00Z">
+        
+  
+  
+  
+  
+    2022-07-17
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%a4%8d%e7%8e%b0">复现</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e6%95%b0%e6%8d%ae%e5%88%86%e6%9e%90">数据分析</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <blockquote>
+<p>Kundro, T. G., &amp; Rothbard, N. P. (2022). Does Power Protect Female Moral Objectors? How and When Moral Objectors’ Gender, Power, and Use of Organizational Frames Influence Perceived Self-Control and Experienced Retaliation. Academy of Management Journal. <a href="https://doi.org/10.5465/amj.2019.1383">https://doi.org/10.5465/amj.2019.1383</a></p>
+</blockquote>
+<p>小可爱们好，本期又是一次使用R的复现，文章涉及类别变量（性别）的交互效应。</p>
+<h1 id="整体介绍">整体介绍</h1>
+<p>这篇文章想要研究：在道德反对的情况下，权力是否会以同样的方式保护女性？</p>
+<p>换言之：在发生道德反对的前提下，结构权力、性别和道德反对框架如何影响感知自我控制，进而影响对道德反叛的报复。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319599.png" alt="img"></p>
+<p>四个假设分别为 ① X对Y主效应、② 二阶交互、③ 三阶交互和 ④ 有中介的调节效应。</p>
+<p>各研究分别为：</p>
+<ul>
+<li>研究1 ： 使用档案数据检验H1、H2；</li>
+<li>补充研究 ：在类似的数据集中重复检验H1、H2；</li>
+<li>研究2 ： 从TurkPrime招募被试，通过关键事件法，以报复者角度，检验H1、H2；</li>
+<li>研究3 ： 通过2×2×2在线情境实验检验H1-H4；</li>
+<li>研究4 ： 通过2×2×2在线行为实验检验H1-H4。</li>
+</ul>
+<p>考虑到研究间的相似性，本次推送仅以Study 1和Study 3 为例。</p>
+<h1 id="公开数据">公开数据</h1>
+<p>获取地址：https://osf.io/rju8b</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319525.png" alt="img"></p>
+<p>这篇文章的作者分享的是.html 而不是直接的RMarkdown，我们想要复现需要自己在R里写语句。</p>
+<h1 id="study-1">Study 1</h1>
+<h2 id="数据准备">数据准备</h2>
+<h4 id="导入原始数据">导入原始数据</h4>
+<p>作者的提供的原始语句里没有这一步，我们需要自己先导入原始数据。</p>
+<p>最方便的方式是在RStudio里找到文件点击【Import Dataset】，</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319190.png" alt="img"></p>
+<p>点击【Import】</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319957.png" alt="img"></p>
+<p>不过这样导入的数据名是原始的，所以我们可以在import options里进行修改，或者直接写语法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">library(readr)
+<span style="color:#66d9ef">data</span> &lt;- read_csv(<span style="color:#e6db74">&#34;data/Study 1 Data.csv&#34;</span>)
+</code></pre></div><p>运行后可以在Environment里看到data。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319296.png" alt="img"></p>
+<h4 id="数据清洗">数据清洗</h4>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319362.png" alt="img"></p>
+<p>可以看到原始数据里有些缺失值，所以我们得先删除。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">###filtering <span style="color:#f92672">down</span> <span style="color:#f92672">to</span> <span style="color:#f92672">complete</span> <span style="color:#f92672">data</span>
+<span style="color:#f92672">data</span> <span style="color:#f92672">&lt;-</span><span style="color:#f92672">data</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">filter</span><span style="color:#f92672">(</span><span style="color:#f92672">structuralpower</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span> 
+<span style="color:#f92672">data</span> <span style="color:#f92672">&lt;-</span><span style="color:#f92672">data</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">filter</span><span style="color:#f92672">(</span><span style="color:#f92672">male_one</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">data</span> <span style="color:#f92672">&lt;-</span><span style="color:#f92672">data</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">filter</span><span style="color:#f92672">(</span><span style="color:#f92672">Education</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span> 
+<span style="color:#f92672">data</span> <span style="color:#f92672">&lt;-</span><span style="color:#f92672">data</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">filter</span><span style="color:#f92672">(</span><span style="color:#f92672">minorityone</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span> 
+<span style="color:#f92672">data</span> <span style="color:#f92672">&lt;-</span><span style="color:#f92672">data</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">filter</span><span style="color:#f92672">(</span><span style="color:#f92672">tenure</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span> 
+<span style="color:#f92672">data</span> <span style="color:#f92672">&lt;-</span><span style="color:#f92672">data</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">filter</span><span style="color:#f92672">(</span><span style="color:#f92672">age</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span>
+</code></pre></div><p>数据量从34085变为了33715。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319242.png" alt="img"></p>
+<p>然后，有时候我们一组数据里会涉及多个模型和变量，比较复杂，可以生成一个单独的子集，方便后续处理。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">library</span><span style="color:#f92672">(</span><span style="color:#f92672">dplyr</span><span style="color:#f92672">)</span> 
+
+<span style="color:#f92672">subset</span> <span style="color:#f92672">&lt;-</span> <span style="color:#f92672">data</span>  <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">select</span><span style="color:#f92672">(</span><span style="color:#f92672">structuralpower</span><span style="color:#f92672">,</span> <span style="color:#f92672">male_one</span><span style="color:#f92672">,</span> <span style="color:#f92672">tenure</span><span style="color:#f92672">,</span> <span style="color:#f92672">age</span><span style="color:#f92672">,</span><span style="color:#f92672">minorityone</span><span style="color:#f92672">,</span> <span style="color:#f92672">Education</span><span style="color:#f92672">,</span><span style="color:#f92672">retaliation_binary</span><span style="color:#f92672">)</span>
+</code></pre></div><p>第一行意味着加载dplyr包，这不是Rstudio自动加载的包，所以第一次使用时，我们要手动加载一下。</p>
+<p>第二行的意思是从data数据中，提取structuralpower, male_one, tenure等列，再单独成为一个Subset数据文件。</p>
+<p>不过由于作者最后上传的数据就是最终的，所以我们做这步时后，数据结果是没有变化的。</p>
+<h2 id="相关分析">相关分析</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">library</span><span style="color:#f92672">(</span><span style="color:#f92672">psych</span><span style="color:#f92672">)</span> 
+
+<span style="color:#f92672">correlation_matrix</span><span style="color:#f92672">&lt;-</span><span style="color:#f92672">corr</span><span style="color:#a6e22e">.test</span><span style="color:#f92672">(</span><span style="color:#f92672">x</span><span style="color:#f92672">=</span><span style="color:#f92672">subset</span><span style="color:#f92672">)</span>
+
+<span style="color:#f92672">print</span><span style="color:#f92672">(</span><span style="color:#f92672">x</span> <span style="color:#f92672">=</span> <span style="color:#f92672">correlation_matrix</span><span style="color:#f92672">,</span> <span style="color:#f92672">short</span> <span style="color:#f92672">=</span> <span style="color:#f92672">FALSE</span><span style="color:#f92672">,</span> <span style="color:#f92672">digits</span><span style="color:#f92672">=</span><span style="color:#f92672">4</span><span style="color:#f92672">)</span>
+</code></pre></div><p>第一行，加载Psych包；</p>
+<p>第二行，算subset数据的相关，结果命名为correlation_matrix；</p>
+<p>第三行，打印相关结果。Short意为控制打印内容数量，Digits意为打印时的小数位数。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319983.png" alt="img"></p>
+<h2 id="描述性统计">描述性统计</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">psych::<span style="color:#66d9ef">describe</span>(subset)
+</code></pre></div><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319799.png" alt="img"></p>
+<h2 id="假设检验">假设检验</h2>
+<p>文中最后是进行了三次回归分析，生成了下表。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319509.png" alt="img"></p>
+<h3 id="m1控制组">M1：控制组</h3>
+<h4 id="系数与标准差">系数与标准差</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">controls &lt;- glm(retaliation_binary ~ tenure + age + minorityone + Education,<span style="color:#66d9ef">data</span>=<span style="color:#66d9ef">data</span>, family = binomial(<span style="color:#e6db74">&#34;logit&#34;</span>))
+
+summary(controls)
+</code></pre></div><p>第一行，建立广义线性模型，将结果名为controls。</p>
+<ul>
+<li>结果变量-retaliation_binary</li>
+<li>预测变量-tenure、age、minorityone和Education</li>
+<li>数据来源-data</li>
+<li>模型使用的误差分布和链接函数-binomial(“logit”)</li>
+</ul>
+<p>第二行，显示controls。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319401.png" alt="img"></p>
+<h4 id="置信区间">置信区间</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">confint</span><span style="color:#f92672">(</span><span style="color:#f92672">controls</span><span style="color:#f92672">)</span>
+</code></pre></div><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319833.png" alt="img"></p>
+<h4 id="pseudo-r2">pseudo-r2</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">install</span><span style="color:#a6e22e">.packages</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;pscl&#39;</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">library</span><span style="color:#f92672">(</span><span style="color:#f92672">pscl</span><span style="color:#f92672">)</span> 
+<span style="color:#f92672">pR2</span><span style="color:#f92672">(</span><span style="color:#f92672">controls</span><span style="color:#f92672">)</span>
+</code></pre></div><p>这里使用的是pscl包，它不在Rstudio自带包中，所以在加载前先要安装。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319518.png" alt="img"></p>
+<h3 id="m2主效应">M2：主效应</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">h1</span><span style="color:#f92672">&lt;-</span><span style="color:#f92672">glm</span><span style="color:#f92672">(</span><span style="color:#f92672">retaliation_binary</span><span style="color:#f92672">~</span> <span style="color:#f92672">tenure</span> <span style="color:#f92672">+</span> <span style="color:#f92672">age</span> <span style="color:#f92672">+</span> <span style="color:#f92672">minorityone</span> <span style="color:#f92672">+</span> <span style="color:#f92672">Education</span> <span style="color:#f92672">+</span> <span style="color:#f92672">male_one</span> <span style="color:#f92672">+</span> <span style="color:#f92672">structuralpower</span><span style="color:#f92672">,</span><span style="color:#f92672">data</span><span style="color:#f92672">=</span><span style="color:#f92672">data</span><span style="color:#f92672">,</span> <span style="color:#f92672">family</span> <span style="color:#f92672">=</span> <span style="color:#f92672">binomial</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;logit&#34;</span><span style="color:#f92672">))</span>
+
+<span style="color:#f92672">summary</span><span style="color:#f92672">(</span><span style="color:#f92672">h1</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">confint</span><span style="color:#f92672">(</span><span style="color:#f92672">h1</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">pR2</span><span style="color:#f92672">(</span><span style="color:#f92672">h1</span><span style="color:#f92672">)</span>
+</code></pre></div><p>计算主效应时，预测变量新增了structuralpower。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">exp(coef(h1))
+</code></pre></div><p>新增了比例值的计算</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319000.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319325.png" alt="img"></p>
+<h3 id="m3交互效应">M3：交互效应</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">h2</span><span style="color:#f92672">&lt;-</span><span style="color:#f92672">glm</span><span style="color:#f92672">(</span><span style="color:#f92672">retaliation_binary</span><span style="color:#f92672">~</span> <span style="color:#f92672">tenure</span> <span style="color:#f92672">+</span> <span style="color:#f92672">age</span> <span style="color:#f92672">+</span> <span style="color:#f92672">minorityone</span> <span style="color:#f92672">+</span> <span style="color:#f92672">Education</span> <span style="color:#f92672">+</span> <span style="color:#f92672">male_one</span> <span style="color:#f92672">*</span> <span style="color:#f92672">structuralpower</span> <span style="color:#f92672">,</span> <span style="color:#f92672">data</span><span style="color:#f92672">=</span><span style="color:#f92672">data</span><span style="color:#f92672">,</span> <span style="color:#f92672">family</span> <span style="color:#f92672">=</span> <span style="color:#f92672">binomial</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;logit&#34;</span><span style="color:#f92672">))</span>
+<span style="color:#f92672">summary</span><span style="color:#f92672">(</span><span style="color:#f92672">h2</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">confint</span><span style="color:#f92672">(</span><span style="color:#f92672">h2</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">pR2</span><span style="color:#f92672">(</span><span style="color:#f92672">h2</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">exp</span><span style="color:#f92672">(</span><span style="color:#f92672">coef</span><span style="color:#f92672">(</span><span style="color:#f92672">h2</span><span style="color:#f92672">))</span>
+</code></pre></div><p>计算交互效应时，预测变量又新增了 交互项。</p>
+<p>注意这里是直接用*表示的，即male_one * structuralpower意味着预测变量中包含male_one和structuralpower以及二者交互项。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">install</span><span style="color:#a6e22e">.packages</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;interactions&#39;</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">library</span><span style="color:#f92672">(</span><span style="color:#f92672">interactions</span><span style="color:#f92672">)</span> 
+<span style="color:#f92672">sim_slopes</span><span style="color:#f92672">(</span><span style="color:#f92672">h2</span><span style="color:#f92672">,</span> <span style="color:#f92672">pred</span> <span style="color:#f92672">=</span> <span style="color:#f92672">structuralpower</span><span style="color:#f92672">,</span> <span style="color:#f92672">modx</span> <span style="color:#f92672">=</span> <span style="color:#f92672">male_one</span><span style="color:#f92672">,</span> <span style="color:#f92672">johnson_neyman</span> <span style="color:#f92672">=</span> <span style="color:#f92672">FALSE</span><span style="color:#f92672">)</span>
+</code></pre></div><p>交互效应需要计算简单斜率，这里使用的是interactions包，它也不在Rstudio包中，要先要安装。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319428.png" alt="img"></p>
+<h2 id="稳健性分析">稳健性分析</h2>
+<h3 id="去除控制变量">去除控制变量</h3>
+<p>就是在做回归时不纳入控制变量，语句原理没有改变。我这里就不重复了。</p>
+<h3 id="将x视为类别变量">将X视为类别变量</h3>
+<p>这个部分也不算重点，所以有兴趣的小可爱们可以去自行尝试。</p>
+<h1 id="study-3">Study 3</h1>
+<h2 id="数据准备-1">数据准备</h2>
+<h4 id="导入原始数据-1">导入原始数据</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">library(readr)
+<span style="color:#66d9ef">data</span> &lt;- read_csv(<span style="color:#e6db74">&#34;data/Study 3 data.csv&#34;</span>)
+</code></pre></div><h2 id="前期分析">前期分析</h2>
+<h2 id="描述性统计-1">描述性统计</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">subset <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">data</span>  <span style="color:#f92672">%&gt;%</span> dplyr::<span style="color:#66d9ef">select</span>(p_gender, p_age, p_white, p_work_exp)
+psych::<span style="color:#66d9ef">describe</span>(subset)
+</code></pre></div><p>对人口统计学变量进行描述性统计。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319700.png" alt="img"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">subset <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">data</span>  <span style="color:#f92672">%&gt;%</span> dplyr::<span style="color:#66d9ef">select</span>(high_one, male_one, org_one, sc_reverse_mean,sthreat,warm, comp, dom, retal_mean)
+correlation_matrix<span style="color:#f92672">&lt;-</span>corr.test(x<span style="color:#f92672">=</span>subset)
+print(x <span style="color:#f92672">=</span> correlation_matrix, short <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, digits<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
+</code></pre></div><p>这里没纳入人口统计学变量了。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319244.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319360.png" alt="img"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">psych::<span style="color:#66d9ef">describe</span>(subset)
+</code></pre></div><p>再进行核心变量的描述性统计，就不截图了。</p>
+<h4 id="计算各组对y的均值系数等">计算各组对Y的均值、系数等</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">data</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">group_by</span><span style="color:#f92672">(</span><span style="color:#f92672">high_one</span><span style="color:#f92672">,</span> <span style="color:#f92672">male_one</span><span style="color:#f92672">,</span> <span style="color:#f92672">org_one</span><span style="color:#f92672">)</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> 
+<span style="color:#f92672">summarise</span><span style="color:#f92672">(</span><span style="color:#f92672">retal_mean</span><span style="color:#f92672">=</span> <span style="color:#f92672">mean</span><span style="color:#f92672">(</span><span style="color:#f92672">retal_mean</span><span style="color:#f92672">))</span>
+</code></pre></div><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319476.png" alt="img"></p>
+<p>根据均值结果可制作出如下柱状图。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319339.png" alt="img"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">modeld &lt;-lm (retal_mean~high_one* male_one*org_one, <span style="color:#66d9ef">data</span> = <span style="color:#66d9ef">data</span>)
+
+install.packages(<span style="color:#960050;background-color:#1e0010">&#39;</span>emmeans<span style="color:#960050;background-color:#1e0010">&#39;</span>)
+library(emmeans)
+emmeans(modeld, ~ high_one | male_one | org_one, type=<span style="color:#e6db74">&#34;response&#34;</span> )
+</code></pre></div><p>据此可得各组对Y的系数、标准误及置信区间</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319257.png" alt="img"></p>
+<h4 id="检验信度">检验信度</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">data <span style="color:#f92672">%&gt;%</span> dplyr<span style="color:#f92672">::</span>select(s_c_1:s_c_3) <span style="color:#f92672">%&gt;%</span> psych<span style="color:#f92672">::</span>alpha() <span style="color:#f92672">%&gt;%</span> summary
+</code></pre></div><p>这里计算了s_c的信度。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319710.png" alt="img"></p>
+<h4 id="检验cfa">检验CFA</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-makefile" data-lang="makefile"><span style="color:#960050;background-color:#1e0010">library(lavaan)</span>
+<span style="color:#960050;background-color:#1e0010">model</span> <span style="color:#960050;background-color:#1e0010">&lt;-</span> <span style="color:#e6db74">&#39;scx =~  s_c_1 + s_c_2 + s_c_3 
+</span><span style="color:#e6db74">warmx =~ warm1 + warm2 + warm3 
+</span><span style="color:#e6db74">compx  =~  comp1 + comp2 + comp3 
+</span><span style="color:#e6db74">domx =~ dom1 + dom2 + dom3
+</span><span style="color:#e6db74">selfthreatx =~ selfthreat1 + selfthreat2 + selfthreat3 + selfthreat4 
+</span><span style="color:#e6db74">retalx =~ retal_m1 + retal_m2 + retal_m3 + retal_m4 + retal_m5 
+</span><span style="color:#e6db74">&#39;</span>
+<span style="color:#960050;background-color:#1e0010">fit</span> <span style="color:#960050;background-color:#1e0010">&lt;-cfa(model,</span> data<span style="color:#f92672">=</span>data<span style="color:#f92672">)</span>
+<span style="color:#960050;background-color:#1e0010">summary(fit,</span> fit.measures<span style="color:#f92672">=</span>TRUE<span style="color:#f92672">)</span>
+</code></pre></div><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319336.png" alt="img"></p>
+<h4 id="操纵检验">操纵检验</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">install</span><span style="color:#a6e22e">.packages</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;rstatix&#39;</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">library</span><span style="color:#f92672">(</span><span style="color:#f92672">rstatix</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">rankmanip</span><span style="color:#f92672">&lt;-</span><span style="color:#f92672">data</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">anova_test</span><span style="color:#f92672">(</span><span style="color:#f92672">rank_manip_check</span><span style="color:#f92672">~</span><span style="color:#f92672">high_one</span> <span style="color:#f92672">+</span> <span style="color:#f92672">male_one</span> <span style="color:#f92672">+</span> <span style="color:#f92672">org_one</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">rankmanip</span>
+
+<span style="color:#f92672">data</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> 
+  <span style="color:#f92672">group_by</span><span style="color:#f92672">(</span><span style="color:#f92672">high_one</span><span style="color:#f92672">)</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> 
+  <span style="color:#f92672">summarise</span><span style="color:#f92672">(</span><span style="color:#f92672">rank_manip_check</span><span style="color:#f92672">=</span> <span style="color:#f92672">mean</span><span style="color:#f92672">(</span><span style="color:#f92672">rank_manip_check</span><span style="color:#f92672">))</span>
+
+<span style="color:#f92672">data</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> 
+  <span style="color:#f92672">group_by</span><span style="color:#f92672">(</span><span style="color:#f92672">high_one</span><span style="color:#f92672">)</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">%</span> 
+  <span style="color:#f92672">summarise</span><span style="color:#f92672">(</span><span style="color:#f92672">rank_manip_check</span><span style="color:#f92672">=</span> <span style="color:#f92672">sd</span><span style="color:#f92672">(</span><span style="color:#f92672">rank_manip_check</span><span style="color:#f92672">))</span>
+</code></pre></div><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319593.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319916.png" alt="img"></p>
+<h2 id="假设检验-1">假设检验</h2>
+<h3 id="h1主效应">H1：主效应</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">H1&lt;-<span style="color:#66d9ef">data</span> %&gt;% anova_test(retal_mean~high_one+ male_one +org_one, effect.size=<span style="color:#e6db74">&#34;pes&#34;</span>)
+H1
+</code></pre></div><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319078.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319410.png" alt="img"></p>
+<h3 id="h2二阶交互">H2：二阶交互</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#H2</span>
+H2&lt;-data %&gt;% anova_test<span style="color:#f92672">(</span>retal_mean~high_one*male_one + male_one* org_one +org_one*high_one, effect.size<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pes&#34;</span><span style="color:#f92672">)</span>
+H2
+</code></pre></div><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319246.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319525.png" alt="img"></p>
+<h3 id="h3三阶交互">H3：三阶交互</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">H3&lt;-<span style="color:#66d9ef">data</span> %&gt;% anova_test(retal_mean~high_one* male_one*org_one,aeffect.size=<span style="color:#e6db74">&#34;pes&#34;</span>)
+H3
+</code></pre></div><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319077.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319185.png" alt="img"></p>
+<h4 id="二阶的斜率分析">二阶的斜率分析</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">##first, creating overall model error term</span>
+model &lt;-lm <span style="color:#f92672">(</span>retal_mean~high_one* male_one*org_one, data <span style="color:#f92672">=</span> data,effect.size<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pes&#34;</span><span style="color:#f92672">)</span>
+
+<span style="color:#75715e">## probing two-way interactions</span>
+data  %&gt;% group_by<span style="color:#f92672">(</span>org_one<span style="color:#f92672">)</span>  %&gt;% 
+  anova_test <span style="color:#f92672">(</span>retal_mean~ high_one * male_one, error <span style="color:#f92672">=</span> model, effect.size<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pes&#34;</span><span style="color:#f92672">)</span>
+</code></pre></div><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319328.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319594.png" alt="img"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">gendereffect &lt;- <span style="color:#66d9ef">data</span> %&gt;%
+  group_by(male_one, org_one) %&gt;%
+  anova_test(retal_mean ~ high_one, error = model, effect.size=<span style="color:#e6db74">&#34;pes&#34;</span>)
+gendereffect
+</code></pre></div><p>原始的版本我跑的时候胡报错，所以我修改了下。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319736.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319515.png" alt="img"></p>
+<h3 id="h4有中介的调节">H4：有中介的调节</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#building tables with PROCESS for r (beta)</span>
+
+<span style="color:#75715e">#m1 </span>
+<span style="color:#75715e">#process (data=data,y=&#34;retal_mean&#34;,x=&#34;high_one&#34;,w=&#34;male_one&#34;, </span>
+<span style="color:#75715e">#  z=&#34;org_one&#34;,model=3,contrast=1,normal=1,conf=95,save=1)</span>
+
+<span style="color:#75715e">#m2 and 3</span>
+<span style="color:#75715e">#process (data=data,y=&#34;retal_mean&#34;,x=&#34;high_one&#34;,w=&#34;male_one&#34;, </span>
+<span style="color:#75715e">#  z=&#34;org_one&#34;,m=&#34;sc_reverse_mean&#34;,model=12,contrast=1,normal=1,conf=95,save=1)</span>
+
+<span style="color:#75715e">#m4-9</span>
+
+<span style="color:#75715e">#process (data=data,y=&#34;retal_mean&#34;,x=&#34;high_one&#34;,w=&#34;male_one&#34;, </span>
+<span style="color:#75715e">#   z=&#34;org_one&#34;,m=c(&#34;sc_reverse_mean&#34;,&#34;warm&#34;,&#34;comp&#34;, &#34;dom&#34;, &#34;sthreat&#34;), </span>
+<span style="color:#75715e">#model=12,contrast=1,normal=1,conf=95,save=1)</span>
+</code></pre></div><p>作者没有给出这个部分的结果，我也没复现出来，所以等我下次再专门研究研究吧。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112319578.png" alt="img"></p>
+<hr>
+<p>今天的推送就到这里啦。这期和上次的实验复现不同，作者用了很多R包，往往能够一行代码就得到复杂的结果。</p>
+<p>但也是因为调用了R包，所以让我这个小白，找R包找得昏天暗地。不过有提高找R包的技能，也算成长了，hhh。</p>
+<p>另外，上周有个噩耗，我EndNote同步出现了bug，然后发生了大无语事件，我的分组全无了TAT。</p>
+<p>所以我趁此机会，重新分了下组，并整理了些分组思路，下周和小可爱们分享吧。</p>
+<p>下期预告：《经验丨EndNote分组参考》</p>
+<p><strong>往期推送：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486620&amp;idx=1&amp;sn=cd74ffc016d143f134d8add8eac419cf&amp;chksm=96f4787aa183f16c03596223e0ff7c271ff7708eacc209d59953408b470955ad69372254590a#rd">复现丨基于R的实验检验</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486774&amp;idx=1&amp;sn=3a1aa8c04f7efda68fefd6c37fc51e16&amp;chksm=96f479d0a183f0c6118d92309a3c1876f3878fd3c6f48b1378dc05c92071b88e98baee772f0e#rd">复现丨带置信区间的调节效应图</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486952&amp;idx=1&amp;sn=5f5f0e4408785376ea0abc6bbe229953&amp;chksm=96f4790ea183f018229e0ecaaf37d80f7259ccd6079f697a854fa20468a14809d5c75bd95eff#rd">范文丨顶刊引言精读（五）</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486883&amp;idx=1&amp;sn=f32f7fe5b0d2569714950f2a225736f5&amp;chksm=96f47945a183f053448b3a757a2202059b9ab71f782a8b2dd280c1dcaca5783235ef10423e8e#rd">视频丨读博日记（2）</a></strong></p>
+<p><strong>原文链接：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487229&amp;idx=1&amp;sn=f56da1d5bc7a610dce084c945d45797d&amp;chksm=96f47a1ba183f30da1372b287af3155691db12f9c2b6ee3fb219e1526908217e46ab8deb3a34&amp;token=1798123885&amp;lang=zh_CN#rd">复现丨类别变量的三阶交互</a></strong></p>
+<hr>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/r/">R</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/experiment/">Experiment</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/three-way-interaction/">Three-way Interaction</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/07/endnote%E4%B8%A8%E6%96%87%E7%8C%AE%E5%BA%93%E5%88%86%E7%BB%84%E5%8F%82%E8%80%83/" data-tooltip="EndNote丨文献库分组参考" aria-label="下一篇: EndNote丨文献库分组参考">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/07/%E5%A4%9A%E4%B8%AA%E7%90%86%E8%AE%BAamj-%E5%AF%B9%E6%84%9F%E7%9F%A5%E7%BB%A9%E6%95%88%E5%B7%A5%E8%B5%84%E7%9A%84%E5%8F%8D%E5%BA%94/" data-tooltip="多个理论：AMJ-对感知绩效工资的反应" aria-label="上一篇: 多个理论：AMJ-对感知绩效工资的反应">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/07/endnote%E4%B8%A8%E6%96%87%E7%8C%AE%E5%BA%93%E5%88%86%E7%BB%84%E5%8F%82%E8%80%83/" data-tooltip="EndNote丨文献库分组参考" aria-label="下一篇: EndNote丨文献库分组参考">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/07/%E5%A4%9A%E4%B8%AA%E7%90%86%E8%AE%BAamj-%E5%AF%B9%E6%84%9F%E7%9F%A5%E7%BB%A9%E6%95%88%E5%B7%A5%E8%B5%84%E7%9A%84%E5%8F%8D%E5%BA%94/" data-tooltip="多个理论：AMJ-对感知绩效工资的反应" aria-label="上一篇: 多个理论：AMJ-对感知绩效工资的反应">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

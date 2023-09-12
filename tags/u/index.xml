@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>U on TIE&#39;s Blog</title>
+    <link>https://tie-blog.netlify.app/tags/u/</link>
+    <description>Recent content in U on TIE&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 10 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://tie-blog.netlify.app/tags/u/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>工作拖延何时会有回报</title>
+      <link>https://tie-blog.netlify.app/2021/10/%E5%B7%A5%E4%BD%9C%E6%8B%96%E5%BB%B6%E4%BD%95%E6%97%B6%E4%BC%9A%E6%9C%89%E5%9B%9E%E6%8A%A5/</link>
+      <pubDate>Sun, 10 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://tie-blog.netlify.app/2021/10/%E5%B7%A5%E4%BD%9C%E6%8B%96%E5%BB%B6%E4%BD%95%E6%97%B6%E4%BC%9A%E6%9C%89%E5%9B%9E%E6%8A%A5/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Shin, J., &amp;amp; Grant, A. M. (2021). When Putting Work Off Pays Off: The Curvilinear Relationship Between Procrastination and Creativity. Academy of Management Journal, 64(3), 772-798. doi:10.5465/amj.2018.1471&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>曲线中介</title>
+      <link>https://tie-blog.netlify.app/2019/08/%E6%9B%B2%E7%BA%BF%E4%B8%AD%E4%BB%8B/</link>
+      <pubDate>Sun, 11 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://tie-blog.netlify.app/2019/08/%E6%9B%B2%E7%BA%BF%E4%B8%AD%E4%BB%8B/</guid>
+      <description>&lt;p&gt;该篇推送主要介绍曲线的中介，代表性的情况是自变量与调节变量相同，具体内容包括：&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "基于R的多项式回归检验",
+  
+  "datePublished": "2022-12-04T00:00:00Z",
+  "dateModified": "2022-12-04T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2022\/12\/%E5%9F%BA%E4%BA%8Er%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E6%A3%80%E9%AA%8C\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "小可爱们好，我终于找到了篇涉及多项式回归且公开了数据与代码的文章，所以我们今天一起来复现一下吖。\n Flynn, F. J., \u0026amp; Lide, C. R. (2022). Communication Miscalibration: The Price Leaders Pay for Not Sharing Enough. Academy of Management Journal. https://doi.org/10.5465/amj.2021.0245\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="小可爱们好，我终于找到了篇涉及多项式回归且公开了数据与代码的文章，所以我们今天一起来复现一下吖。
+
+Flynn, F. J., &amp; Lide, C. R. (2022). Communication Miscalibration: The Price Leaders Pay for Not Sharing Enough. Academy of Management Journal. https://doi.org/10.5465/amj.2021.0245
+">
+
+
+<meta property="og:description" content="小可爱们好，我终于找到了篇涉及多项式回归且公开了数据与代码的文章，所以我们今天一起来复现一下吖。
+
+Flynn, F. J., &amp; Lide, C. R. (2022). Communication Miscalibration: The Price Leaders Pay for Not Sharing Enough. Academy of Management Journal. https://doi.org/10.5465/amj.2021.0245
+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于R的多项式回归检验">
+<meta name="twitter:title" content="基于R的多项式回归检验">
+<meta property="og:url" content="https://tie-blog.netlify.app/2022/12/%E5%9F%BA%E4%BA%8Er%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E6%A3%80%E9%AA%8C/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2022/12/%E5%9F%BA%E4%BA%8Er%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E6%A3%80%E9%AA%8C/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="小可爱们好，我终于找到了篇涉及多项式回归且公开了数据与代码的文章，所以我们今天一起来复现一下吖。
+
+Flynn, F. J., &amp; Lide, C. R. (2022). Communication Miscalibration: The Price Leaders Pay for Not Sharing Enough. Academy of Management Journal. https://doi.org/10.5465/amj.2021.0245
+">
+<meta name="twitter:description" content="小可爱们好，我终于找到了篇涉及多项式回归且公开了数据与代码的文章，所以我们今天一起来复现一下吖。
+
+Flynn, F. J., &amp; Lide, C. R. (2022). Communication Miscalibration: The Price Leaders Pay for Not Sharing Enough. Academy of Management Journal. https://doi.org/10.5465/amj.2021.0245
+">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2022-12-04T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2022-12-04T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="复现">
+    
+      <meta property="article:section" content="数据分析">
+    
+  
+  
+    
+      <meta property="article:tag" content="R">
+    
+      <meta property="article:tag" content="Social Relations Analysis">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>基于R的多项式回归检验</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2022/12/%E5%9F%BA%E4%BA%8Er%E7%9A%84%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E6%A3%80%E9%AA%8C/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      基于R的多项式回归检验
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-12-04T00:00:00Z">
+        
+  
+  
+  
+  
+    2022-12-04
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%a4%8d%e7%8e%b0">复现</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e6%95%b0%e6%8d%ae%e5%88%86%e6%9e%90">数据分析</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>小可爱们好，我终于找到了篇涉及多项式回归且公开了数据与代码的文章，所以我们今天一起来复现一下吖。</p>
+<blockquote>
+<p>Flynn, F. J., &amp; Lide, C. R. (2022). Communication Miscalibration: The Price Leaders Pay for Not Sharing Enough. Academy of Management Journal. <a href="https://doi.org/10.5465/amj.2021.0245">https://doi.org/10.5465/amj.2021.0245</a></p>
+</blockquote>
+<h1 id="整体介绍">整体介绍</h1>
+<p>这篇文章想要证明：在对领导沟通错误评估时，领导沟通不足比领导沟通过度更可能形成领导缺乏同情心的感知，进而影响到员工对领导能力的评估。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/8d0c4af0-abf2-4bf7-9025-eb7764311fb8.png" alt="Study 3 Result"></p>
+<p>假设分别为：</p>
+<ul>
+<li>假设1：管理者可能更常被视为沟通不足而非沟通过度。</li>
+<li>假设2：当领导者的沟通被认为是良好的，员工会比被误判的时候提供更多有利的评价。</li>
+<li>假设3a：沟通不足的领导者被认为比沟通过度的领导者具有更少的同理心。</li>
+<li>假设3b：沟通不足的领导者被认为比沟通过度的领导者具有更低的领导能力。</li>
+<li>假设4：沟通不足对领导力评价的负面影响将被感知到的缺乏同理心所中介。</li>
+</ul>
+<p>各研究分别为：</p>
+<ul>
+<li>研究1a：使用360评估的档案数据，根据描述人工编码沟通不足与沟通过度，检验假设1；</li>
+<li>研究1b：招募了400名被试，采用量表衡量与领导的沟通情况（1=沟通不足，5,=沟通良好，9=沟通过度），检验假设1；</li>
+<li>研究2：招募了350名被试，操纵了领导的沟通情况（3种），采用单因素方差分析检验假设2-4；</li>
+<li>研究3：采用多项式回归的方式，检验假设1-4。</li>
+</ul>
+<p>本次主要分享多项式回归的处理方式，仅以Study 3 为例。</p>
+<h1 id="公开数据">公开数据</h1>
+<p>获取地址：<a href="https://osf.io/fkqhb/?view_only=9415b6468fbf4e8f9041af0dac2c8d43">https://osf.io/fkqhb/?view_only=9415b6468fbf4e8f9041af0dac2c8d43</a></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/f6c2bd6a-e77a-46f1-95a8-4cf1fae5df21.png" alt="公开数据"></p>
+<p>作者非常nice的直接分享了.Rmd文件，我们下载后打开即可。</p>
+<h1 id="结果复现">结果复现</h1>
+<h2 id="软件准备">软件准备</h2>
+<h4 id="安装r包">安装R包</h4>
+<p>打开.Rmd文件后，Rstudio大概率会提醒你，有未安装的包。我们直接点击【Install】，等待即可。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/34f80e4f-590f-4099-bacb-1745c2c4b5c1.png" alt="安装R包"></p>
+<h4 id="前期准备">前期准备</h4>
+<pre tabindex="0"><code class="language-{r," data-lang="{r,"># set knitting options 
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(comment = NA)
+</code></pre><p>这里的意思是设置knitr参数，作用是加强代码的可读性，和数据分析无关。</p>
+<pre tabindex="0"><code class="language-{r," data-lang="{r,"># load packages
+library(&quot;knitr&quot;)        # for rendering the RMarkdown file
+library(&quot;kableExtra&quot;)   # for rendering tables 
+library(&quot;broom&quot;)        # for tyding-up data sets
+library(&quot;tibble&quot;)       # explore variables &amp; values in the data frame
+library(&quot;magrittr&quot;)     # use pipe operator
+library(&quot;patchwork&quot;)    # for organizing plots
+library(&quot;corrr&quot;)        # for correlations
+library(&quot;GGally&quot;)       # to vizualize relationships between variables 
+library(&quot;mediation&quot;)    # for mediation analysis
+library(&quot;emmeans&quot;)      # for planned contrasts
+library(&quot;reghelper&quot;)    # for simple slopes analysis
+library(&quot;lme4&quot;)         # for linear mixed effects models
+library(&quot;lavaan&quot;)       # for mediation
+library(&quot;semPlot&quot;)      # for mediation
+library(&quot;ggpubr&quot;)       # for plots
+library(&quot;car&quot;)
+library(&quot;RSA&quot;)
+library(&quot;Rmisc&quot;)        # for error bars on plots
+library(&quot;rstatix&quot;)      # for basic stats tests
+library(&quot;tidyverse&quot;)    # data wrangling and visualization 
+</code></pre><p>加载R包。</p>
+<pre tabindex="0"><code class="language-{r," data-lang="{r,"># set graph themes
+source(&quot;psych290RcodeV1.R&quot;)
+</code></pre><p>这一步我运行时会报错，大概是我没有&quot;psych290RcodeV1.R&quot;这个文件吧。但这也不影响数据分析。</p>
+<pre tabindex="0"><code class="language-{r," data-lang="{r,"># IMPORT CLEANED DATA 
+df.data &lt;- read.csv(&quot;data_Study3.csv&quot;)
+</code></pre><p>作者原始语句是读取&quot;data/data_Study3.csv&quot;，但是公开数据中.Rmd和.csv
+是在同一个文件夹里，所以我把语句调整了下。</p>
+<h2 id="假设1">假设1</h2>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># paired t-test
+t.test(df.data$actual, df.data$ought,
+       paired = TRUE)
+</code></pre><p>对数据中的actual和ought列进行配对样本t检验。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/949a6854-813a-48ac-8e67-5155aebbdb69.png" alt="Result"></p>
+<p>由此可得文中橙色部分数据。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/f4086dec-41fd-4d8e-9f82-2696a588693d.png" alt="文中结果"></p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">    ## group-level descriptive stats
+    df.data %&gt;% 
+      select(actual, ought) %&gt;% 
+      get_summary_stats(., type = &quot;mean_sd&quot;) %&gt;% 
+      select(-n)
+</code></pre><p>对actual和ought列进行描述性统计，由此可得黄色部分数据。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/568bacf0-b112-440b-aa46-1ec36a1af46b.png" alt="Result"></p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># effect size 
+    ## transform data 
+    df.data_long &lt;- df.data %&gt;% 
+      select(participant, ought, actual) %&gt;% 
+      pivot_longer(., cols = c(ought, actual),
+                   names_to = &quot;scale&quot;)
+</code></pre><p>将宽型数据（即一个ID拥有多个变量，此处为222行）转换为长型数据（即一个ID与一个变量为一行，此处形成444行。）</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/17b15862-f514-4de5-948a-fa5565dad79f.png" alt="数据类型"></p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">    ## calculate cohen's d
+    cohens_d(df.data_long, value ~ scale, paired = TRUE)
+</code></pre><p>计算组间差异效应量cohen&rsquo;s d，由此可得绿色部分数据。</p>
+<h2 id="假设2-一致性更优">假设2-一致性更优</h2>
+<h4 id="数据准备">数据准备</h4>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">#-------------------
+# DATA PREPARATION
+#-------------------
+df &lt;- df.data %&gt;% 
+  select(ability, empathy, X = actual, Y = ought)
+</code></pre><p>选择df.data文件中的【ability, empathy, actual, ought】四列形成一个新的数据文件，名为【df】，其中将actual改命名为X，ought改命名为Y。</p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># # center predictors at the grand mean
+grandmean &lt;- mean(c(df$X, df$Y), na.rm=T)
+df$X &lt;- df$X-grandmean
+df$Y &lt;- df$Y-grandmean
+</code></pre><p>此处为中心化。语句含义为：计算X与Y的均值，再用原X/Y减去均值，形成新的X/Y。</p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># add squared and interaction terms of the predictors (required to inspect multicollinearity)
+df$X2 &lt;- df$X^2
+df$XY &lt;- df$X*df$Y
+df$Y2 &lt;- df$Y^2
+</code></pre><p>此处为计算平方项与交互项。</p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># inspect potential multicollinearity using the variance inflation factor (VIF), 
+# (see Fox, 2016 for a discussion of VIFs and their cutoffs)
+lm_sqd &lt;- lm(ability ~ X + Y + X2 + XY + Y2, data=df)
+vif(lm_sqd)
+</code></pre><p>使用方差膨胀因子（VIF）检查潜在的多重共线性。具体的衡量标准，可以去看Fox(2016)。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/image-20221204223525814.png" alt="Result"></p>
+<p>作者这里的结果都没超过3，所以是不存在多重共线性的。</p>
+<h4 id="检验假设">检验假设</h4>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">#------------------------------------------------------------------------
+# TEST THE CONGRUENCE HYPOTHESIS FOR THE OUTCOME VARIABLE ability
+#------------------------------------------------------------------------
+
+# ESTIMATE THE POLYNOMIAL MODEL
+rsa_sqd &lt;- RSA(ability ~ X*Y, data=df, model=&quot;full&quot;)
+</code></pre><p>这里就是把我们传统的回归分析（lm或者glm）改成了多项式回归的分析方式（RSA）。</p>
+<p>含义依旧是对结果变量【ability】做关于X与Y的多项式回归，数据来自df，model选择“full”，最终将这个分析的结果储存为【rsa_sqd】，方便后续调用。</p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># GET PARAMETERS 
+## congruence hypothesis supported if...
+### 1) p10 is n.s. 
+### 2) p11 confidence interval includes 1 
+### 3) a3 is n.s.
+### 4) a4 is significant and negative
+
+
+getPar(rsa_sqd) %&gt;% 
+  filter(label %in% c(&quot;b0&quot;, &quot;b1&quot;, &quot;b2&quot;, &quot;b3&quot;, &quot;b4&quot;, &quot;b5&quot;, 
+                      &quot;p10&quot;, &quot;p11&quot;, 
+                      &quot;a1&quot;, &quot;a2&quot;, &quot;a3&quot;, &quot;a4&quot;)) %&gt;% 
+  mutate_at(.vars = vars(c(est, se, pvalue, ci.lower, ci.upper)),
+            .funs = ~ round(., 4)) %&gt;% 
+  select(-z)
+
+### *NOTE* - a1 is significant, meaning there is a linear common main effect of X and Y (i.e., the effect of congruence on perceived ability strengthens as employees report greater quantities of actual and expected communication)
+</code></pre><p>这里啥也不用改，直接运行即可。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/image-20221204224406526.png" alt="Result"></p>
+<p>关于一致性假设成立的条件是：①不一致性线(L=-T)上 ，斜率（a3）不显著，曲率（a4）为负且显著；②第一主轴没有偏离一致性线(L=T)，即斜率 p 11=1、截距p10=0。所以这里的假设得到了验证。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/image-20221204230317633.png" alt="文中结果"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/image-20221204224933164.png" alt="文中结果"></p>
+<h4 id="绘制图形">绘制图形</h4>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">#------------------------------------------------------------------------
+# PLOTS 
+#------------------------------------------------------------------------
+
+# ESTIMATED MODEL
+plot(rsa_sqd, legend=F, param=F,
+     axes=c(&quot;LOC&quot;, &quot;LOIC&quot;,&quot;PA1&quot;),
+     project=c(&quot;LOC&quot;, &quot;LOIC&quot;,&quot;PA1&quot;),
+     xlab=&quot;Perceived\nQuantity&quot;, ylab=&quot;Preferred\nQuantity&quot;, zlab=&quot;Perceived Ability&quot;) 
+
+</code></pre><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/image-20221204225223957.png" alt="ESTIMATED MODEL"></p>
+<p>作者文章中的图就是这张。</p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># CONTOUR MODEL 
+plot(rsa_sqd, type=&quot;contour&quot;, 
+     xlab=&quot;Actual X&quot;, ylab=&quot;Ought Y&quot;, zlab=&quot;Ability Z&quot;)
+</code></pre><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/image-20221204225323616.png" alt="CONTOUR MODEL"></p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># # INTERACTIVE MODEL 
+plot(rsa_sqd, type=&quot;interactive&quot;, 
+      xlab=&quot;Actual X&quot;, ylab=&quot;Ought Y&quot;, zlab=&quot;Ability Z&quot;)
+</code></pre><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/image-20221204225447269.png" alt="INTERACTIVE MODEL"></p>
+<p>后面这两张只是不同的作图形式，并非一定要汇报。</p>
+<h2 id="假设3b-不对称性">假设3b-不对称性</h2>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># t-test
+df.data %&gt;% 
+  filter(communication %in% c(&quot;over&quot;,&quot;under&quot;)) %&gt;% 
+  t.test(ability ~ communication, data = .,
+         var.equal = TRUE)
+
+    ## group-level descriptive stats
+    df.data %&gt;% 
+      filter(communication %in% c(&quot;over&quot;,&quot;under&quot;)) %&gt;% 
+      group_by(communication) %&gt;% 
+      get_summary_stats(ability, type = &quot;mean_sd&quot;) %&gt;% 
+      select(-n)
+</code></pre><p>这里是独立样本t检验，大致上和H1相同，就不展开啦。</p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># effect size 
+lsr::cohensD(df.data$ability[df.data$communication == &quot;under&quot;],
+       df.data$ability[df.data$communication == &quot;over&quot;])
+</code></pre><p>换了一种方式计算组间差异效应量cohen&rsquo;s d，结果不再是表，而是一个具体的数字。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/image-20221204231340940.png" alt="文中结果"></p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># visualization 
+ability_errorBars &lt;- summarySE(df.data, measurevar = &quot;ability&quot;, groupvars = &quot;communication&quot;) %&gt;% 
+  mutate_at(.vars = vars(communication), 
+            .funs = ~ recode(., `under` = &quot;Under-Communicates&quot;,
+                             `calibrated` = &quot;Well-Calibrated&quot;,
+                             `over` = &quot;Over-Communicates&quot;)) %&gt;% 
+  mutate_at(.vars = vars(communication),
+            .funs = ~ factor(., levels = c(&quot;Under-Communicates&quot;, &quot;Well-Calibrated&quot;, &quot;Over-Communicates&quot;)))
+
+ggplot(data = ability_errorBars,
+       mapping = aes(x = communication,
+                     y = ability)) +
+  geom_bar(position = &quot;dodge&quot;, stat = &quot;identity&quot;, color = &quot;black&quot;, width = .5) +
+  geom_errorbar(aes(ymin = ability-se, ymax = ability+se), 
+                width = .15, position = position_dodge(.5)) +
+  theme_Publication_leaveLegend() + 
+  scale_fill_grey() +
+  coord_cartesian(ylim = c(0,8)) +
+  scale_y_continuous(limits = c(0,8), expand = c(0,0)) +
+  labs(x = &quot;\nLeader Communication Calibration&quot;,
+       y = &quot;Perceived Ability\n&quot;,
+       title = &quot;&quot;) 
+# ggsave(&quot;Study 3_leader ability_withSE.png&quot;, dpi = 800)
+
+</code></pre><p>可视化的部分，因为我前面没办法加载出&quot;psych290RcodeV1.R&quot;，所以会报错。等我搞定再复现它。</p>
+<h2 id="假设4-中介效应">假设4-中介效应</h2>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># define the block variable function 
+block.poly = function(y, m, x, z, controls, data, boot.n) {
+	require(lavaan)
+	# Setup the variables that will be used in the analysis
+	data$b_y = data[,y]
+	data$b_m = data[,m]
+	data$b_x = data[,x]
+	data$b_z = data[,z]
+	
+	# standardize and create the polynomial components
+	data$b_x_std = scale(data$b_x, center=T, scale=T)
+	data$b_z_std = scale(data$b_z, center=T, scale=T)	
+	data$b_x_std_sq = data$b_x_std^2
+	data$b_z_std_sq = data$b_z_std^2
+	data$b_x_stdXb_z_std = data$b_x_std*data$b_z_std
+
+	# First, create the block variable for the polynomial components predicting the mediator
+	frmla = as.formula(&quot;b_m ~ b_x_std + b_z_std + b_x_std_sq + b_x_stdXb_z_std + b_z_std_sq&quot;)
+	bl_1 = lm(frmla, data=data)
+	bl_1_co = summary(bl_1)$coefficients[2:6,1]
+	bl_1_vars = names(bl_1_co)
+	
+	# Second, create the block info predicting the outcome
+	frmla = as.formula(paste(y,&quot;~&quot;,paste0(controls, collapse=&quot;+&quot;),&quot;+b_x_std + b_z_std + b_x_std_sq + b_x_stdXb_z_std + b_z_std_sq&quot;, sep=&quot;&quot;))
+	bl_2 = lm(frmla, data=data)
+	bl_2_co = summary(bl_2)$coefficients[(length(controls)+2):(length(controls)+6),1] 
+	bl_2_vars = names(bl_2_co)
+	
+	data$bl_1_var = 0
+	data$bl_2_var = 0
+	for(i in 1:5) {
+		data$bl_1_var = data$bl_1_var + bl_1_co[i]*data[,bl_1_vars[i]]
+		data$bl_2_var = data$bl_2_var + bl_2_co[i]*data[,bl_2_vars[i]]	
+	}	
+	
+	line1 = paste(&quot;b_m ~ &quot;,paste0(controls, collapse=&quot;+&quot;), &quot;+ b1*bl_1_var&quot;, sep=&quot;&quot;)
+	line2 = paste(&quot;b_y ~ &quot;,paste0(controls, collapse=&quot;+&quot;), &quot;+ bl_2_var + b2*b_m&quot;, sep=&quot;&quot;)	
+	line3 = &quot;a1 := b1*b2&quot;
+	path.model = paste(line1, line2, line3, sep=&quot;\n&quot;)
+	o = sem(model=path.model, data=data, se=&quot;boot&quot;, bootstrap=boot.n)
+	return(o)
+}
+
+# the defined parameter a1 is the indirect effect of the congruence variables (perceived and preferred communication quantity) on the ultimate outcome (perceived ability) through the mediator (perceived empathy)
+
+</code></pre><p>这个部分就是固定的，相当于设置一个固定程序，我们在使用时只需要定义好x、m、y、z以及对应的数据文件即可。</p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># 5000 bootstrapped samples (no controls)
+out = block.poly(y=&quot;ability&quot;,m=&quot;empathy&quot;,x=&quot;actual&quot;,z=&quot;ought&quot;, controls=NULL,
+                 data=df.data, boot.n=5000)
+parameterestimates(out, standardized = TRUE) %&gt;% 
+  filter(label %in% c(&quot;b1&quot;, &quot;b2&quot;, &quot;a1&quot;)) %&gt;% 
+  select(label, unstd_b = est, std_B = std.all, se, pvalue, ci.lower, ci.upper) 
+</code></pre><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/image-20221204233635719.png" alt="Result"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/image-20221204233725893.png" alt="文中结果"></p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># 5000 bootstrapped samples (controlling for job satisfaction)
+out_controlJS = block.poly(y=&quot;ability&quot;,m=&quot;empathy&quot;,x=&quot;actual&quot;,z=&quot;ought&quot;, controls=&quot;job_satisfaction&quot;,data=df.data, boot.n=5000)
+parameterestimates(out_controlJS, standardized = TRUE) %&gt;% 
+  filter(label %in% c(&quot;b1&quot;, &quot;b2&quot;, &quot;a1&quot;)) %&gt;% 
+  select(label, unstd_b = est, std_B = std.all, se, pvalue, ci.lower, ci.upper) 
+</code></pre><p>如果有控制变量，就在controls=&quot; &ldquo;中加入即可。</p>
+<h2 id="其他">其他</h2>
+<p>作者在最后提供了描述性统计和信度等信息，我们这里受限于篇幅，也就不展开啦，有兴趣的小可爱可以自己尝试哦。</p>
+<hr>
+<p>啦啦啦，这篇推送就到这里了。它比我预期耗时久多了，所以又拖到了现在TAT。</p>
+<p>但是实操一遍后，萜妹还是很有收获的。强烈推荐对多项式回归感兴趣的小可爱们试试。</p>
+<p><strong>参考文献：</strong></p>
+<blockquote>
+<p>Fox, J. (2016). Applied Regression Analysis and Generalized Linear Models, 3e. Thousand Oaks, CA: Sage Publications</p>
+</blockquote>
+<p><strong>下期预告：</strong>《范文丨顶刊引言精读（十）》</p>
+<p><strong>往期推送：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484420&amp;idx=1&amp;sn=baff9b6fcdd9bf6655d13c18e5e57f6f&amp;chksm=96f470e2a183f9f49fd08ab58ccdb3a4bc4910c597af7e3fd2dafae5aa830fedca86d38e96d5#rd">干货丨多项式回归之操作篇</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487522&amp;idx=1&amp;sn=b9048533c716617fbfe4c1730ef83ac0&amp;chksm=96f464c4a183edd2dc0792fbb0ad5e83c59b2e3658897a4472e275d3951a3b1ebee228d6616c&amp;token=31161339&amp;lang=zh_CN#rd">范文丨多项式回归研究Change</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486620&amp;idx=1&amp;sn=cd74ffc016d143f134d8add8eac419cf&amp;chksm=96f4787aa183f16c03596223e0ff7c271ff7708eacc209d59953408b470955ad69372254590a#rd">复现丨基于R的实验检验</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486774&amp;idx=1&amp;sn=3a1aa8c04f7efda68fefd6c37fc51e16&amp;chksm=96f479d0a183f0c6118d92309a3c1876f3878fd3c6f48b1378dc05c92071b88e98baee772f0e#rd">复现丨带置信区间的调节效应图</a></strong></p>
+<p><strong>原文链接：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487717&amp;idx=1&amp;sn=6074556c1b6e483617c497e465057e9e&amp;chksm=96f46403a183ed15d79d53abeba2f1ac6e7661323c2588d6096728e8093adb06809fe245bd40#rd">复现丨基于R的多项式回归检验</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/r/">R</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/social-relations-analysis/">Social Relations Analysis</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/12/%E6%8C%91%E6%88%98%E5%85%B1%E8%AF%86amj-%E5%AF%BC%E5%B8%88%E5%90%91%E4%B8%8B%E5%AD%A6%E4%B9%A0/" data-tooltip="挑战共识：AMJ-导师向下学习" aria-label="下一篇: 挑战共识：AMJ-导师向下学习">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/11/%E8%A7%A3%E9%87%8A%E6%B0%B4%E5%B9%B3%E7%90%86%E8%AE%BA%E5%9F%BA%E6%9C%AC%E5%81%87%E8%AE%BE/" data-tooltip="解释水平理论：基本假设" aria-label="上一篇: 解释水平理论：基本假设">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/12/%E6%8C%91%E6%88%98%E5%85%B1%E8%AF%86amj-%E5%AF%BC%E5%B8%88%E5%90%91%E4%B8%8B%E5%AD%A6%E4%B9%A0/" data-tooltip="挑战共识：AMJ-导师向下学习" aria-label="下一篇: 挑战共识：AMJ-导师向下学习">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/11/%E8%A7%A3%E9%87%8A%E6%B0%B4%E5%B9%B3%E7%90%86%E8%AE%BA%E5%9F%BA%E6%9C%AC%E5%81%87%E8%AE%BE/" data-tooltip="解释水平理论：基本假设" aria-label="上一篇: 解释水平理论：基本假设">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

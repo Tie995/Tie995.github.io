@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mplus on TIE&#39;s Blog</title>
+    <link>https://tie-blog.netlify.app/tags/mplus/</link>
+    <description>Recent content in Mplus on TIE&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 09 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://tie-blog.netlify.app/tags/mplus/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mplus丨跨层有调节的中介模型检验</title>
+      <link>https://tie-blog.netlify.app/2023/04/mplus%E4%B8%A8%E8%B7%A8%E5%B1%82%E6%9C%89%E8%B0%83%E8%8A%82%E7%9A%84%E4%B8%AD%E4%BB%8B%E6%A8%A1%E5%9E%8B%E6%A3%80%E9%AA%8C/</link>
+      <pubDate>Sun, 09 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://tie-blog.netlify.app/2023/04/mplus%E4%B8%A8%E8%B7%A8%E5%B1%82%E6%9C%89%E8%B0%83%E8%8A%82%E7%9A%84%E4%B8%AD%E4%BB%8B%E6%A8%A1%E5%9E%8B%E6%A3%80%E9%AA%8C/</guid>
+      <description>&lt;p&gt;小可爱们好，好久没进行顶刊复现了。今天带大家一起复现Mplus中跨层有调节的中介模型。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Wong, M.-N., Cheng, B. H., Lam, L. W.-Y., &amp;amp; Bamberger, P. A. (2022). Pay Transparency as a Moving Target: A Multi-Step Model of Pay Compression, I-Deals, and Collectivist Shared Values. Academy of Management Journal. &lt;a href=&#34;https://doi.org/10.5465/amj.2020.1831&#34;&gt;https://doi.org/10.5465/amj.2020.1831&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mplus丨常用模型语句</title>
+      <link>https://tie-blog.netlify.app/2019/12/mplus%E4%B8%A8%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%AF%AD%E5%8F%A5/</link>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://tie-blog.netlify.app/2019/12/mplus%E4%B8%A8%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%AF%AD%E5%8F%A5/</guid>
+      <description>&lt;p&gt;萜妹之前遇见了一个神仙网站，觉得非常有用，所以就想推荐给小可爱们呀~&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mplus丨基础使用指南</title>
+      <link>https://tie-blog.netlify.app/2018/03/mplus%E4%B8%A8%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Sun, 25 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://tie-blog.netlify.app/2018/03/mplus%E4%B8%A8%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
+      <description>&lt;p&gt;撸毕业论文的空隙，让自己休息下~&lt;/p&gt;
+&lt;p&gt;所以，萜妹开始着手写之前答应小可爱们的Mplus推送啦~&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

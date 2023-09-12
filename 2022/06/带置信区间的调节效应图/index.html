@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "带置信区间的调节效应图",
+  
+  "datePublished": "2022-06-05T00:00:00Z",
+  "dateModified": "2022-06-05T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2022\/06\/%E5%B8%A6%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4%E7%9A%84%E8%B0%83%E8%8A%82%E6%95%88%E5%BA%94%E5%9B%BE\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": " Madan, S., Savani, K., \u0026amp; Johar, G. V. (2022). How you look is who you are: The appearance reveals character lay theory increases support for facial profiling. Journal of Personality and Social Psychology. https://doi.org/10.1037/pspa0000307\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="
+Madan, S., Savani, K., &amp; Johar, G. V. (2022). How you look is who you are: The appearance reveals character lay theory increases support for facial profiling. Journal of Personality and Social Psychology. https://doi.org/10.1037/pspa0000307
+">
+
+
+<meta property="og:description" content="
+Madan, S., Savani, K., &amp; Johar, G. V. (2022). How you look is who you are: The appearance reveals character lay theory increases support for facial profiling. Journal of Personality and Social Psychology. https://doi.org/10.1037/pspa0000307
+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="带置信区间的调节效应图">
+<meta name="twitter:title" content="带置信区间的调节效应图">
+<meta property="og:url" content="https://tie-blog.netlify.app/2022/06/%E5%B8%A6%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4%E7%9A%84%E8%B0%83%E8%8A%82%E6%95%88%E5%BA%94%E5%9B%BE/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2022/06/%E5%B8%A6%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4%E7%9A%84%E8%B0%83%E8%8A%82%E6%95%88%E5%BA%94%E5%9B%BE/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="
+Madan, S., Savani, K., &amp; Johar, G. V. (2022). How you look is who you are: The appearance reveals character lay theory increases support for facial profiling. Journal of Personality and Social Psychology. https://doi.org/10.1037/pspa0000307
+">
+<meta name="twitter:description" content="
+Madan, S., Savani, K., &amp; Johar, G. V. (2022). How you look is who you are: The appearance reveals character lay theory increases support for facial profiling. Journal of Personality and Social Psychology. https://doi.org/10.1037/pspa0000307
+">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2022-06-05T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2022-06-05T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="复现">
+    
+      <meta property="article:section" content="绘制图表">
+    
+  
+  
+    
+      <meta property="article:tag" content="Stata">
+    
+      <meta property="article:tag" content="Moderation">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>带置信区间的调节效应图</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2022/06/%E5%B8%A6%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4%E7%9A%84%E8%B0%83%E8%8A%82%E6%95%88%E5%BA%94%E5%9B%BE/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      带置信区间的调节效应图
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-06-05T00:00:00Z">
+        
+  
+  
+  
+  
+    2022-06-05
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%a4%8d%e7%8e%b0">复现</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e7%bb%98%e5%88%b6%e5%9b%be%e8%a1%a8">绘制图表</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <blockquote>
+<p>Madan, S., Savani, K., &amp; Johar, G. V. (2022). How you look is who you are: The appearance reveals character lay theory increases support for facial profiling. Journal of Personality and Social Psychology. <a href="https://doi.org/10.1037/pspa0000307">https://doi.org/10.1037/pspa0000307</a></p>
+</blockquote>
+<p>不知道大家在阅读文献时有没有感觉，现在的图越来越卷了。</p>
+<p>最新录用中，很多调节效应图都带上了置信区间。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318482.png" alt="img"></p>
+<p>秉承着打不过就加入的原则，萜妹前阵子去研究了下如何画出这种图。</p>
+<p>正好看到了篇图画的很漂亮的研究，那我们就一起来复现吧。</p>
+<h1 id="整体介绍">整体介绍</h1>
+<p>这是一篇偏心理学的文章，主要结论是：人们越相信外貌可以揭示性格，他们对基于外貌的判断就越有信心，因此他们越支持在执法、教育和商业中使用面部分析技术。</p>
+<p>作者做了十个研究来佐证它。但考虑到篇幅问题（主要是写长了你们也不看！），我们这次只复现它的Study 5a，即涉及调节效应和带调节的置信区间图的部分。</p>
+<h1 id="公开数据">公开数据</h1>
+<p>数据及代码：https://osf.io/aj86v</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318216.png" alt="img"></p>
+<p>补充材料：https://doi.org/10.1037/pspa0000307.supp</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318306.png" alt="img"></p>
+<p>作者的公开材料里没有作图部分的代码，萜妹自学失败后，发邮件问了作者，她超大方的分享了（大家真的都好nice）。我也会在接下来的示例中展示。</p>
+<h1 id="研究概述">研究概述</h1>
+<p>Study 5a就是一个简简单单的调节效应检验。</p>
+<p>作者通过李克特量表获得了被试在自变量、调节变量的得分。</p>
+<p>然后向被试描述了四种使用面部分析技术的政策（分别用于确定①人们犯罪活动的可能性，②候选人对军队的勇敢，③客户的确定信用额度和利率的可信度，④儿童的智商水平）及其利弊，并要求他们评价在多大程度上支持使用面部分析技术。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318368.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318413.png" alt="img"></p>
+<h1 id="数据分析">数据分析</h1>
+<h2 id="假设检验">假设检验</h2>
+<p>作者使用的是Stata软件，公开文件里给出了stata语句与结果。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318340.png" alt="img"></p>
+<p>我们只需要打开Stata，将代码复制进Stata的命令窗口即可。</p>
+<pre tabindex="0"><code class="language-undefined" data-lang="undefined">regress supportavg laycen entcen entcenXlaycen if gibberish==0
+</code></pre><p>#NAME? #NAME? #NAME?</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318265.png" alt="img"></p>
+<p>按【Enter】，软件就能运行出结果。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318614.png" alt="img"></p>
+<p>文中的汇报也比较简单，不过我没有找到β的来源。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318000.png" alt="img"></p>
+<h2 id="简单斜率分析">简单斜率分析</h2>
+<p>作者提前计算出了两个变量，分别为调节变量的均值加1个标准差（eplus1sd）和减1个标准差（eminus1sd）。然后调整了下上面的语句，又进行了两次回归。</p>
+<pre tabindex="0"><code class="language-undefined" data-lang="undefined">regress supportavg laycen eplus1sd eplus1sdXlaycen if gibberish==0
+regress supportavg laycen eminus1sd eminus1sdXlaycen if gibberish==0
+</code></pre><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318942.png" alt="img"></p>
+<p>不过要注意，此时是简单斜率分析，所以我们要看主效应，而不再是调节效应。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318792.png" alt="img"></p>
+<p>PS：软件中结果与文中汇报是反的。</p>
+<h2 id="带置信区间的调节效应图">带置信区间的调节效应图</h2>
+<p>接下来是我们本次的重点啦！</p>
+<h3 id="重新进行回归">重新进行回归</h3>
+<p>首先要重新进行调节效应的回归，需要告诉软件，我们这里的调节变量和自变量是连续变量。如果是类别变量则改为i.variable。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">regress supportavg c.entavg##c.layavg <span style="color:#66d9ef">if</span> gibberish<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>
+</code></pre></div><p>这个回归的结果会在后续作图时调用。需要注意：这里的结果和我们前面的回归结果是有一些出入的。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318847.png" alt="img"></p>
+<h3 id="调节变量的描述性统计">调节变量的描述性统计</h3>
+<p>然后对调节变量进行描述性统计。</p>
+<pre tabindex="0"><code class="language-undefined" data-lang="undefined">summ entavg
+</code></pre><p>计算可得调节变量的均值和标准差。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318384.png" alt="img"></p>
+<h3 id="作图">作图</h3>
+<p>首先要利用下面的语句，得到作图的数据。entavg括号内的数即为均值加减一个标准差，</p>
+<pre tabindex="0"><code class="language-undefined" data-lang="undefined">margins, at(layavg =(1 2 3 4 5 6) entavg =(1.94 3.28 4.62)) vsquish
+</code></pre><p>这里的结果不重要，所以就不截图上来啦。</p>
+<p>然后我们再进行作图。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">marginsplot</span><span style="color:#f92672">,</span> <span style="color:#f92672">recastci</span><span style="color:#f92672">(</span><span style="color:#f92672">rarea</span><span style="color:#f92672">)</span> <span style="color:#f92672">x</span><span style="color:#f92672">(</span><span style="color:#f92672">layavg</span> <span style="color:#f92672">)</span> <span style="color:#f92672">recast</span><span style="color:#f92672">(</span><span style="color:#f92672">line</span><span style="color:#f92672">)</span> <span style="color:#f92672">xlabel</span><span style="color:#f92672">(</span><span style="color:#f92672">1</span><span style="color:#a6e22e">.94</span> <span style="color:#f92672">3</span><span style="color:#a6e22e">.28</span> <span style="color:#f92672">4</span><span style="color:#a6e22e">.62</span><span style="color:#f92672">)</span>
+</code></pre></div><p>这里是最基础的图形结果。我们可以在Stata的图形编辑里改变样式，或者也可以利用语句来优化。不过我觉得图形编辑好用一些。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318072.png" alt="img"></p>
+<p>作者原文中的图形长这样：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318407.png" alt="img"></p>
+<hr>
+<p>今天的推送就到这里啦。这次的复现其实非常简单，但就是这么简单的内容，我自己摸索了一个月都没摸索出来，所以我觉得还是非常有必要和小可爱们分享的。</p>
+<p>如果小可爱们知道其他能在调节效应图上添加置信区间的方法也欢迎与我交流呀。希望能和小可爱们，一起学习，共同进步~</p>
+<p><strong>下期预告：《范文丨顶刊引言精读（四）》</strong></p>
+<p><strong>往期推送：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486620&amp;idx=1&amp;sn=cd74ffc016d143f134d8add8eac419cf&amp;chksm=96f4787aa183f16c03596223e0ff7c271ff7708eacc209d59953408b470955ad69372254590a#rd">➪复现丨基于R的实验检验</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486698&amp;idx=1&amp;sn=da13851509e20a964483a66d5bb9a8de&amp;chksm=96f4780ca183f11ac2d631cca413047caed5db020ebd2a44bd9f99f42fee2b3bf437d3909f3c#rd">➪经验丨如何用EndNote搭建论文库</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486670&amp;idx=1&amp;sn=4744759f015fee906bbdea9e7685efde&amp;chksm=96f47828a183f13e827951862b0f0b36a7e10ff6236bfe211ab259525e06cc6cc2fc02e4363f#rd">➪范文丨顶刊引言精读（三）</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486715&amp;idx=1&amp;sn=b491bc40fbbf0075420cb8e1b98b8ba1&amp;chksm=96f4781da183f10b059a03b3e8efbcbf0f4b7a8d33b7f9f9e1525c9d6becbf7a24fbd109a576&amp;token=1547359331&amp;lang=zh_CN#rd">➪范文丨小众方法-Latent change score</a></strong></p>
+<p><strong>原文链接：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486774&amp;idx=1&amp;sn=3a1aa8c04f7efda68fefd6c37fc51e16&amp;chksm=96f479d0a183f0c6118d92309a3c1876f3878fd3c6f48b1378dc05c92071b88e98baee772f0e&amp;token=1547359331&amp;lang=zh_CN#rd">➪带置信区间的调节效应图</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/stata/">Stata</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/moderation/">Moderation</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/06/%E8%B4%A1%E7%8C%AE%E6%B8%85%E6%99%B0jap-%E5%8C%85%E5%AE%B9%E6%80%A7%E6%B0%9B%E5%9B%B4%E5%88%B0%E7%BB%84%E7%BB%87%E5%88%9B%E6%96%B0/" data-tooltip="贡献清晰：JAP-包容性氛围到组织创新" aria-label="下一篇: 贡献清晰：JAP-包容性氛围到组织创新">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/05/latent-change-score/" data-tooltip="Latent change score" aria-label="上一篇: Latent change score">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/06/%E8%B4%A1%E7%8C%AE%E6%B8%85%E6%99%B0jap-%E5%8C%85%E5%AE%B9%E6%80%A7%E6%B0%9B%E5%9B%B4%E5%88%B0%E7%BB%84%E7%BB%87%E5%88%9B%E6%96%B0/" data-tooltip="贡献清晰：JAP-包容性氛围到组织创新" aria-label="下一篇: 贡献清晰：JAP-包容性氛围到组织创新">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/05/latent-change-score/" data-tooltip="Latent change score" aria-label="上一篇: Latent change score">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

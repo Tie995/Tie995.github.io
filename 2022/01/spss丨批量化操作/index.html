@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SPSS丨批量化操作",
+  
+  "datePublished": "2022-01-09T00:00:00Z",
+  "dateModified": "2022-01-09T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2022\/01\/spss%E4%B8%A8%E6%89%B9%E9%87%8F%E5%8C%96%E6%93%8D%E4%BD%9C\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SPSS丨批量化操作">
+<meta name="twitter:title" content="SPSS丨批量化操作">
+<meta property="og:url" content="https://tie-blog.netlify.app/2022/01/spss%E4%B8%A8%E6%89%B9%E9%87%8F%E5%8C%96%E6%93%8D%E4%BD%9C/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2022/01/spss%E4%B8%A8%E6%89%B9%E9%87%8F%E5%8C%96%E6%93%8D%E4%BD%9C/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2022-01-09T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2022-01-09T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="干货">
+    
+      <meta property="article:section" content="软件技巧">
+    
+  
+  
+    
+      <meta property="article:tag" content="SPSS">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>SPSS丨批量化操作</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2022/01/spss%E4%B8%A8%E6%89%B9%E9%87%8F%E5%8C%96%E6%93%8D%E4%BD%9C/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      SPSS丨批量化操作
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-01-09T00:00:00Z">
+        
+  
+  
+  
+  
+    2022-01-09
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%b9%b2%e8%b4%a7">干货</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e8%bd%af%e4%bb%b6%e6%8a%80%e5%b7%a7">软件技巧</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>熟悉萜妹的小可爱应该知道，萜妹是Office的狂热粉丝，能用Excel解决的就绝对不会用SPSS，因为Excel可以用公式实现自动化，SPSS每次却要自己点。</p>
+<p>但是，在了解了SPSS的语法后，萜妹再一次感叹，没有不好用的软件，只有笨笨的自己。所以这次也给大家安利，如何用SPSS的语法实现批量化操作。</p>
+<p>这篇推送主要包含三个部分内容：如何生成语法+常用语法分享+如何使用语法。</p>
+<h1 id="如何生成语法"><strong>如何生成语法</strong></h1>
+<p>首先给小可爱们介绍最简单的方法。</p>
+<p>大家每次常规操作完，是不是直接点【确定】，但是其实边上还有个【粘贴】键（我之前也从没有留意过）。</p>
+<p>类似，这样（PS：宏插件的语法不能点粘贴哈）：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112321534.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112321629.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112321748.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112321585.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112321657.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112321411.png" alt="img"></p>
+<p>示例</p>
+<p>只要点击【粘贴】，语法就会粘贴到一个语法文件之中。如果没有打开语法文件，软件也会自己新建一个，不用担心。</p>
+<p><strong>（此时语法粘贴，但并没有运行哈！！！）</strong></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112321884.png" alt="img"></p>
+<p>可以将常用操作都生成语法并保存，以后就直接修改语法，不用再一个个点啦。</p>
+<p>那么，萜妹给小可爱们分享些常用语法</p>
+<h1 id="常用语法"><strong>常用语法</strong></h1>
+<p>黑字为固定部分，红字为应修改部分。</p>
+<p><strong>计算变量</strong></p>
+<pre tabindex="0"><code class="language-undefined" data-lang="undefined">COMPUTE TIE=Mean(x1,x2,x3,x4).
+EXECUTE.
+</code></pre><p>比如我们要把整个问卷变量化，就可以不断替换语法里的x，然后一次性完成（用Word替换或者手动替换都可以）。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112321828.png" alt="img"></p>
+<p><strong>信度计算</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">RELIABILITY
+
+ <span style="color:#f92672">/</span>VARIABLES<span style="color:#f92672">=</span>x1 x2 x3 x4
+
+ <span style="color:#f92672">/</span><span style="color:#66d9ef">SCALE</span>(<span style="color:#e6db74">&#39;ALL VARIABLES&#39;</span>) <span style="color:#66d9ef">ALL</span>
+
+ <span style="color:#f92672">/</span>MODEL<span style="color:#f92672">=</span>ALPHA.
+</code></pre></div><p>需多次计算时，将语句复制多遍进行修改即可。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112321842.png" alt="img"></p>
+<p><strong>相关分析</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#a6e22e">CORRELATIONS</span>
+
+ <span style="color:#f92672">/</span><span style="color:#a6e22e">VARIABLES</span><span style="color:#f92672">=</span><span style="color:#a6e22e">x</span> <span style="color:#a6e22e">m</span> <span style="color:#a6e22e">y</span> <span style="color:#a6e22e">w</span>
+
+ <span style="color:#f92672">/</span><span style="color:#66d9ef">PRINT</span><span style="color:#f92672">=</span><span style="color:#a6e22e">TWOTAIL</span> <span style="color:#a6e22e">NOSIG</span>
+
+ <span style="color:#f92672">/</span><span style="color:#a6e22e">STATISTICS</span> <span style="color:#a6e22e">DESCRIPTIVES</span>
+
+ <span style="color:#f92672">/</span><span style="color:#a6e22e">MISSING</span><span style="color:#f92672">=</span><span style="color:#a6e22e">PAIRWISE</span><span style="color:#f92672">.</span>
+</code></pre></div><p><strong>回归分析</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql">REGRESSION
+
+ <span style="color:#f92672">/</span>MISSING LISTWISE
+
+ <span style="color:#f92672">/</span><span style="color:#66d9ef">STATISTICS</span> COEFF OUTS R ANOVA
+
+ <span style="color:#f92672">/</span>CRITERIA<span style="color:#f92672">=</span>PIN(.<span style="color:#ae81ff">05</span>) POUT(.<span style="color:#ae81ff">10</span>)
+
+ <span style="color:#f92672">/</span>NOORIGIN 
+
+ <span style="color:#f92672">/</span>DEPENDENT Zm
+
+ <span style="color:#f92672">/</span><span style="color:#66d9ef">METHOD</span><span style="color:#f92672">=</span>ENTER Zx.
+</code></pre></div><p>/DEPENDENT 后接因变量，可以放入多个。</p>
+<p>/METHOD=ENTER 后接自变量，每一行即为进行一次回归。</p>
+<p>当要进行多次回归时，可直接在其后新增 /METHOD=ENTER</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112321200.png" alt="img"></p>
+<p><strong>独立样本T检验</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">T<span style="color:#f92672">-</span>TEST GROUPS<span style="color:#f92672">=</span><span style="color:#a6e22e">gender</span>(<span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span>)
+
+ <span style="color:#f92672">/</span>MISSING<span style="color:#f92672">=</span>ANALYSIS
+
+ <span style="color:#f92672">/</span>VARIABLES<span style="color:#f92672">=</span>y
+
+ <span style="color:#f92672">/</span>CRITERIA<span style="color:#f92672">=</span><span style="color:#a6e22e">CI</span>(<span style="color:#ae81ff">.95</span>).
+
+ <span style="color:#f92672">/</span>VARIABLES<span style="color:#f92672">=</span> 后也可跟多个结果变量。
+</code></pre></div><p><strong>单因素方差分析</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">ONEWAY y BY edu
+
+ <span style="color:#f92672">/</span>STATISTICS DESCRIPTIVES 
+
+ <span style="color:#f92672">/</span>MISSING ANALYSIS
+
+ <span style="color:#f92672">/</span>POSTHOC<span style="color:#f92672">=</span>LSD <span style="color:#a6e22e">ALPHA</span><span style="color:#f92672">(</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">05</span><span style="color:#f92672">).</span>
+</code></pre></div><p>此处y也可替换为多个结果变量。</p>
+<p><strong>生成.dat文件</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">SAVE TRANSLATE OUTFILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;F:\TIE.dat&#39;</span>
+
+ /TYPE<span style="color:#f92672">=</span>TAB
+
+ /ENCODING<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Locale&#39;</span>
+
+ /MAP
+
+ /REPLACE
+
+ /CELLS<span style="color:#f92672">=</span>VALUES.
+</code></pre></div><p>以上只是部分示例，小可爱们有其他的语法需求可以自行使用【粘贴】生成，或者百度。</p>
+<p>亲测，SPSS的语法和Excel的公式在网上都能一搜一大把，萜妹不懂的时候也是靠百度。</p>
+<h1 id="如何使用语法"><strong>如何使用语法</strong></h1>
+<p>在获得所需语法之后，我们还需知道如何使用，这也非常简单。</p>
+<p>第一步，<strong>新建一个语法文件</strong>。</p>
+<p>点击【文件】-【新建】-【语法】即可得到。</p>
+<p>其实我们也可以直接在语法模板里运行，但是萜妹会更习惯建个新的文件再修改和运行。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112321164.png" alt="img"></p>
+<p>第二步，<strong>粘贴并修改待用的语法</strong>。</p>
+<p>这是批量化操作的关键。如何修改已在上个部分介绍，如果有时候不知道怎么修改可以手动操作再【粘贴】，了解其中语法。</p>
+<p>不过大部分情况（除了宏插件）下，语法的功能会比手动点击更为方便，甚至会得到一些手动点击无法得到的效果。</p>
+<p>第三步，<strong>运行语法</strong>。</p>
+<p>选中想要运行的语法，点击【绿色三角形】。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112321255.png" alt="img"></p>
+<p>然后稍等片刻，就能得到所有语法的结果。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112321316.png" alt="img"></p>
+<p>如果有多个数据文件，需要先点击想要计算的数据文件，再运行语法，或者也可以在前面输入：</p>
+<pre tabindex="0"><code class="language-undefined" data-lang="undefined">DATASET ACTIVATE 数据集3.
+</code></pre><hr>
+<p>以上就是萜妹的一些个人经验啦。我以前只会用SPSS的固定语法模板，算协方差系数或者其他指数。但了解到【粘贴】功能后，简直打开了新世界的大门。打开文件可以用它，数据分析可以用它，保存文件也可以用它，目前看来除了Process，它都能解决，就非常方便。</p>
+<p>希望这篇推送也能帮助小可爱们提高数据分析效率，能在重复性操作上少花时间呀。</p>
+<p>最后，下周大概率是范文分享，目前有几篇备选。有篇逻辑严谨的让我想全文背诵，有篇在研究设计部分做的比较严谨，还有几篇最新录用是我自己比较感兴趣的内容，最终分享哪篇容我再纠结纠结，小可爱们也可以提提建议。</p>
+<p>那我们下周见啦~</p>
+<p><strong>往期推送</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485302&amp;idx=1&amp;sn=683be3680ebcf3d212a4e76f60ac9efa&amp;chksm=96f47390a183fa8659f035c504e83049108c42832efaa616fb0b53ce46635e0c4bc88b527778&amp;token=394304376&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨数据分析全过程视频示范</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485343&amp;idx=1&amp;sn=d99456fc386248f9ac26fdfddf5376c9&amp;chksm=96f47379a183fa6f339773e5ae8442811954f233fb300afa67e3aef6f5c2bb36dbefc3c96bd2&amp;token=1840594190&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪合集丨保姆级毕业论文实操教程（内含福利）</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485982&amp;idx=1&amp;sn=1dc868f31bb3ae924e10dae577cecc67&amp;chksm=96f47ef8a183f7eedd7d34473a8d5c950f6b49451754a6db7a22d155abd4ed2209ab112ef6b4&amp;token=746215592&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪经验丨提升效率的好物分享</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486132&amp;idx=1&amp;sn=8754765a457a6277a2a4dcf6e83cb6cd&amp;chksm=96f47e52a183f7449a049f84ef2222c71d4daf7499bebeb5278a12f30b2ea30cee83ee804fb0&amp;token=746215592&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨文献查找之Research Rabbit</a></strong></p>
+<p><strong>原文推送：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486237&amp;idx=1&amp;sn=67805d019e46c84bb07958292de62cde&amp;chksm=96f47ffba183f6edf31b234f5157f1764affcdd06ca373c56fa0cf1eb352ba6f9a98ee3df97c#rd">➪干货丨SPSS的批量化操作</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/spss/">SPSS</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/01/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E4%BA%BA%E4%B8%8E%E5%9B%A2%E9%98%9F%E7%9A%84%E5%8C%B9%E9%85%8D/" data-tooltip="RSA丨多项式回归之人与团队的匹配" aria-label="下一篇: RSA丨多项式回归之人与团队的匹配">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2021/12/research-rabbit/" data-tooltip="Research Rabbit" aria-label="上一篇: Research Rabbit">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/01/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E4%BA%BA%E4%B8%8E%E5%9B%A2%E9%98%9F%E7%9A%84%E5%8C%B9%E9%85%8D/" data-tooltip="RSA丨多项式回归之人与团队的匹配" aria-label="下一篇: RSA丨多项式回归之人与团队的匹配">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2021/12/research-rabbit/" data-tooltip="Research Rabbit" aria-label="上一篇: Research Rabbit">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

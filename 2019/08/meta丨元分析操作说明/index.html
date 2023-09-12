@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Meta丨元分析操作说明",
+  
+  "datePublished": "2019-08-26T00:00:00Z",
+  "dateModified": "2019-08-26T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2019\/08\/meta%E4%B8%A8%E5%85%83%E5%88%86%E6%9E%90%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "时隔大半年，萜妹终于决定来填元分析这个坑了。不过萜妹直到现在也没有利用元分析写论文的打算，所以这系列推送更多还是笔记整理，个人的实操经验没多少好分享的啦~\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="时隔大半年，萜妹终于决定来填元分析这个坑了。不过萜妹直到现在也没有利用元分析写论文的打算，所以这系列推送更多还是笔记整理，个人的实操经验没多少好分享的啦~">
+
+
+<meta property="og:description" content="时隔大半年，萜妹终于决定来填元分析这个坑了。不过萜妹直到现在也没有利用元分析写论文的打算，所以这系列推送更多还是笔记整理，个人的实操经验没多少好分享的啦~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Meta丨元分析操作说明">
+<meta name="twitter:title" content="Meta丨元分析操作说明">
+<meta property="og:url" content="https://tie-blog.netlify.app/2019/08/meta%E4%B8%A8%E5%85%83%E5%88%86%E6%9E%90%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2019/08/meta%E4%B8%A8%E5%85%83%E5%88%86%E6%9E%90%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="时隔大半年，萜妹终于决定来填元分析这个坑了。不过萜妹直到现在也没有利用元分析写论文的打算，所以这系列推送更多还是笔记整理，个人的实操经验没多少好分享的啦~">
+<meta name="twitter:description" content="时隔大半年，萜妹终于决定来填元分析这个坑了。不过萜妹直到现在也没有利用元分析写论文的打算，所以这系列推送更多还是笔记整理，个人的实操经验没多少好分享的啦~">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-08-26T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-08-26T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="干货">
+    
+      <meta property="article:section" content="研究方法">
+    
+  
+  
+    
+      <meta property="article:tag" content="Meta-Analysis">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>Meta丨元分析操作说明</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2019/08/meta%E4%B8%A8%E5%85%83%E5%88%86%E6%9E%90%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Meta丨元分析操作说明
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2019-08-26T00:00:00Z">
+        
+  
+  
+  
+  
+    2019-08-26
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%b9%b2%e8%b4%a7">干货</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e7%a0%94%e7%a9%b6%e6%96%b9%e6%b3%95">研究方法</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>时隔大半年，萜妹终于决定来填元分析这个坑了。不过萜妹直到现在也没有利用元分析写论文的打算，所以这系列推送更多还是笔记整理，个人的实操经验没多少好分享的啦~</p>
+<hr>
+<p>元分析的操作主要分为三步：文献查找、样本编码与数据分析，接下来我们分步介绍。</p>
+<h1 id="文献查找"><strong>文献查找</strong></h1>
+<p>文献查找这一步是基础，需要大量的查阅，一定不能有遗漏，不然很容易被拒。</p>
+<h2 id="文献来源"><strong>文献来源</strong></h2>
+<p>样本查找需要广而深，具体的文献范围包括：</p>
+<ul>
+<li>杂志期刊（这是比较普遍的文献来源）</li>
+<li>会议论文集</li>
+<li>博士学位论文及硕士、学士学位论文</li>
+<li>在评论文章中列出参考书目</li>
+<li>联系该领域的知名作者获取未发表的数据</li>
+<li>在OB, HR或RM list上寻找未发表的论文</li>
+<li>技术报告</li>
+</ul>
+<p>这里小可爱们需要注意，元分析所用的数据是非歧视的，它无视数据来源的期刊等级，需一视同仁。因此学位论文、技术报告这一类也可以成为文献来源。</p>
+<p>不过萜妹觉得，要是小可爱们漏了某篇学位论文的数据，编辑不一定找得到，但是要是漏了经典文章的数据，肯定一眼就会被发现的。</p>
+<p>所以萜妹个人观点是，杂志期刊类的文章需要把相关的全部囊括，学术论文等文章则是尽量找到即可。</p>
+<h2 id="搜索技巧"><strong>搜索技巧</strong></h2>
+<p><strong>第一</strong>、需要使用关键词在数据库（如Web of Science、APA等）中搜索，少用谷歌学术搜索。</p>
+<p>谷歌学术搜出来的文献太多，难以正确识别。</p>
+<p><strong>第二</strong>、可借用“AND”、“OR”、“NOT”等语句辅助搜素。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112326636.png" alt="img"></p>
+<p><strong>第三</strong>、可以将搜索范围限定在摘要中，而非所有字段。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112326653.png" alt="img"></p>
+<p><strong>筛选标准</strong></p>
+<p>这取决于研究问题，需要小可爱们从理论上证明纳入标准是正确的，例如：在研究社交网络的时候，可以把儿童的社交网络排除在外，只关注成人的社交网络。</p>
+<p>最后在文章中呈现的时候也需要注明怎么搜、搜了多少、怎么删以及最终样本数量。</p>
+<h1 id="样本编码">样本编码</h1>
+<p>常见的需要编码的内容包括：ID、研究引用（ study citation，这我不确定怎么翻译）、变量、效应量、样本数和其他可能解释研究差异的变量。</p>
+<p><strong>注意</strong>：一个样本只能编码一次、只拥有一个效应量，切勿重复编码；另外在编码过程中并不因为信度与显著性而对样本进行取舍。</p>
+<h1 id="数据分析">数据分析</h1>
+<p>这要有两种分析方法，分别为H-S法和H-O法，原始资料里有附二者的EXCEL。二者的原理区别萜妹就不多说了，有兴趣的小可爱们自己看相关的文章吧。接下来主要是介绍二者的操作。</p>
+<h2 id="hunter-andschmidt-method"><strong>Hunter andSchmidt method</strong></h2>
+<p><strong>输入</strong>：H-S法的输入内容包括以下5个，分别为样本量、效应量、y的信度、x的信度和范围限制。</p>
+<ul>
+<li>当x、y的信度没有报告时，取1或者missing（该部分影响微小，尚未有系统研究）；</li>
+<li>u代表的是范围限制（range restriction），选拔时常用，未知时取1。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112326675.png" alt="img"></p>
+<p><strong>权重</strong>：研究的权重仅取决于样本量的大小，可靠性与范围限制则与校正过程相关。</p>
+<p><strong>输出</strong>：主要需要关注的是红色部分数据。第一列为原始结果，第二列为调整过人为误差的结果。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112326767.png" alt="img"></p>
+<ul>
+<li><strong>R-mean</strong>：r均值是元分析中最重要的系数，该案例中原始的r为0.3709，调整过人为误差的r为0.4108；</li>
+<li><strong>%-acc</strong>：若该值大于75%，则意味着研究者可以通过抽样误差和其他可纠正的工件解释所观察到的75%的方差，那么就可以假定剩下的25%不值得解释。该案例为81%，但是实际情况通常不会这么高；</li>
+<li><strong>80%Credibility Interval（CV）</strong>：是指random effects的模型中取中间80%的真相分布，该案例中左边为0.3664、右边为0.4553；这个值是H-S被称为随机效应模型的原因！</li>
+<li><strong>95%Confidence Interval（CI）</strong>：正常的95%的置信区间不包含0则显著，该案例中置信区间为[0.3571,0.4646]。</li>
+</ul>
+<h2 id="hedge-and-olkin-method"><strong>Hedge and Olkin method</strong></h2>
+<p><strong>输入</strong>：仅需要输入样本量和效应量，其他值会根据公式自动得出。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112326668.png" alt="img"></p>
+<p><strong>权重</strong>：研究的权重为总体方差的倒数，虽然这与样本量成比例，但是更为微妙。</p>
+<p><strong>输出</strong>：这里的输出结果萜妹研究了一阵也没完全搞懂原理，所以就简单介绍一下相关概念好了。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112326558.png" alt="img"></p>
+<ul>
+<li><strong>Q</strong>：Q值是以卡方分布来判断是否显著，另一个常用的报告方式为I的平方，也是由Q值计算得来；</li>
+<li><strong>T的平方</strong>：又称Variance Between，这是对于各组之间的比较，所以最后各组该数值会一致。</li>
+</ul>
+<p><strong>二者对比</strong></p>
+<table>
+<thead>
+<tr>
+<th>区别</th>
+<th>H-S</th>
+<th>H-O</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>适用范围</strong></td>
+<td>多为I-O心理学</td>
+<td>多用于其他领域</td>
+</tr>
+<tr>
+<td><strong>校正</strong></td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td><strong>权重依据</strong></td>
+<td>样本量</td>
+<td>总体方程的倒数</td>
+</tr>
+<tr>
+<td><strong>模型类型</strong></td>
+<td>只有随机模型</td>
+<td>固定模型与随机模型均有</td>
+</tr>
+<tr>
+<td><strong>处理过程</strong></td>
+<td>不需要转化大小</td>
+<td>涉及 Fisher’s Z 转换</td>
+</tr>
+<tr>
+<td><strong>成立条件</strong></td>
+<td>75%规则</td>
+<td>异质性Q检验</td>
+</tr>
+</tbody>
+</table>
+<p>主讲者在两种方法还是更推荐H-S法。</p>
+<hr>
+<p>啦啦啦，元分析的操作说明就写到这里了。讲座当时还有分享元分析的进阶使用，但是由于时间久远加上萜妹确实在这方面的学习有限，所以我暂时不打算继续写啦。可能等到未来有一天萜妹做元分析了，可能才会再继续更新这个方面的内容吧。</p>
+<p>之后，这周就是两周年了，到时候会有总结推送，目前也在准备改版的一些内容，所以这周应该不会再有内容性的推送啦。</p>
+<p>希望下次再见的时候能让小可爱们看到一个更好的萜妹，那我们周末见吧~</p>
+<p><strong>原文链接：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484852&amp;idx=1&amp;sn=b76cc106ff5326a84c526f4fd6c6f3d0&amp;chksm=96f47152a183f8442d515c8597a232b387f3350124c1783d5428ed81d1948a2ee76f2f06e7db&amp;token=1746106175&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪笔记丨元分析之操作说明</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/meta-analysis/">Meta-Analysis</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2019/09/endnote%E4%B8%A8%E8%AE%BA%E6%96%87%E5%BC%95%E7%94%A8%E6%8E%92%E7%89%88%E6%8C%87%E5%8D%97/" data-tooltip="EndNote丨论文引用排版指南" aria-label="下一篇: EndNote丨论文引用排版指南">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2019/08/2019%E6%AD%A6%E6%B1%89%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/" data-tooltip="2019武汉笔记整理" aria-label="上一篇: 2019武汉笔记整理">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2019/09/endnote%E4%B8%A8%E8%AE%BA%E6%96%87%E5%BC%95%E7%94%A8%E6%8E%92%E7%89%88%E6%8C%87%E5%8D%97/" data-tooltip="EndNote丨论文引用排版指南" aria-label="下一篇: EndNote丨论文引用排版指南">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2019/08/2019%E6%AD%A6%E6%B1%89%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/" data-tooltip="2019武汉笔记整理" aria-label="上一篇: 2019武汉笔记整理">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

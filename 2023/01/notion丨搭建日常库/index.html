@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Notion丨搭建日常库",
+  
+  "datePublished": "2023-01-15T00:00:00Z",
+  "dateModified": "2023-01-15T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2023\/01\/notion%E4%B8%A8%E6%90%AD%E5%BB%BA%E6%97%A5%E5%B8%B8%E5%BA%93\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "小可爱们好，有小可爱想要我的Notion日常模板，所以我就干脆写篇推送吧。\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="小可爱们好，有小可爱想要我的Notion日常模板，所以我就干脆写篇推送吧。">
+
+
+<meta property="og:description" content="小可爱们好，有小可爱想要我的Notion日常模板，所以我就干脆写篇推送吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Notion丨搭建日常库">
+<meta name="twitter:title" content="Notion丨搭建日常库">
+<meta property="og:url" content="https://tie-blog.netlify.app/2023/01/notion%E4%B8%A8%E6%90%AD%E5%BB%BA%E6%97%A5%E5%B8%B8%E5%BA%93/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2023/01/notion%E4%B8%A8%E6%90%AD%E5%BB%BA%E6%97%A5%E5%B8%B8%E5%BA%93/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="小可爱们好，有小可爱想要我的Notion日常模板，所以我就干脆写篇推送吧。">
+<meta name="twitter:description" content="小可爱们好，有小可爱想要我的Notion日常模板，所以我就干脆写篇推送吧。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-01-15T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2023-01-15T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="经验">
+    
+      <meta property="article:section" content="其他经验">
+    
+  
+  
+    
+      <meta property="article:tag" content="Notion">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>Notion丨搭建日常库</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2023/01/notion%E4%B8%A8%E6%90%AD%E5%BB%BA%E6%97%A5%E5%B8%B8%E5%BA%93/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Notion丨搭建日常库
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-01-15T00:00:00Z">
+        
+  
+  
+  
+  
+    2023-01-15
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e7%bb%8f%e9%aa%8c">经验</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%85%b6%e4%bb%96%e7%bb%8f%e9%aa%8c">其他经验</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>小可爱们好，有小可爱想要我的Notion日常模板，所以我就干脆写篇推送吧。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/1fc4cbd5-e1b4-4aa8-bd8d-f699b61fa315.png" alt=""></p>
+<p>以下仅基于个人经验，大家酌情参考。</p>
+<hr>
+<p>内容会分为三个部分：如何搭建一个日常库+萜妹的日常库子页示例+总体概览设置。</p>
+<h2 id="搭建步骤">搭建步骤</h2>
+<h4 id="step-1新建一个page">Step 1：新建一个Page</h4>
+<p>在空白格中，输入“/”，再会选中Page。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/33a6f22c-c5f8-40bf-a540-0d3b2e7645c2.png" alt="新建一个Page"></p>
+<h4 id="step-2建立一个gallery">Step 2：建立一个Gallery</h4>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/e9f235a6-6061-4162-aff3-c450ef98975e.png" alt="选中Gallery"></p>
+<p>点击后会出现如下界面，然后选择新建一个数据库。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/6f805d1c-c523-48ab-a994-e2d0636702c2.png" alt="添加Database"></p>
+<p>最终会变成这样：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/3aaed00e-a6c1-4e33-b76d-a5137348ef8e.png" alt="空白Gallery视图"></p>
+<h4 id="step-3设置子页基本元素">Step 3：设置子页基本元素</h4>
+<p>点击进入具体页面。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/f14b0986-6a33-4c73-b334-178c9626d504.png" alt="具体页面"></p>
+<p>按需添加基本元素。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/9f3c1e54-dacd-4132-9c39-cac731b4156c.png" alt="按需添加基本元素"></p>
+<p>各类元素含义与用途，详见<a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486539&amp;idx=1&amp;sn=c20cf46b45b6628f63d98224fb19079d&amp;chksm=96f478ada183f1bbb5b3679159a185ee7814911c2d9ec636ea8b1c952aab38b70047a7a89fb6&amp;scene=21#wechat_redirect">经验丨如何用Notion搭建学术库</a>。</p>
+<h4 id="step-4每日记录">Step 4：每日记录</h4>
+<p>每日新建一个子页，点击“New”。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/c6dd0a6e-7999-41f7-ac3f-a15ae2f0b0c9.png" alt="新建新的子页"></p>
+<p>随后填写对应内容。</p>
+<h2 id="子页示例">子页示例</h2>
+<p>说完搭建步骤，再和小可爱们分享我的日常库内容。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/21a9fe55-4651-4a96-8317-5ba8bc9f7269.png" alt="单日示例"></p>
+<h4 id="标题日期">标题：日期</h4>
+<p>新建子页后，在标题先输入【@】，随后会关联出多个选项，选择【Today】即可。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/22682482-c1d8-481b-8435-613c35bc3305.png" alt=""></p>
+<p>如果当天忘记新建子页，也可以在【@】后手动输入具体日期。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/12fe0842-1d8e-47b9-bfbc-e5c8d5710751.png" alt=""></p>
+<h4 id="创建时间">创建时间</h4>
+<p><strong>〖类别〗</strong>：Created time</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/ca4d67cc-5c42-4797-9ce3-613bc87b7082.png" alt=""></p>
+<p><strong>〖数值〗</strong>：无需填写</p>
+<p>此为自带属性，新建子页后会自动生成。</p>
+<p><strong>〖功能〗</strong>：后期依此进行排序、筛选</p>
+<h4 id="工作时间">工作时间</h4>
+<p><strong>〖类别〗</strong>：Number</p>
+<p>Notion现在可以有三种呈现方式供选。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/3344066a-3970-41ea-85a9-8fb91adb251b.png" alt=""></p>
+<p><strong>〖数值〗</strong>：来源于aTimeLogger</p>
+<p>我一般在当日结束或者次日早上填写。</p>
+<p>软件的详细使用介绍可见：<a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487552&amp;idx=1&amp;sn=051e070581c4a0f9c0e442b6207b78bb&amp;chksm=96f464a6a183edb084709e8f1f068a995661fde16c165927d5bf30b3dbceba9362312b5eefca&amp;token=51431700&amp;lang=zh_CN#rd">如何进行时间管理</a>。</p>
+<p><strong>〖功能〗</strong>：后期依此进行学习时长计算</p>
+<h4 id="今日已做任务">今日已做任务</h4>
+<p><strong>〖类别〗</strong>：Relation</p>
+<p><img src="https://files.mdnice.com/user/24987/4a3a9168-7135-4e77-affe-20787167153d.png" alt=""></p>
+<p><strong>〖数值〗</strong>：手动选择</p>
+<p>我会将所有待做任务输入任务库，所以每天只要选择对应任务即可。</p>
+<p><img src="https://files.mdnice.com/user/24987/ce3b1b37-dafd-41ae-8738-783efdac299e.png" alt=""></p>
+<p><strong>〖功能〗</strong>：该项与任务库关联</p>
+<h4 id="每日指标">每日指标</h4>
+<p><strong>〖类别〗</strong>：Checkbox</p>
+<p><img src="https://files.mdnice.com/user/24987/717858a8-e4c5-4f80-8988-f162b2e47d4f.png" alt=""></p>
+<p><strong>〖数值〗</strong>：手动填写</p>
+<p><strong>〖功能〗</strong>：提醒自己</p>
+<p>这个部分可根据自己的 To do list调整。</p>
+<h4 id="内容图片">内容：图片</h4>
+<p>最后我会在正文部分尽量至少上传一张当日图片，让我平淡无奇的生活回忆起来有些记忆点。</p>
+<p>虽然大部分时间还是只能上传我的每日早中晚餐，hhh</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/93e9e5d2-8521-43f4-94ed-59696c4fffd2.png" alt=""></p>
+<h2 id="总体概览">总体概览</h2>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/66f17170-f316-4181-9227-768ec00d72be.png" alt="概览示例"></p>
+<p>想要类似我这样的呈现方式，我们还需要对右上角部分进行些设置。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/45c0870b-6a63-4413-af3b-9a82a90547b0.png" alt=""></p>
+<h4 id="sort">Sort</h4>
+<p>创建时间倒序排布有利于我日常查看。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/ce2574cb-5d52-4941-94d7-dac464ec6d77.png" alt=""></p>
+<h4 id="filter">Filter</h4>
+<p>新年新气象，所以我通常会只筛选查看当年的日常记录。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/034bfc3c-9721-4736-bac9-346ff2c0bdec.png" alt=""></p>
+<h4 id="其他设置">其他设置</h4>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/d2258420-c868-4293-9e8d-b681478e2cd8.png" alt=""></p>
+<p>【Properties】涉及呈现的具体元素，大家可以按需设置。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/d16879bc-5f0e-492b-8127-4d2dc046461d.png" alt=""></p>
+<p>上下拖动还可调节呈现顺序。</p>
+<hr>
+<p>以上就是萜妹的一些个人经验。</p>
+<p>学术库结尾的时候，我写过：</p>
+<blockquote>
+<p>“虽然确实还有很多待完善的部分，但是我相信在不断地使用和调整中，我总是在不断接近最优的吖。</p>
+<p>另外一个感受是，虽然模板还不怎么样，但坚持记录，这些内容于我而言就已经是不菲的财富了。”</p>
+</blockquote>
+<p>今日感慨，无论是学术记录还是日常记录，它们都是我的宝贵财富。</p>
+<p>PS：日常库算是我Notion体系中很重要的一部分，它和任务库高度关联，构成了我日常任务管理与日程管理的两大利器。</p>
+<p>剩下这几个库是我日常使用/查看频率最高的界面，如果小可爱们对它们有兴趣，我之后再来分享。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/c2249718-40d7-42fc-b0ed-36c807958ced.png" alt=""></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487887&amp;idx=1&amp;sn=0e01bf5f4b3fce53a94d9b912f9c0b38&amp;chksm=96f46569a183ec7f4c1ded81ada720c0a77932359eba30c5e81678e3af551eb94382d44c2ba9&amp;token=1396911116&amp;lang=zh_CN#rd">原文链接</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/notion/">Notion</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/01/%E8%A7%A3%E9%87%8A%E6%B0%B4%E5%B9%B3%E7%90%86%E8%AE%BA%E8%A1%8D%E7%94%9F%E9%97%AE%E9%A2%98/" data-tooltip="解释水平理论：衍生问题" aria-label="下一篇: 解释水平理论：衍生问题">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/01/%E8%A7%A3%E9%87%8A%E6%B0%B4%E5%B9%B3%E7%90%86%E8%AE%BA%E5%AE%9E%E8%AF%81%E5%9B%9E%E9%A1%BE/" data-tooltip="解释水平理论：实证回顾" aria-label="上一篇: 解释水平理论：实证回顾">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/01/%E8%A7%A3%E9%87%8A%E6%B0%B4%E5%B9%B3%E7%90%86%E8%AE%BA%E8%A1%8D%E7%94%9F%E9%97%AE%E9%A2%98/" data-tooltip="解释水平理论：衍生问题" aria-label="下一篇: 解释水平理论：衍生问题">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/01/%E8%A7%A3%E9%87%8A%E6%B0%B4%E5%B9%B3%E7%90%86%E8%AE%BA%E5%AE%9E%E8%AF%81%E5%9B%9E%E9%A1%BE/" data-tooltip="解释水平理论：实证回顾" aria-label="上一篇: 解释水平理论：实证回顾">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

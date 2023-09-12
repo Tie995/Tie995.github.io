@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "如何将文献库从EndNote迁移至Zotero",
+  
+  "datePublished": "2023-08-20T00:00:00Z",
+  "dateModified": "2023-08-20T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2023\/08\/%E5%A6%82%E4%BD%95%E5%B0%86%E6%96%87%E7%8C%AE%E5%BA%93%E4%BB%8Eendnote%E8%BF%81%E7%A7%BB%E8%87%B3zotero\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "经验丨如何进行文献阅读 2.0得到了很多小可爱的喜欢，所以萜妹准备新开个系列，分享我自己搭建这套系统的细节，以及一些经验。\n今天更新第一部分，如何将文献库从EndNote迁移至Zotero。\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="经验丨如何进行文献阅读 2.0得到了很多小可爱的喜欢，所以萜妹准备新开个系列，分享我自己搭建这套系统的细节，以及一些经验。
+今天更新第一部分，如何将文献库从EndNote迁移至Zotero。">
+
+
+<meta property="og:description" content="经验丨如何进行文献阅读 2.0得到了很多小可爱的喜欢，所以萜妹准备新开个系列，分享我自己搭建这套系统的细节，以及一些经验。
+今天更新第一部分，如何将文献库从EndNote迁移至Zotero。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何将文献库从EndNote迁移至Zotero">
+<meta name="twitter:title" content="如何将文献库从EndNote迁移至Zotero">
+<meta property="og:url" content="https://tie-blog.netlify.app/2023/08/%E5%A6%82%E4%BD%95%E5%B0%86%E6%96%87%E7%8C%AE%E5%BA%93%E4%BB%8Eendnote%E8%BF%81%E7%A7%BB%E8%87%B3zotero/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2023/08/%E5%A6%82%E4%BD%95%E5%B0%86%E6%96%87%E7%8C%AE%E5%BA%93%E4%BB%8Eendnote%E8%BF%81%E7%A7%BB%E8%87%B3zotero/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="经验丨如何进行文献阅读 2.0得到了很多小可爱的喜欢，所以萜妹准备新开个系列，分享我自己搭建这套系统的细节，以及一些经验。
+今天更新第一部分，如何将文献库从EndNote迁移至Zotero。">
+<meta name="twitter:description" content="经验丨如何进行文献阅读 2.0得到了很多小可爱的喜欢，所以萜妹准备新开个系列，分享我自己搭建这套系统的细节，以及一些经验。
+今天更新第一部分，如何将文献库从EndNote迁移至Zotero。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-08-20T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2023-08-20T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="经验">
+    
+      <meta property="article:section" content="文献管理">
+    
+  
+  
+    
+      <meta property="article:tag" content="Zotero">
+    
+      <meta property="article:tag" content="EndNote">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>如何将文献库从EndNote迁移至Zotero</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2023/08/%E5%A6%82%E4%BD%95%E5%B0%86%E6%96%87%E7%8C%AE%E5%BA%93%E4%BB%8Eendnote%E8%BF%81%E7%A7%BB%E8%87%B3zotero/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      如何将文献库从EndNote迁移至Zotero
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-08-20T00:00:00Z">
+        
+  
+  
+  
+  
+    2023-08-20
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e7%bb%8f%e9%aa%8c">经验</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e6%96%87%e7%8c%ae%e7%ae%a1%e7%90%86">文献管理</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247488425&amp;idx=1&amp;sn=e30d03caba54f866f21bf9b31a3f9530&amp;chksm=96f4674fa183ee594442b547394cc1875265fe5c14ca8caeeb573770f4bc54b31ea02b29df9e&amp;token=1434297486&amp;lang=zh_CN&amp;scene=21#wechat_redirect">经验丨如何进行文献阅读 2.0</a>得到了很多小可爱的喜欢，所以萜妹准备新开个系列，分享我自己搭建这套系统的细节，以及一些经验。</p>
+<p>今天更新第一部分，如何将文献库从EndNote迁移至Zotero。</p>
+<hr>
+<p>核心步骤并不复杂，其实就是从EndNote里导出，再导入Zotero即可。</p>
+<p>但我在迁移过程中，有总结一些小经验和技巧，所以我将它扩充为四步：EndNote的前期准备、EndNote的导出、Zotero的导入、Zotero的后续整理。</p>
+<p>在具体操作之前，强烈建议大家<strong>先将EndNote的文献库另存一版</strong>，再进行操作，以免其中哪个步骤出现意外而导致无法复原！！！！</p>
+<p>另外，以下操作均基于我自身经验，或许和大家的习惯有所出入，大家可以灵活修改。</p>
+<h1 id="endnote的前期准备">EndNote的前期准备</h1>
+<p>如果大家和我一样有在EndNote中写笔记和标签的习惯，又想将这些内容迁移至Zotero的话，我们先要在EndNote中进行一些前期的准备。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/f6cee19a-8f4f-47e7-b04e-2947068b323d.png" alt="萜妹的EndNote原界面"></p>
+<p>因为Zotero会自动将Keywords中的数据视为标签，而Call Number是EndNote与Zotero中均存在的一个指标，所以我会将原有的Label和Research Notes进行移动与修改。</p>
+<h3 id="原指标内容清除">原指标内容清除</h3>
+<p>有些文章在抓取时会连带着原本的Keywords一起抓取下来，但这和我之前的标签体系不兼容，所以我在移动前会先清除原始Keywords。具体操作：</p>
+<ul>
+<li>【Tools】-【Change/Move/Copy Fields】</li>
+</ul>
+<p><img src="https://files.mdnice.com/user/24987/847d1c2d-89ce-4849-9a7d-ba77411793a5.png" alt=""></p>
+<ul>
+<li>
+<p>选中【Keywords】，选择【Clear field】</p>
+<p><img src="https://files.mdnice.com/user/24987/f10b9994-3cd0-433e-9735-30b6684c2fbb.png" alt=""></p>
+</li>
+</ul>
+<p>点击确定即可清除原指标中自带的内容。</p>
+<h3 id="指标间移动">指标间移动</h3>
+<p>接下来，我们要将Label里的信息移动至Keywords中。</p>
+<ul>
+<li>【Tools】-【Change/Move/Copy Fields】</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/847d1c2d-89ce-4849-9a7d-ba77411793a5.png" alt=""></p>
+<ul>
+<li>
+<p>点击【Move/Copy fields】，选中【Move Field】，From【Label】，To 【Keywords】，下面三个任意。
+<img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/946c8b11-b5ec-4d6a-9aa2-84a4fb48007c.png" alt=""></p>
+</li>
+<li>
+<p>点击确定后，会有弹窗需要确认。</p>
+</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/86147907-d1ef-4d18-8af2-8b7669860f53.png" alt=""></p>
+<ul>
+<li>此时，Label处的信息就已经移动至Keywords了。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/07c737f1-92c3-444b-a48f-20bc77f45b3e.png" alt="指标移动后结果"></p>
+<h3 id="指标内信息替换">指标内信息替换</h3>
+<p>Zotero中是以【;】进行标签分割，所以我还需要把原来的【,】替换，具体步骤：</p>
+<ul>
+<li>【Edit】-【Find and Replace】</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/c16f66cb-a035-4e65-b0b2-7d99f578e3e0.png" alt=""></p>
+<ul>
+<li>按需选中指标，进行替换。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/7fee960e-c4e3-4087-b02d-da100ae2472f.png" alt=""></p>
+<p>确认弹窗后，就可得到替换后结果。</p>
+<h3 id="指标内信息增加">指标内信息增加</h3>
+<p>因为我库里有很多分类，为了便于后续在Zotero中复原，我会按类别给文章打上标签。- 点击类别，按下【Ctrl+A】，选中所有。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/d2be932f-b2dd-443f-bc24-3f3c4f59c6b9.png" alt=""></p>
+<ul>
+<li>【References】-【Show Selected Reference】</li>
+</ul>
+<p><strong>这一步非常重要</strong>！！！只要这样才是对选中的文献而非全部文献进行后续操作。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/c653b502-0e01-495b-8dca-f795abec8b12.png" alt=""></p>
+<ul>
+<li>【Tools】-【Change/Move/Copy Fields】</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/847d1c2d-89ce-4849-9a7d-ba77411793a5.png" alt=""></p>
+<ul>
+<li>选中【Keywords】，选择【Insert before field&rsquo;s text:】，补充新加的标签名，以英文分号结尾。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/957868a3-747b-4efe-a07c-4037dc636d5b.png" alt=""></p>
+<ul>
+<li>当然，如果想在后面添加标签也行。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/44e285ff-37b4-4153-bb90-1641b0ea988a.png" alt=""></p>
+<p>现在我们差不多做完了前期准备。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/ab5d9b40-5d01-4efe-89c3-7a4e39318858.png" alt="添加标签后的EndNote"></p>
+<h1 id="endnote的导出">EndNote的导出</h1>
+<ul>
+<li>【File】-【Export】</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/1308a916-1254-4ba5-a5f9-e5fbfe0e15fd.png" alt=""></p>
+<ul>
+<li>保存类型需选择【XML】，输出风格我习惯选【Show All Fields】，保存位置需要放在此EndNote库的文件夹内，这样才能保证PDF后续也一起转移。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/d1437523-6926-4a52-a954-8acb46d38f81.png" alt=""></p>
+<h1 id="zotero的导入">Zotero的导入</h1>
+<ul>
+<li>【文件】-【导入】</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/a967474e-152e-4d23-bfc4-8f4af6ca4b52.png" alt=""></p>
+<ul>
+<li>选择【文件】，点击【Next】</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/cf55e89a-9f84-4ab6-ad47-7dd30d8704b2.png" alt=""></p>
+<ul>
+<li>选择前面生成的那个XML文件</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/7550a2b2-b721-4450-bdbc-58db20653722.png" alt=""></p>
+<ul>
+<li>我通常会按下图的方式进行选择。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/658e70a2-9592-47cd-843f-71e79807bf2b.png" alt=""></p>
+<p>等待片刻即可。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/f87fe03a-8907-4fd3-9192-278046aaebbd.png" alt=""></p>
+<h1 id="zotero的后续整理">Zotero的后续整理</h1>
+<p>后续的整理主要是文献的重新归类，删除冗余信息和标签整理。</p>
+<h3 id="文献归类">文献归类</h3>
+<ul>
+<li>选中标签G1，即可得到对应文献，</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/4a711c78-e9c2-46f5-a5e2-68943ef2ac08.png" alt=""></p>
+<ul>
+<li>选中文献，单击鼠标右键，【添加到分类】-【新建分类】</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/cf9078f0-5b04-47cb-b79f-20e2aa88f062.png" alt=""></p>
+<ul>
+<li>给新分类命名。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/a45d082b-140b-4e6d-941c-8955d172bdba.png" alt=""></p>
+<p>即可完成归类。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/2d736ce3-4fe2-4501-b870-2bd47aa94ccf.png" alt=""></p>
+<h3 id="删除冗余信息">删除冗余信息</h3>
+<p>标签【_EndnoteXML import】是指EndNote中存在，但在Zotero匹配不到对应指标的信息。</p>
+<p>因为前面我们已经把Endnote中的重要信息移动好了，所以这部分信息我认为是无用的，我会进行删除。</p>
+<p>具体操作：</p>
+<ul>
+<li>选中标签【_EndnoteXML import】，按下【Ctrl+A】。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/20b8d201-f5c9-421c-a823-709aab93320f.png" alt=""></p>
+<ul>
+<li>鼠标右键，删除条目。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/d288fc4b-b0b3-42c7-8b3a-32d5d2a75ccb.png" alt=""></p>
+<h3 id="标签整理">标签整理</h3>
+<p>可以看到，我之前标签设置时有个别有点问题，也存在冗余的情况，所以我们可以趁此机会对标签进行整理</p>
+<ul>
+<li>选中标签，单击鼠标右键，选择重命名标签。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/9763ce21-1a8a-4893-8c62-5aa0a2c9dfed.png" alt=""></p>
+<ul>
+<li>我这里把【Experiment；】改成了【Experiment】</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/41f0f4a1-5853-4de1-87e5-ac2cd31e6050.png" alt=""></p>
+<p>修改后的标签会自动合并，这一点很方便。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/dafa6538-2bc7-46d7-91c0-eda71a8009e9.png" alt=""></p>
+<hr>
+<hr>
+<p>这篇推送就到这里啦。EndNote到Zotero的转移操作其实比想象中要简单，但文献体量大和先前管理的不规范还是拌住了我。不过我2800多篇文献和近40个分类也在1天内完成了转移，所以大家不用担心，文献库的迁移并没有想象中的可怕。</p>
+<p>另外，大家自己迁移的时候可能还会遇到各种各样的问题，超出我经验范围外的问题，难以回答，还望海涵。</p>
+<p>总之，我的核心建议是：做好备份，少量多次！祝小可爱们都能顺利完成迁移呀。</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247488061&amp;idx=1&amp;sn=263c0515643b654b4e48872ec32c1fff&amp;chksm=96f466dba183efcd3c375c7ed27271fa935ddcbdb7f25974c3b3c60ad8da454c6e6839603f97&amp;token=1747323943&amp;lang=zh_CN&amp;scene=21#wechat_redirect"><strong>往期推送</strong></a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247488509&amp;idx=1&amp;sn=538ab93b5f81379906d945259bbc7923&amp;chksm=96f4671ba183ee0dee9f9ac5a046b1b39610b52addb3ebe3c005202aeef430a4388b7505fb3a&amp;token=1434297486&amp;lang=zh_CN#rd"><strong>原文链接</strong></a></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/zotero/">Zotero</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/endnote/">EndNote</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/09/2023%E5%B9%B4obhr%E7%B1%BB%E5%9B%BD%E5%AE%B6%E8%87%AA%E7%84%B6%E7%A7%91%E5%AD%A6%E5%9F%BA%E9%87%91%E7%AB%8B%E9%A1%B9%E6%83%85%E5%86%B5/" data-tooltip="2023年OBHR类国家自然科学基金立项情况" aria-label="下一篇: 2023年OBHR类国家自然科学基金立项情况">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/08/%E8%87%AA%E6%88%91%E5%86%B3%E5%AE%9A%E7%90%86%E8%AE%BA%E6%A0%B8%E5%BF%83%E5%AD%90%E7%90%86%E8%AE%BA/" data-tooltip="自我决定理论：核心子理论" aria-label="上一篇: 自我决定理论：核心子理论">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/09/2023%E5%B9%B4obhr%E7%B1%BB%E5%9B%BD%E5%AE%B6%E8%87%AA%E7%84%B6%E7%A7%91%E5%AD%A6%E5%9F%BA%E9%87%91%E7%AB%8B%E9%A1%B9%E6%83%85%E5%86%B5/" data-tooltip="2023年OBHR类国家自然科学基金立项情况" aria-label="下一篇: 2023年OBHR类国家自然科学基金立项情况">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/08/%E8%87%AA%E6%88%91%E5%86%B3%E5%AE%9A%E7%90%86%E8%AE%BA%E6%A0%B8%E5%BF%83%E5%AD%90%E7%90%86%E8%AE%BA/" data-tooltip="自我决定理论：核心子理论" aria-label="上一篇: 自我决定理论：核心子理论">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

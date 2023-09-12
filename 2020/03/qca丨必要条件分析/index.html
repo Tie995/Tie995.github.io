@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "QCA丨必要条件分析",
+  
+  "datePublished": "2020-03-29T00:00:00Z",
+  "dateModified": "2020-03-29T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2020\/03\/qca%E4%B8%A8%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6%E5%88%86%E6%9E%90\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "在没更新的这段时间里，后台有好多小可爱都在问QCA中的必要性分析怎么做。所以萜妹就准备单独出一期推送来介绍（当然，这也是复工预警！萜妹要重新周更了！）~\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="在没更新的这段时间里，后台有好多小可爱都在问QCA中的必要性分析怎么做。所以萜妹就准备单独出一期推送来介绍（当然，这也是复工预警！萜妹要重新周更了！）~">
+
+
+<meta property="og:description" content="在没更新的这段时间里，后台有好多小可爱都在问QCA中的必要性分析怎么做。所以萜妹就准备单独出一期推送来介绍（当然，这也是复工预警！萜妹要重新周更了！）~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QCA丨必要条件分析">
+<meta name="twitter:title" content="QCA丨必要条件分析">
+<meta property="og:url" content="https://tie-blog.netlify.app/2020/03/qca%E4%B8%A8%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6%E5%88%86%E6%9E%90/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2020/03/qca%E4%B8%A8%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6%E5%88%86%E6%9E%90/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="在没更新的这段时间里，后台有好多小可爱都在问QCA中的必要性分析怎么做。所以萜妹就准备单独出一期推送来介绍（当然，这也是复工预警！萜妹要重新周更了！）~">
+<meta name="twitter:description" content="在没更新的这段时间里，后台有好多小可爱都在问QCA中的必要性分析怎么做。所以萜妹就准备单独出一期推送来介绍（当然，这也是复工预警！萜妹要重新周更了！）~">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2020-03-29T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-03-29T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="干货">
+    
+      <meta property="article:section" content="研究方法">
+    
+  
+  
+    
+      <meta property="article:tag" content="Qualitative Comparative Analysis">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>QCA丨必要条件分析</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2020/03/qca%E4%B8%A8%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6%E5%88%86%E6%9E%90/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      QCA丨必要条件分析
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2020-03-29T00:00:00Z">
+        
+  
+  
+  
+  
+    2020-03-29
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%b9%b2%e8%b4%a7">干货</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e7%a0%94%e7%a9%b6%e6%96%b9%e6%b3%95">研究方法</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>在没更新的这段时间里，后台有好多小可爱都在问QCA中的必要性分析怎么做。所以萜妹就准备单独出一期推送来介绍（当然，这也是复工预警！萜妹要重新周更了！）~</p>
+<p>另外，说点题外话。萜妹一直觉得数据分析只是工具，所以相比于弄明白工具运作的原理（好多小可爱觉得数据分析难可能都是跟这步杠上了），如何使用工具，或者说通过工具达到什么目的才是更重要的。所以萜妹之后的推送也会根据这个观念，做出调整和改变，希望可以帮助小可爱们更好的理解~</p>
+<hr>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112327226.png" alt="img"></p>
+<p>来源：谭海波, 范梓腾, &amp; 杜运周. (2019). 技术管理能力, 注意力分配与地方政府网站建设——一项基于 TOE 框架的组态分析. 管理世界, (9), 33-46.</p>
+<p>其实要画出示例表格，就是要让我们计算出每个因素对结果的一致性与覆盖度。</p>
+<p>fsQCA和Tosmana两个软件都可以实现这个目标，接下来萜妹将分别示例。</p>
+<h1 id="fsqca"><strong>FsQCA</strong></h1>
+<p>（1）打开软件及数据文件；</p>
+<p>（2）【Graphs】-【Fuzzy】-【XY Plot】；</p>
+<p>（3）选定条件与结果，点击【Plot】。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112327119.png" alt="img"></p>
+<h1 id="tosmana"><strong>Tosmana</strong></h1>
+<p>（1）打开软件及数据文件；</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112327971.png" alt="img"></p>
+<p>（2）【fsQCA】-【X/Y Plot】或F8；</p>
+<p>（3）选定条件与结果，点击【Create】。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112327142.png" alt="img"></p>
+<ul>
+<li>【Consistency】即一致性；</li>
+<li>【Coverage】即覆盖度。</li>
+</ul>
+<hr>
+<p>啦啦啦，操作介绍就到这里啦。内容其实并不多，主要是解答小可爱们的疑惑，希望能有所帮助呀~</p>
+<p>再来说点其他的。本来这周还有一篇推送的。大概是关于萜妹消失的这段时间都干了什么，顺便还有几个好消息的分享（比如我的文章终于有嫁出去的了）。不过有的虽然录用了，但是在网上还查不到，所以萜妹想等都能被检索到再和大家分享吧。至于萜妹消失的这段时间在干什么，都会反映在接下来的推送上。</p>
+<p><strong>往期推送</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484712&amp;idx=1&amp;sn=60de21cd6f8e0ea638cb8a435f712df1&amp;chksm=96f471cea183f8d81e20e760c55a8b6b999061b2e39bdec4da766e05cd283b07838c03b02144&amp;token=641790380&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪合集丨QCA笔记整理</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484602&amp;idx=1&amp;sn=8cdbbe9cc2f93461d69a47a3dbcb5cf2&amp;chksm=96f4705ca183f94addb4ebf54d5162f7ae22c8c10f6af820701e7cc508d0509fc4116afab8d8&amp;token=641790380&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪笔记丨定性比较分析之软件篇</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484681&amp;idx=1&amp;sn=0db6f87642341a60ea2d9aa8f1195dd0&amp;chksm=96f471efa183f8f9e1df43a3834834af12de858a5da9cbbc1d73279952d5ba525415cc9b970b&amp;token=641790380&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪笔记丨定性比较分析之模糊集</a></strong></p>
+<p><strong>原文推送：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485084&amp;idx=1&amp;sn=4dde824928520ef6185935b7e4bc9804&amp;chksm=96f4727aa183fb6c41827f644a84d55a1ed11a59dc9062e99721d28ae358e96b599534990609&amp;token=394304376&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨QCA之必要条件分析</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/qualitative-comparative-analysis/">Qualitative Comparative Analysis</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/04/%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87%E4%B8%A8%E9%87%8F%E8%A1%A8%E6%9F%A5%E8%AF%A2/" data-tooltip="前期准备丨量表查询" aria-label="下一篇: 前期准备丨量表查询">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2019/12/mplus%E4%B8%A8%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%AF%AD%E5%8F%A5/" data-tooltip="Mplus丨常用模型语句" aria-label="上一篇: Mplus丨常用模型语句">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/04/%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87%E4%B8%A8%E9%87%8F%E8%A1%A8%E6%9F%A5%E8%AF%A2/" data-tooltip="前期准备丨量表查询" aria-label="下一篇: 前期准备丨量表查询">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2019/12/mplus%E4%B8%A8%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%AF%AD%E5%8F%A5/" data-tooltip="Mplus丨常用模型语句" aria-label="上一篇: Mplus丨常用模型语句">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

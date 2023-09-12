@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "如何用Notion搭建学术库",
+  
+  "datePublished": "2022-04-10T00:00:00Z",
+  "dateModified": "2022-04-10T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2022\/04\/%E5%A6%82%E4%BD%95%E7%94%A8notion%E6%90%AD%E5%BB%BA%E5%AD%A6%E6%9C%AF%E5%BA%93\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "小可爱们好，一直有小可爱们问如何在学术上发挥Notion生产力。坦白讲，这方面的内容我也还在摸索之中。\n之前打算等我想明白了再和小可爱们分享，但眼下感觉这个日子遥遥无期，所以我还是先来分享分享我的最新进展，就当是给小可爱们一些灵感好了。\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="小可爱们好，一直有小可爱们问如何在学术上发挥Notion生产力。坦白讲，这方面的内容我也还在摸索之中。
+之前打算等我想明白了再和小可爱们分享，但眼下感觉这个日子遥遥无期，所以我还是先来分享分享我的最新进展，就当是给小可爱们一些灵感好了。">
+
+
+<meta property="og:description" content="小可爱们好，一直有小可爱们问如何在学术上发挥Notion生产力。坦白讲，这方面的内容我也还在摸索之中。
+之前打算等我想明白了再和小可爱们分享，但眼下感觉这个日子遥遥无期，所以我还是先来分享分享我的最新进展，就当是给小可爱们一些灵感好了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何用Notion搭建学术库">
+<meta name="twitter:title" content="如何用Notion搭建学术库">
+<meta property="og:url" content="https://tie-blog.netlify.app/2022/04/%E5%A6%82%E4%BD%95%E7%94%A8notion%E6%90%AD%E5%BB%BA%E5%AD%A6%E6%9C%AF%E5%BA%93/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2022/04/%E5%A6%82%E4%BD%95%E7%94%A8notion%E6%90%AD%E5%BB%BA%E5%AD%A6%E6%9C%AF%E5%BA%93/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="小可爱们好，一直有小可爱们问如何在学术上发挥Notion生产力。坦白讲，这方面的内容我也还在摸索之中。
+之前打算等我想明白了再和小可爱们分享，但眼下感觉这个日子遥遥无期，所以我还是先来分享分享我的最新进展，就当是给小可爱们一些灵感好了。">
+<meta name="twitter:description" content="小可爱们好，一直有小可爱们问如何在学术上发挥Notion生产力。坦白讲，这方面的内容我也还在摸索之中。
+之前打算等我想明白了再和小可爱们分享，但眼下感觉这个日子遥遥无期，所以我还是先来分享分享我的最新进展，就当是给小可爱们一些灵感好了。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2022-04-10T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2022-04-10T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="经验">
+    
+      <meta property="article:section" content="文献管理">
+    
+  
+  
+    
+      <meta property="article:tag" content="Notion">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>如何用Notion搭建学术库</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2022/04/%E5%A6%82%E4%BD%95%E7%94%A8notion%E6%90%AD%E5%BB%BA%E5%AD%A6%E6%9C%AF%E5%BA%93/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      如何用Notion搭建学术库
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-04-10T00:00:00Z">
+        
+  
+  
+  
+  
+    2022-04-10
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e7%bb%8f%e9%aa%8c">经验</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e6%96%87%e7%8c%ae%e7%ae%a1%e7%90%86">文献管理</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>小可爱们好，一直有小可爱们问如何在学术上发挥Notion生产力。坦白讲，这方面的内容我也还在摸索之中。</p>
+<p>之前打算等我想明白了再和小可爱们分享，但眼下感觉这个日子遥遥无期，所以我还是先来分享分享我的最新进展，就当是给小可爱们一些灵感好了。</p>
+<p>以下仅基于个人经验，大家酌情参考。</p>
+<hr>
+<p>以下内容会分为三个部分：如何搭建一个库+萜妹的学术库+个人使用体验。</p>
+<h2 id="如何搭建学术库">如何搭建学术库</h2>
+<h4 id="step-1新建一个page">Step 1：新建一个Page</h4>
+<p>在空白格中，输入“/”，再会选中Page。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338378.png" alt="img"></p>
+<h4 id="step-2建立一个table">Step 2：建立一个Table</h4>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338368.png" alt="img"></p>
+<p>点击后会出现如下界面，然后选择新建一个数据库。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338372.png" alt="img"></p>
+<p>最终会变成这样：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338263.png" alt="img"></p>
+<h4 id="step-3设置每列标题">Step 3：设置每列标题</h4>
+<p>点击任一一行，进入具体页面。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338720.png" alt="img"></p>
+<p>按需设置每列标题。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338762.png" alt="img"></p>
+<p>萜妹结合自己的变量库，简单介绍一下，各类标题的用途。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338183.png" alt="img"></p>
+<ul>
+<li>Text：文本，最常用。</li>
+</ul>
+<p>例，【Chinese name】和【Notes】</p>
+<ul>
+<li>Number：数字。</li>
+</ul>
+<p>例，【Items】和【Likert】</p>
+<ul>
+<li>Select：单选。</li>
+</ul>
+<p>例，【Type】</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338627.png" alt="img"></p>
+<ul>
+<li>Muti-select：多选。</li>
+</ul>
+<p>例，【Lable】</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338635.png" alt="img"></p>
+<ul>
+<li>Checkbox：检查框。</li>
+</ul>
+<p>例，【Completeness】</p>
+<ul>
+<li>Last edited time：最后编辑时间。</li>
+<li>Relation：相关。</li>
+</ul>
+<p>这个会复杂一点，点击后，需选择关联的数据库，可以是本数据库，也可以关联别的数据库。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338572.png" alt="img"></p>
+<p>如果选择其他数据库，关联的数据库会自动出现新列。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338858.png" alt="img"></p>
+<p>如果选择本数据库，则会出现两个选择：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338956.png" alt="img"></p>
+<p>上面这种会再出现一个列，两列同步更新。</p>
+<p>例，用于梳理理论发展的脉络。当设置A的【Development】为B时，B的【Origin】列中自动出现A。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338362.png" alt="img"></p>
+<p>下面这种就仍是一列，但内容不会两边更新</p>
+<p>例，用于标记相关的内容。A的【Relation】有B时，B的【Relation】不会自动出现A。</p>
+<h4 id="拓展设置模板">拓展：设置模板</h4>
+<p>此步并非必须，只是有些库中总需要输入相似的内容，所以可以设立模板一劳永逸。</p>
+<p>具体可点击Create a template。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338307.png" alt="img"></p>
+<p>然后在新页面中，设立模板内容（此处可自由发挥）。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338664.png" alt="img"></p>
+<p>设立完，以后就可以选择模板啦。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338742.png" alt="img"></p>
+<h2 id="萜妹的学术库">萜妹的学术库</h2>
+<p>说完操作再和小可爱们分享我的几个库。完全服务于我的个人习惯，并且尚不完善，只是给大家些灵感。</p>
+<h3 id="method">Method</h3>
+<h4 id="界面总览">界面总览</h4>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338156.png" alt="img"></p>
+<p>这个界面是用来进行变量录入的，所以是按最后编辑时间排序。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338925.png" alt="img"></p>
+<p>然后我根据类型，区分为Scale和Experiment两个使用界面。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338517.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338232.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338596.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338871.png" alt="img"></p>
+<p>（目前后两个界面用的不多）</p>
+<h4 id="列标题">列标题</h4>
+<p>列标题放什么真的就随心所欲，看大家习惯。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338063.png" alt="img"></p>
+<h4 id="内容">内容</h4>
+<p>我这里也是对应Scale和Experiment设了两个模板（就真的非常简陋啊）。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338430.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338451.png" alt="img"></p>
+<p>我通常会在Origin下面放这个变量的来源文献，有时候也会加个Use放使用文献，这个框框是“callout”样式。</p>
+<p>Manipulation下面则是跟原文，然后附上中文版（很粗糙的机翻版本），以备不时之需，这里是“quote”样式。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338777.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338855.png" alt="img"></p>
+<h3 id="theory">Theory</h3>
+<h4 id="界面总览-1">界面总览</h4>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338733.png" alt="img"></p>
+<p>首先也是输入主界面。我如果在阅读文章或书籍时看到新理论就会添进来。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338703.png" alt="img"></p>
+<p>这里是按名称排序。我感兴趣的理论就会在前面加*，便于我空闲时查看。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338784.png" alt="img"></p>
+<p>这里将理论按来源归类，当然也可以按别的方式归类，只要是单选或者多选列就可以。</p>
+<h4 id="列标题-1">列标题</h4>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338158.png" alt="img"></p>
+<h4 id="内容-1">内容</h4>
+<p>理论来源一般有两个途径，第一种是书籍，第二种是文献，所以设了不同的模板。不过这个部分的模板还很不成熟，就不展开介绍啦。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338030.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338392.png" alt="img"></p>
+<h3 id="concept-bank">Concept bank</h3>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338670.png" alt="img"></p>
+<p>这里也是分输入界面和使用界面，但只有排序方式的区别。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338073.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338349.png" alt="img"></p>
+<h3 id="phrase-bank">Phrase bank</h3>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338957.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112338534.png" alt="img"></p>
+<hr>
+<p>以上就是萜妹的一些个人经验。</p>
+<p>虽然确实还有很多待完善的部分，但是我相信在不断地使用和调整中，我总是在不断接近最优的吖。</p>
+<p>另外一个感受是，虽然模板还不怎么样，但坚持记录，这些内容于我而言就已经是不菲的财富了。</p>
+<p>希望这篇推送也能给小可爱们一些灵感，一起在学术的海洋里造船吧！</p>
+<p><strong>原文链接：</strong></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486539&amp;idx=1&amp;sn=c20cf46b45b6628f63d98224fb19079d&amp;chksm=96f478ada183f1bbb5b3679159a185ee7814911c2d9ec636ea8b1c952aab38b70047a7a89fb6&amp;scene=21#wechat_redirect"><strong>➪经验丨如何用Notion搭建学术库</strong></a></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/notion/">Notion</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/04/srm%E4%B8%A8%E7%A4%BE%E4%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A8%A1%E6%9D%BF/" data-tooltip="SRM丨社会关系模型之基本模板" aria-label="下一篇: SRM丨社会关系模型之基本模板">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/04/%E8%AE%BE%E7%AB%8B%E9%92%A9%E5%AD%90amj-%E6%8B%96%E5%BB%B6%E4%B8%8E%E5%88%9B%E9%80%A0%E5%8A%9B/" data-tooltip="设立钩子：AMJ-拖延与创造力" aria-label="上一篇: 设立钩子：AMJ-拖延与创造力">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/04/srm%E4%B8%A8%E7%A4%BE%E4%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A8%A1%E6%9D%BF/" data-tooltip="SRM丨社会关系模型之基本模板" aria-label="下一篇: SRM丨社会关系模型之基本模板">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/04/%E8%AE%BE%E7%AB%8B%E9%92%A9%E5%AD%90amj-%E6%8B%96%E5%BB%B6%E4%B8%8E%E5%88%9B%E9%80%A0%E5%8A%9B/" data-tooltip="设立钩子：AMJ-拖延与创造力" aria-label="上一篇: 设立钩子：AMJ-拖延与创造力">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

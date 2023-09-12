@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "数据分析丨假设检验",
+  
+  "datePublished": "2020-06-07T00:00:00Z",
+  "dateModified": "2020-06-07T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2020\/06\/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%A8%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "数据分析这个系列，萜妹说过是希望能用通俗的语言，帮助小可爱们搭建数据分析的框架，并且告诉小可爱们要做成什么样，为什么要这么做，以及怎么做。\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="数据分析这个系列，萜妹说过是希望能用通俗的语言，帮助小可爱们搭建数据分析的框架，并且告诉小可爱们要做成什么样，为什么要这么做，以及怎么做。">
+
+
+<meta property="og:description" content="数据分析这个系列，萜妹说过是希望能用通俗的语言，帮助小可爱们搭建数据分析的框架，并且告诉小可爱们要做成什么样，为什么要这么做，以及怎么做。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据分析丨假设检验">
+<meta name="twitter:title" content="数据分析丨假设检验">
+<meta property="og:url" content="https://tie-blog.netlify.app/2020/06/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%A8%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2020/06/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%A8%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="数据分析这个系列，萜妹说过是希望能用通俗的语言，帮助小可爱们搭建数据分析的框架，并且告诉小可爱们要做成什么样，为什么要这么做，以及怎么做。">
+<meta name="twitter:description" content="数据分析这个系列，萜妹说过是希望能用通俗的语言，帮助小可爱们搭建数据分析的框架，并且告诉小可爱们要做成什么样，为什么要这么做，以及怎么做。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2020-06-07T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-06-07T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="系列">
+    
+      <meta property="article:section" content="保姆级毕业论文教程">
+    
+  
+  
+    
+      <meta property="article:tag" content="Mediation">
+    
+      <meta property="article:tag" content="Moderation">
+    
+      <meta property="article:tag" content="Moderated Mediation">
+    
+      <meta property="article:tag" content="Mediated Moderation">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>数据分析丨假设检验</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2020/06/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%A8%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      数据分析丨假设检验
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2020-06-07T00:00:00Z">
+        
+  
+  
+  
+  
+    2020-06-07
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e7%b3%bb%e5%88%97">系列</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e4%bf%9d%e5%a7%86%e7%ba%a7%e6%af%95%e4%b8%9a%e8%ae%ba%e6%96%87%e6%95%99%e7%a8%8b">保姆级毕业论文教程</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>数据分析这个系列，萜妹说过是希望能用通俗的语言，帮助小可爱们搭建数据分析的框架，并且告诉小可爱们要做成什么样，为什么要这么做，以及怎么做。</p>
+<p>萜妹把需要做的数据分析分为了三个大类，分别是：数据有效性分析、样本基本描述、数据具体分析。</p>
+<ul>
+<li>数据有效性分析：信度检验、验证性因子分析、共同方法偏差检验。</li>
+<li>样本基础描述：描述性分析、相关分析。</li>
+<li>数据具体分析：回归分析、bootstrap法、简单斜率分析（涉及调节时使用）。</li>
+</ul>
+<p>目前萜妹已经介绍完有效性分析与基础描述。假设分析的部分也已经介绍完调节、中介、被调节的中介、被中介的调节的基本原理。那么，我们称热打铁，先把最常用的假设分析操作说了吧~</p>
+<p>进行假设分析，萜妹一般都是使用SPSS和Mplus，关于二者的具体操作步骤，萜妹介绍过很多次，可在往期推送中查看。这篇推送主要是结合着文章假设来进行一一验证、说明~</p>
+<p>那我们开始吧~</p>
+<hr>
+<h1 id="提出假设"><strong>提出假设</strong></h1>
+<p>在验证假设是否成立之前，我们先要学会如何根据模型提出自己的假设。</p>
+<p>以下：X代表自变量、M代表中介变量、Y代表结果变量、W代表调节变量。</p>
+<h2 id="简单中介"><strong>【简单中介】</strong></h2>
+<p>简单的中介模型一般会对应三个假设：</p>
+<ul>
+<li>H1：X 对 M 具有显著影响；</li>
+<li>H2：M 对 Y 具有显著影响；</li>
+<li>H3：M 在 X 和 Y 之间起中介作用。</li>
+</ul>
+<h2 id="简单调节"><strong>【简单调节】</strong></h2>
+<p>简单的调节模型一般会对应两个假设：</p>
+<ul>
+<li>H1：X 对 Y 具有显著影响；</li>
+<li>H2：W 可调节 X 和 Y 之间的关系。</li>
+</ul>
+<h2 id="被调节的中介最常见"><strong>【被调节的中介】（最常见！）</strong></h2>
+<p>在上述基础上，<strong>被调节的中介模型对应假设为：</strong></p>
+<ul>
+<li>
+<p>H1：X 对 M 具有显著影响；</p>
+</li>
+<li>
+<p>H2：M 对 Y 具有显著影响；</p>
+</li>
+<li>
+<p>H3：M 在 X 和 Y 之间起中介作用；</p>
+</li>
+<li>
+<p>H4a：W1 可调节 X 和 M 之间的关系；</p>
+<p>H4b：W2 可调节 M 和 Y 之间的关系；</p>
+</li>
+<li>
+<p>H5：W1/W2 可调节 X 通过 M 对 Y 的间接效应。</p>
+</li>
+</ul>
+<p>H4a是调节中介效应的前半段，H4b是调节中介效应的后半段，H5则是完整的被调节的中介假设。</p>
+<h2 id="被中介的调节"><strong>【被中介的调节】</strong></h2>
+<p>最后是被中介的调节模型。由于类型Ⅰ被中介的调节模型与第一阶段被调节的中介模型类似，而通常被调节的中介模型更有理论价值，所以很少有文章以类型Ⅰ被中介的调节模型的逻辑进行假设。</p>
+<p>而<strong>类型Ⅱ 被中介的调节模型对应假设为：</strong></p>
+<ul>
+<li>H1：X 对 Y 具有显著影响；</li>
+<li>H2：W 可调节 X 和 Y 之间的关系；</li>
+<li>H3：W 对 M 具有显著影响；</li>
+<li>H4：M 可调节 X 和 Y 之间的关系；</li>
+<li>H5：W 可通过 M 调节 X 和 Y 之间的关系。</li>
+</ul>
+<p>此时的M，即是中介变量，也是调节变量。H3-H5相当于简单中介模型中的H1-H3，必要时也可合并。此外，H5则是完整的被中介的调节假设。</p>
+<p>不过，单独的被中介的调节模型在组织行为学中也不常见，更有可能是嵌套在被调节的中介中，如下图。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344939.png" alt="img"></p>
+<p>那么，此时的假设就应该是：</p>
+<ul>
+<li>H1：X 对 M 具有显著影响；</li>
+<li>H2：M 对 Y 具有显著影响；</li>
+<li>H3：M 在 X 和 Y 之间起中介作用；</li>
+<li>H4：W1 可调节 X 和 M 之间的关系；</li>
+<li>H5：W1 可调节 X 通过 M 对 Y 的间接效应；</li>
+<li>H6：W2 可调节 X 和 M 之间的关系；</li>
+<li>H7：W2 可调节 X 通过 M 对 Y 的间接效应；</li>
+<li>H8：W1 对 W2 具有显著影响；</li>
+<li>H9：W1 可通过 W2 调节 X 和 M 之间的关系；</li>
+<li>H10：W1 可通过 W2 调节 X 通过 M 对 Y 的间接效应。</li>
+</ul>
+<p>其中，H5、H7为被调节的中介效应；H9为被中介的调节效应：H10为二者的结合，有时并不提出。</p>
+<p>此外，模型较复杂需提出多种假设时，H1、H2可省略，直接提出中介效应的H3也可。</p>
+<p>上述模型的假设比较全面，所以萜妹就以这个模型来进行说明。</p>
+<h1 id="假设验证">假设验证</h1>
+<h2 id="验证中介效应h1-h3"><strong>验证中介效应：H1-H3</strong></h2>
+<p>检验中介效应的常用方法，一般是用SPSS做回归得到各个系数，画出如下三线表。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344231.png" alt="img"></p>
+<p>来源：参考文献[1]</p>
+<p>也有直接用Bootstrap法得出中介效应量的。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344328.png" alt="img"></p>
+<p>来源：参考文献[2]</p>
+<h3 id="一回归分析"><strong>一、回归分析</strong></h3>
+<p>使用软件：SPSS</p>
+<p>①【分析(A)】-【回归(R)】-【线性(L)】；</p>
+<p>②将【Y】从左侧拖入右侧因变量中➔将控制变量从拖入自变量中➔点击【下一个】；</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344933.png" alt="img"></p>
+<p>③将【X】从拖入自变量中➔点击【下一个】➔将【M】从拖入自变量中➔点击【确定】；</p>
+<p>④将【M】从左侧拖入右侧因变量中➔将控制变量从拖入自变量中➔点击【下一个】➔将【X】从拖入自变量中➔点击【确定】。</p>
+<p>注：小可爱们要记得，<strong>做分析的时候一定要控制其他人口统计学变量</strong>，不要无视它们呀；另外就是，萜妹比较懒，所以喜欢用【下一个】的按钮一次性操作完，当然也可以分开单独做回归。</p>
+<p><strong>【数据解读】</strong></p>
+<p>第③步结果：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344277.png" alt="img"></p>
+<p>第④步结果：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344320.png" alt="img"></p>
+<p><strong>【判断标准】</strong></p>
+<p>数据分析部分着重要看萜妹标注的这四个概率。</p>
+<p>首先，①<strong>最好</strong>小于0.05。当①不小于0.05时，自变量对主效应没显著影响，那么研究中介效应就没必要了。</p>
+<p>其次，③和④这两个概率需要小于0.05。它们都显著，中介效应量的a<em>b才会有意义。0</em>任何数都是0，所以任何一方不显著，中介效应量都是0。</p>
+<p>最后，②这个概率显著与否都可以。</p>
+<ul>
+<li>如果小于0.05，那么 M 则是部分中介； #NAME?</li>
+</ul>
+<h3 id="二bootstrap法"><strong>二、Bootstrap法</strong></h3>
+<p>上述回归分析是采用依次检验的方法，但是这种方法检验标准比较高，换句话说就是不成立的可能性较大。所以，后续有学者提出了Bootstrap法进行检验。</p>
+<p>使用Bootstrap法检验，既可以用SPSS的Process宏程序，也可以使用Mplus语句。</p>
+<h4 id="一spss的process程序"><strong>（一）SPSS的Process程序</strong></h4>
+<p>（注：Process并非SPSS自带程序，需要先安装插件）</p>
+<p>①【分析(A)】-【回归(R)】-【PROCESS】；</p>
+<p>②左侧 Model Number选择【4】➔Outcome Variable选择【Y】➔Independent Variable选择【X】➔M Variable选择【M】➔ Covariate 选择控制变量➔点击【确定】</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344801.png" alt="img"></p>
+<p><strong>【数据解读】</strong></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344006.png" alt="img"></p>
+<p><strong>【判断标准】</strong></p>
+<p>做出来的结果包括了回归的部分，以及上述截图。</p>
+<p>主要得看红框内的数字是否包含0，如果不包含0,就说明中介效应成立。</p>
+<h4 id="二mplus"><strong>（二）Mplus</strong></h4>
+<p>语句：</p>
+<pre tabindex="0"><code class="language-Mplus" data-lang="Mplus">TITLE: Mediator
+DATA: FILE IS 1.dat;
+VARIABLE: NAMES ARE id x y m;
+Usevariables are x y m;
+ANALYSIS: bootstrap = 1000;
+MODEL:
+m ON x(a);
+y ON m(b)
+     x(c);
+MODEL CONSTRAINT:
+new (indirect );
+indirect = a*b;
+OUTPUT: 
+Standardized Cinterval(Bcbootstrap);
+</code></pre><p><strong>【数据解读】</strong></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344812.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344891.png" alt="img"></p>
+<p><strong>【判断标准】</strong></p>
+<p>图1红框中的概率，<strong>最好</strong>小于0.05。</p>
+<p>图2红框中两个数字，<strong>必须</strong>同方向，即同正或同负，中介效应才成立。</p>
+<h2 id="检验调节效应h4h6"><strong>检验调节效应：H4、H6</strong></h2>
+<p>检验调节效应一般都是作出交互项进行回归分析，再画出三线表。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344409.png" alt="img"></p>
+<p>来源：参考文献[1]</p>
+<p>（注：这个示例中，在model1-3都控制了调节变量，但是只有model3是必须控制调节变量的。）</p>
+<p>不过除此之外，它还需要再做简单斜率分析，得到下图与相应斜率。此步骤萜妹通常是使用Excel进行操作。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344656.png" alt="img"></p>
+<p>来源：参考文献[1]</p>
+<h3 id="一回归分析-1"><strong>一、回归分析</strong></h3>
+<p>使用软件：SPSS</p>
+<p>前期准备：制作出交互项【int】</p>
+<p>（萜妹在《干货丨数据分析之前期准备（下）》中介绍了如何使用Excel计算交互项。如果小可爱们想用SPSS计算的话，也可回顾《干货丨SPSS数据分析之准备篇》）</p>
+<p>①【分析(A)】-【回归(R)】-【线性(L)】；</p>
+<p>②将【M】从左侧拖入右侧因变量中➔将控制变量从拖入自变量中➔点击【下一个】➔将【X】从拖入自变量中➔点击【下一个】➔将【W】和【int】从拖入自变量中➔点击【确定】；</p>
+<p><strong>【数据解读】</strong></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344160.png" alt="img"></p>
+<p><strong>【判断标准】</strong></p>
+<p>红框内系数需要小于0.05。</p>
+<h3 id="二简单斜率分析"><strong>二、简单斜率分析</strong></h3>
+<p>使用软件：Excel</p>
+<p>将上图黄框内数据，填入Excel模板中的相应部分。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344200.png" alt="img"></p>
+<p>填入后，图形和右下系数会马上更改。文章撰写时，如实汇报即可。调节效应成立的时候，简单斜率分析不会有问题的。</p>
+<h2 id="检验被调节的中介h5h7"><strong>检验被调节的中介：H5、H7</strong></h2>
+<p>到了这里通常也是使用Bootstrap进行检验，此时仍然是可以使用Process插件和Mplus语句，进行检验。得到结果后，可以制成表格：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344876.png" alt="img"></p>
+<p>来源：参考文献[3]</p>
+<p>也可以用文字进行说明：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344170.png" alt="img"></p>
+<p>来源：参考文献[1]</p>
+<h4 id="一spss的process程序-1"><strong>（一）SPSS的Process程序</strong></h4>
+<p>①【分析(A)】-【回归(R)】-【PROCESS】；</p>
+<p>②左侧 Model Number选择**【7】**➔Outcome Variable选择【Y】➔Independent Variable选择【X】➔M Variable选择【M】➔ Covariate 选择控制变量➔Proposed Moderator W选择【W1/W2】<strong>➔点击【Options】，勾选第一项，即中心化</strong>➔点击【确定】</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344830.png" alt="img"></p>
+<p>（注：标红操作是与简单中介模型不同的部分）</p>
+<p><strong>【数据解读】</strong></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344620.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344972.png" alt="img"></p>
+<p><strong>【判断标准】</strong></p>
+<p>得到的结果仍包括了回归的部分，以及上述截图。</p>
+<p>黄框内代表着调节变量取值为低值、均值、高值时，对应的中介效应量，是文章中需要报告的部分。</p>
+<p>红框内的数字仍是效应量成立的关键，看是否包含0，如果不包含就说明被调节的中介效应成立。</p>
+<h4 id="二mplus-1"><strong>（二）Mplus</strong></h4>
+<p>语句：</p>
+<pre tabindex="0"><code class="language-Mplus" data-lang="Mplus">TITLE:  first stage moderated mediation
+DEFINE:
+xw=(x - 3.1163)*(w - 3.2809);! 这里减去的值为均值，需根据自己数据修改。
+CENTER x m w (GRANDMEAN);
+DATA:FILE IS 1.dat;
+VARIABLE:NAMES ARE x w m y;
+USEVARIABLES ARE x m w y xw;
+ANALYSIS:BOOTSTRAP=2000;
+MODEL:
+m on x (a1)
+    w
+    xw (a3);
+y on m (b2)   
+    x w xw;
+MODEL CONSTRAINT:
+new (ind_h ind_l ind_d);
+ind_h=(a1+a3*0.8552)*b2;
+ind_l=(a1+a3*(-0.8552))*b2; ! 这里的数值为W的标准差，需自行修改。
+ind_d=ind_h-ind_l; ! ind_d为间接效应量。
+OUTPUT: cinterval (bcbootstrap);
+</code></pre><p>注：上述标红部分的XW，在萜妹见过的大部分语句中（培训会议示例语句+相关书籍示例语句）都控制了。但是Process的开发者给出的Mplus对应语句中未进行控制（详见《干货丨常用模型的Mplus例句》）。特此提出说明。</p>
+<p>模型的结果和解读和普通中介没什么差别，主要需要Bootstrap的置信区间不包含0，故不展开解释。</p>
+<h2 id="检验被中介的调节h9"><strong>检验被中介的调节：H9</strong></h2>
+<p>类型2被中介的调节在process中没有对应的模型，所以只能用Mplus语句计算。最终需要根据结果进行文字描述：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112344320.png" alt="img"></p>
+<p>来源：参考文献[4]</p>
+<p>语句：</p>
+<pre tabindex="0"><code class="language-Mplus" data-lang="Mplus">TITLE ：Type II mediated moderation； 
+DEFINE:
+xw = (x-3.98)*(w-2.19);
+xm = (x-3.98)*(m-3.86); ! 这里减去的值为均值，需根据自己数据修改。
+center x w m (grandmean);
+DATA: FILE IS 1.dat;
+VARIABLE: NAMES ARE x y m w;
+USEVARIABLES =  x m w y xw xm; 
+ANALYSIS: BOOTSTRAP = 2000;
+MODEL:
+m ON w(a2)
+   x;
+y ON xm(b5)
+  m x w xw;
+MODEL CONSTRAINT:
+NEW (ind);
+ind = a2 * b5; ! ind_d为间接效应量。
+OUTPUT:
+SAMPSTAT;
+CINTERVAL( BCBOOTSTRAP) ;
+</code></pre><p>模型的结果和解读同上，不展开说明。</p>
+<p>剩下的假设8就是简单的回归分析，假设10一般都不会涉及，模型语句也比较复杂，这篇推送就先不说它。所以，这篇推送就写到这里啦~</p>
+<hr>
+<p>以上就是萜妹想到的，一个尽量与我之前的推送不同，但又有内在逻辑的说明方式。这篇推送写在前面的话，萜妹写了五版，大概尝试搭建了三种推送框架，最后写成这样，其实还是有很多地方可能没提及，但是萜妹真的尽力了。</p>
+<p>如果小可爱们在阅读过程中有困惑的地方，可以在往期推送中去查看更详细的说明；如果是对上述操作有问题，也可以留言跟萜妹沟通，视频教程会在所以数据分析结束后再录。</p>
+<p>接下来，萜妹会考虑介绍一些稍微复杂的模型。那小可爱们，我们下周见吧~</p>
+<p>参考文献：</p>
+<p>[1]Owens, B. P., Yam, K. C., Bednar, J. S., Mao, J., &amp; Hart, D. W. (2018, October 8). The Impact of Leader Moral Humility on Follower Moral Self-Efficacy and Behavior. Journal of Applied Psychology. Advance online publication. <a href="http://dx.doi.org/10.1037/apl0000353">http://dx.doi.org/10.1037/apl0000353</a></p>
+<p>[2]沈伊默, 诸彦含, 周婉茹,等. 团队差序氛围如何影响团队成员的工作表现？——一个有调节的中介作用模型的构建与检验[J]. 管理世界, 2019(12).104-115+136+215</p>
+<p>[3]Chun, J. U. , Lee, D. , &amp; Sosik, J. J. . (2017). Leader negative feedback-seeking and leader effectiveness in leader-subordinate relationships: the paradoxical role of subordinate expertise. Leadership Quarterly,</p>
+<p>[4]马君,闫嘉妮.正面反馈的盛名综合症效应：正向激励何以加剧绩效报酬对创造力的抑制？[J].管理世界,2020,36(01):105-121+237.</p>
+<p><strong>往期推送</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485224&amp;idx=1&amp;sn=4569a75ce673ce98eedae449cd38f30a&amp;chksm=96f473cea183fad848a735155ae87a7d637ea813390dc5c9237d691ff48b713ed2d76f4c1d10&amp;token=838335774&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨假设分析之常用模型</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485201&amp;idx=1&amp;sn=12332e8382dc7142cfaf9fa35d64e5aa&amp;chksm=96f473f7a183fae1ae82cecd1f7fd6a13c264e53b0968e169fb3043fe167723cc9483cd05a53&amp;token=838335774&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨假设分析之概念介绍</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484286&amp;idx=1&amp;sn=a9a611cf297c4eb22aed30f84b3e6f75&amp;chksm=96f47798a183fe8ebd7600799769366a325ef5430ae6b0e4859c9bf01002a52ac48a55a61119&amp;token=1322132591&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨论文写作常用假设分析</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484197&amp;idx=1&amp;sn=035737972b91ec725c37d55cfd4a0fea&amp;chksm=96f477c3a183fed58379221d5717f7520715c7525f6b7aa3a6c4ac92d54e65cc77ef379def44&amp;token=1322132591&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨SPSS数据分析之分析篇</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484982&amp;idx=1&amp;sn=83a5ee08572d04c2e2ce393214f8e99f&amp;chksm=96f472d0a183fbc62064edc420aa4b9a06020ab68d6542d1fe2c8cbed0facbc22b25b475e94d&amp;token=838335774&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨常用模型的Mplus例句</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484235&amp;idx=1&amp;sn=0ace762b0e165c0e085c5e72b5f34942&amp;chksm=96f477ada183febb4d6cc03fdbc3d37ce21eb6fa16ca5428ffbf8d8563e2604b1e2d2441a24b&amp;token=1322132591&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨Mplus基础使用指南</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484180&amp;idx=1&amp;sn=f615febc11d8a16076d125271fb8f638&amp;chksm=96f477f2a183fee4cd72ae6e2a766ca2c8aa6e87d147ae1139d5c4db9d87227faa8a0bc64699&amp;token=838335774&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨SPSS数据分析之准备篇</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485148&amp;idx=1&amp;sn=aedfd9e2ba36d501385177ab6a5e8d39&amp;chksm=96f4723aa183fb2c072ad141bb91a2e7a4344e2044ca157b692a33966f17ba6163c08c070bcd&amp;token=838335774&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨数据分析之前期准备（下）</a></strong></p>
+<p><strong>原文链接：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485249&amp;idx=1&amp;sn=5d132336d1ff560392c28a5c21096808&amp;chksm=96f473a7a183fab12ad273d07dedb22e94f4527fae55e997d284065ea95494f8dc19c31a0396&amp;scene=21#wechat_redirect">➪干货丨数据分析之假设检验</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/mediation/">Mediation</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/moderation/">Moderation</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/moderated-mediation/">Moderated Mediation</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/mediated-moderation/">Mediated Moderation</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/06/%E5%81%87%E8%AE%BE%E5%88%86%E6%9E%90%E4%B8%A8%E8%B7%A8%E5%B1%82%E6%A8%A1%E5%9E%8B/" data-tooltip="假设分析丨跨层模型" aria-label="下一篇: 假设分析丨跨层模型">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/05/%E5%81%87%E8%AE%BE%E5%88%86%E6%9E%90%E4%B8%A8%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9E%8B/" data-tooltip="假设分析丨常用模型" aria-label="上一篇: 假设分析丨常用模型">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/06/%E5%81%87%E8%AE%BE%E5%88%86%E6%9E%90%E4%B8%A8%E8%B7%A8%E5%B1%82%E6%A8%A1%E5%9E%8B/" data-tooltip="假设分析丨跨层模型" aria-label="下一篇: 假设分析丨跨层模型">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/05/%E5%81%87%E8%AE%BE%E5%88%86%E6%9E%90%E4%B8%A8%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9E%8B/" data-tooltip="假设分析丨常用模型" aria-label="上一篇: 假设分析丨常用模型">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

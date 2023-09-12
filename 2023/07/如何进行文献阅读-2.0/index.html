@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "如何进行文献阅读 2.0",
+  
+  "datePublished": "2023-07-23T00:00:00Z",
+  "dateModified": "2023-07-23T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2023\/07\/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-2.0\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "大家好，更完经验丨Obsidian中的科研库后，有小可爱来和我交流Obsidian的使用经验。我发现，除了详细的代码和模板，或许使用思路也能互相启发。\n正好，时隔一年，我的工作流在经验丨如何进行文献阅读（以下简称1.0版）上，又有了迭代。于是我决定先分享下我最新的阅读流程和使用技巧吖。\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="大家好，更完经验丨Obsidian中的科研库后，有小可爱来和我交流Obsidian的使用经验。我发现，除了详细的代码和模板，或许使用思路也能互相启发。
+正好，时隔一年，我的工作流在经验丨如何进行文献阅读（以下简称1.0版）上，又有了迭代。于是我决定先分享下我最新的阅读流程和使用技巧吖。">
+
+
+<meta property="og:description" content="大家好，更完经验丨Obsidian中的科研库后，有小可爱来和我交流Obsidian的使用经验。我发现，除了详细的代码和模板，或许使用思路也能互相启发。
+正好，时隔一年，我的工作流在经验丨如何进行文献阅读（以下简称1.0版）上，又有了迭代。于是我决定先分享下我最新的阅读流程和使用技巧吖。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何进行文献阅读 2.0">
+<meta name="twitter:title" content="如何进行文献阅读 2.0">
+<meta property="og:url" content="https://tie-blog.netlify.app/2023/07/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-2.0/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2023/07/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-2.0/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="大家好，更完经验丨Obsidian中的科研库后，有小可爱来和我交流Obsidian的使用经验。我发现，除了详细的代码和模板，或许使用思路也能互相启发。
+正好，时隔一年，我的工作流在经验丨如何进行文献阅读（以下简称1.0版）上，又有了迭代。于是我决定先分享下我最新的阅读流程和使用技巧吖。">
+<meta name="twitter:description" content="大家好，更完经验丨Obsidian中的科研库后，有小可爱来和我交流Obsidian的使用经验。我发现，除了详细的代码和模板，或许使用思路也能互相启发。
+正好，时隔一年，我的工作流在经验丨如何进行文献阅读（以下简称1.0版）上，又有了迭代。于是我决定先分享下我最新的阅读流程和使用技巧吖。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-07-23T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2023-07-23T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="经验">
+    
+      <meta property="article:section" content="文献管理">
+    
+  
+  
+    
+      <meta property="article:tag" content="Zotero">
+    
+      <meta property="article:tag" content="Obsidian">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>如何进行文献阅读 2.0</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2023/07/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-2.0/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      如何进行文献阅读 2.0
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-07-23T00:00:00Z">
+        
+  
+  
+  
+  
+    2023-07-23
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e7%bb%8f%e9%aa%8c">经验</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e6%96%87%e7%8c%ae%e7%ae%a1%e7%90%86">文献管理</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>大家好，更完<a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247488266&amp;idx=1&amp;sn=0d169d6f487335831266b2cf90b7fc44&amp;chksm=96f467eca183eefa31b1ff3e2e14c1802869331438baa53102bb332eda8c2a5a3664cd32a21f&amp;token=1130884878&amp;lang=zh_CN&amp;scene=21#wechat_redirect">经验丨Obsidian中的科研库</a>后，有小可爱来和我交流Obsidian的使用经验。我发现，除了详细的代码和模板，或许使用思路也能互相启发。</p>
+<p>正好，时隔一年，我的工作流在<a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487355&amp;idx=1&amp;sn=8b7d29da8724e5b54455fbc1bbab0d6c&amp;chksm=96f47b9da183f28b6beabad99e938907dd7a43fa2821bc2543266206acc93cbcdef60664b80c&amp;token=58583469&amp;lang=zh_CN&amp;scene=21#wechat_redirect">经验丨如何进行文献阅读</a>（以下简称1.0版）上，又有了迭代。于是我决定先分享下我最新的阅读流程和使用技巧吖。</p>
+<h2 id="阅读前">阅读前</h2>
+<h3 id="泛读目标期刊的最新录用">泛读目标期刊的最新录用</h3>
+<p><strong>相关工具：Inoreader or Zotero</strong></p>
+<p>用上Zotero后，我现在也会用Zotero的订阅功能，查看期刊的最新录用。如果有更新，该订阅就会加粗。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/2ed7275a-18b1-47cd-bc7c-cdabdef8e216.png" alt="Zotero中正常的订阅更新"></p>
+<p>不过Zotero的订阅功能偶尔会出现bug。比如，某天突然发现某个期刊全部的文章都是未读的状态。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/e4017d0c-f96c-4ed4-a60b-29635ff0a8d6.png" alt="Zotero中异常的订阅更新"></p>
+<p>这个时候，我会使用Zotero的搜索功能，看看是否有新的更新。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/6f02e2df-13ba-4a90-b3f8-5b0bdb39aace.png" alt="搜索近10天的最新录用"></p>
+<p>不过，比起一个个期刊搜，我还是更偏爱Inoreader。所以我依旧每周一会利用Inoreader进行二次浏览，避免遗漏，具体介绍见<a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487355&amp;idx=1&amp;sn=8b7d29da8724e5b54455fbc1bbab0d6c&amp;chksm=96f47b9da183f28b6beabad99e938907dd7a43fa2821bc2543266206acc93cbcdef60664b80c&amp;token=58583469&amp;lang=zh_CN#rd">1.0版</a>。</p>
+<h3 id="归档感兴趣的文章">归档感兴趣的文章</h3>
+<p><strong>相关工具：Zotero</strong></p>
+<p>发现感兴趣的文章后，可以直接点击右上角的【添加到“XXX”】</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/1b5b038a-e49e-4b49-ba5c-1a42dc3758e3.png" alt="添加到2023"></p>
+<p>然后我就可以直接在库里找到这篇文章了。大部分情况，它能直接抓取PDF。如果不行，再手动下载添加。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/af2afab4-2a72-47a5-be17-a0f4eeda9262.png" alt="在Zotero的视图"></p>
+<p>需说明，我设置了添加新条目时自动添加标签【📙】；面对我非常感兴趣的文章，我会手动把【📙】替换为【🐣】，这有助于我后续的阅读优先级排序。</p>
+<h2 id="阅读中">阅读中</h2>
+<h3 id="按模板生成阅读笔记">按模板生成阅读笔记</h3>
+<p><strong>相关工具：Obsidian</strong></p>
+<p>文献阅读的第一步，我会在Zotero打开PDF后，点击上方的紫色图标。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/4b925ee7-6d89-4916-8395-f456ebfc0563.png" alt="打开Zotero中的PDF"></p>
+<p>这时就会按我预先设置的模板，在Obsidian中生成并打开一个笔记文件。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/2d95159c-a97e-4ff0-899a-95ef39d8c279.png" alt="打开Obsidian中的笔记"></p>
+<p>这个笔记分为3个区域，分别是信息区、笔记区和注释区。上图是信息区，它会根据Zotero自动生成、同步更新。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/e90cfe3c-fa0e-46db-af08-391001923459.png" alt="笔记区"></p>
+<p>两个【%&mdash;ω&mdash;%】之间，是我的笔记区。</p>
+<p>这个部分一旦导出就不会再更新了，所以我在阅读过程中如果有什么想法会直接记录在这个位置。边读边记录，比较不会遗忘。</p>
+<p>这也是我选择在阅读前就生成Obsidian笔记的理由。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/bc2b2160-246e-4361-bd9e-7bfd7e3ac81f.png" alt="注释区"></p>
+<p>最后是注释区，初始状态下会是一片空白。但在阅读过程中，它也会自动同步Zotero中的注释。这样例句或有用的信息就不需要我们手动摘录啦。</p>
+<h3 id="文献阅读">文献阅读</h3>
+<p><strong>相关工具：Zotero</strong></p>
+<p>我目前的阅读工具已经从金山PDF换成了Zotero，因为它和Obsidian的联动最佳。移动端两个软件也能正常联动。</p>
+<p>之后就是正常的阅读。我的标注习惯在<a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487355&amp;idx=1&amp;sn=8b7d29da8724e5b54455fbc1bbab0d6c&amp;chksm=96f47b9da183f28b6beabad99e938907dd7a43fa2821bc2543266206acc93cbcdef60664b80c&amp;token=58583469&amp;lang=zh_CN&amp;scene=21#wechat_redirect">1.0版</a>上进行了丰富，分别为：</p>
+<ul>
+<li>黄色：涉及写作，如例句、常用词；</li>
+<li>红色：涉及过往文章；</li>
+<li>绿色：涉及本文内容；</li>
+<li>蓝色：涉及文章结构，如主旨句；</li>
+<li>洋红色：涉及定义；</li>
+<li>灰色：涉及测量；</li>
+<li>紫色：和我的某个项目相关；</li>
+<li>橙色：其他。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/3cdc6f7b-976a-4330-ab0d-c274a9e48e10.png" alt="Zotero中的标注概览"></p>
+<p>阅读过程中，我也会添加一些标签。如果是有模型的文章，我会把所用到的变量都放入标签，这样有利于后期查找。</p>
+<h2 id="阅读后">阅读后</h2>
+<h3 id="制作封面图">制作封面图</h3>
+<p><strong>相关工具：Picgo</strong></p>
+<p>看过1.0版的小可爱们知道，我喜欢给每篇文章做一个封面图。不过我现在并不会每篇文章单独制作了。</p>
+<p>如果原文章里有已画好的模型图，我会直接在Zotero里截图并利用Picgo上传至图床，这样我在Obsidian里也可以无障碍浏览。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/a8b7b82a-9e0f-47c2-bfc1-9532f6f9ae9f.png" alt="Obsidian和Zotero中的截图"></p>
+<p>当然，如果原文没图，我还是会像以前一样，利用PPT画一个并插入至第一页，再截图并上传。大致是这个样子：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/b119753a-588b-4123-936e-387e2b8ab2ae.png" alt="PPT封面示例"></p>
+<h3 id="整理笔记">整理笔记</h3>
+<p><strong>相关工具：Obsidian</strong></p>
+<p>我现在使用的Zotero和Obsidian联动插件是青柠学术的Zotero IF。说实话，它确实优点很多，最满足我痛点的是它能实现Obsidian和Zotero实时、同步更新。这是我之前的Zotero integration做不到的。</p>
+<p>但它也有缺点，比如需要付费，以及它有些底层逻辑无法修改（可能出于版权保护的原因）。所以它导出的tag只能是【#XXX】格式、它的注释格式我也无法修改。</p>
+<p>因此，我仍会使用Zotero integration辅助。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/a04b05b6-cc9a-44d8-81a6-3f842ab5afcc.png" alt="我的Zotero integration模板"></p>
+<p><strong>具体步骤：</strong></p>
+<p>①我会在阅读完后，利用Zotero integration生成一个笔记。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/b2a5e1ca-3766-4810-ad20-cc59aa05d2fb.png" alt="用Zotero integration新生成的笔记"></p>
+<p>可以看到，在这个笔记中，我的标签是【[[]]】格式，定义、测量、写作例句也有按我设定的样子生成。</p>
+<p>②将Tag中的信息，复制到到核心信息和所用变量中。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/ccb0905e-1896-4438-a12a-2f46ce5cba80.png" alt="填写核心信息和所用变量"></p>
+<p>③整理各类笔记</p>
+<p>我的定义笔记长这样，所以我需要补上文件名、修改Chinese和Description后面的内容才能与之匹配。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/6482ff5f-4244-4fb2-92ad-7e8a2579cc90.png" alt="定义笔记示例（左）   原始定义笔记（右）"></p>
+<p>修改好后，选中定义部分内容，新生成一个.md，原始快捷键是【Ctrl+Alt+N】。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/852377aa-c4fb-4609-b89f-103a54672ace.png" alt="修改好的笔记（左）   单独生成笔记（右）"></p>
+<p>可以看到，新.md里只有我们选中的内容，而原.md里当初选中的内容已经变成了一个链接。</p>
+<p>最后我会用快捷键将新.md移动至【3000 Definition】文件夹。</p>
+<p>写作例句的笔记整理也是如此，整理完成如下图所示：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/6a2f7de1-3b5b-4d74-91bc-48613df7cdad.png" alt="写作例句类笔记"></p>
+<p>笔记全部整理完即可将这些链接复制至初始的Obsidian笔记中，然后删除Zotero integration生成的版本，避免信息冗余。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/40a52909-63d3-4015-9d4d-600c4e852c09.png" alt=""></p>
+<h3 id="文献归档">文献归档</h3>
+<p><strong>相关工具：Zotero</strong></p>
+<p>笔记整理完后，我会回到Zotero中，更改文章状态、给文章评级并移动其至对应的分类。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/4e939899-65dc-4159-b6c7-e00c5c1770ce.png" alt="文献归档"></p>
+<h2 id="后期笔记查找">后期笔记查找</h2>
+<p><strong>相关工具：Obsidian</strong></p>
+<p>当我需要查找对应的笔记时，我会利用Obsidian的Dataview功能进行。</p>
+<p>比如：我要查找链式中介的文章，我会输入如下代码：</p>
+<pre tabindex="0"><code class="language-dataview" data-lang="dataview">table Description, Summary
+from &quot;1000 Reading Paper&quot; and #_Serial_indirect_effect 
+</code></pre><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/d636d264-b6d8-4d58-94d4-39702c92d32e.png" alt="查询结果"></p>
+<p>当然，如果想进阶一点，还可以使用Dataviewjs语句进行。</p>
+<p>比如，我想查找提及“社会交换理论”的笔记，可以输入：</p>
+<pre tabindex="0"><code class="language-dataviewjs" data-lang="dataviewjs">const files = app.vault.getMarkdownFiles()
+const prompt = &quot;社会交换理论&quot;
+
+const fileObject = files.map(async (file) =&gt; {
+const fileLink = &quot;[[&quot;+file.name.split(&quot;.&quot;)[0]+&quot;]]&quot;
+const content = await app.vault.cachedRead(file)
+return {fileLink, content}
+})
+
+Promise.all(fileObject).then(files =&gt; {
+
+let values = new Set(files.reduce((acc, file) =&gt; {
+const lines = file.content.split(&quot;\n&quot;).filter(line =&gt; line.match(new RegExp(prompt, &quot;i&quot;)))
+if (lines[0] &amp;&amp; !file.fileLink.includes(&quot;社会交换理论&quot;)) {
+if (acc[0]) {
+return [...acc, [file.fileLink, lines.join(&quot;\n&quot;)]]
+} else {
+return [[file.fileLink, lines.join(&quot;\n&quot;)]]
+}
+}
+return acc
+}, []))
+
+dv.header(1, prompt)
+dv.table([&quot;file&quot;, &quot;lines&quot;], Array.from(values))
+
+})
+</code></pre><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/Paper/0422bfcf-c2b9-43fc-8e2e-170c3ffb1fa0.png" alt="查询结果"></p>
+<p>使用Obsidian进行笔记管理的技巧非常丰富，感觉能单独再写一篇，这里就不展开了。</p>
+<hr>
+<p>这篇推送就到这里啦。今天主要是给大家说说我的文献阅读流程，更多的是思路上的帮助。</p>
+<p>我自己实际操作中，设置了很多模板和快捷键，有很多个性化的选择，导致我现在也没办法说从头做起应该如何执行。</p>
+<p>所以小可爱们如果对哪个部分特别感兴趣，可以留言跟我说，我就会先更新对应的操作啦！</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247488061&amp;idx=1&amp;sn=263c0515643b654b4e48872ec32c1fff&amp;chksm=96f466dba183efcd3c375c7ed27271fa935ddcbdb7f25974c3b3c60ad8da454c6e6839603f97&amp;token=1747323943&amp;lang=zh_CN&amp;scene=21#wechat_redirect"><strong>往期推送</strong>：</a></p>
+<p><strong>原文链接：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247488425&amp;idx=1&amp;sn=e30d03caba54f866f21bf9b31a3f9530&amp;chksm=96f4674fa183ee594442b547394cc1875265fe5c14ca8caeeb573770f4bc54b31ea02b29df9e&amp;token=1726578312&amp;lang=zh_CN#rd">经验丨如何进行文献阅读 2.0</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/zotero/">Zotero</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/obsidian/">Obsidian</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/08/%E8%87%AA%E6%88%91%E5%86%B3%E5%AE%9A%E7%90%86%E8%AE%BA%E6%A0%B8%E5%BF%83%E5%AD%90%E7%90%86%E8%AE%BA/" data-tooltip="自我决定理论：核心子理论" aria-label="下一篇: 自我决定理论：核心子理论">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/07/%E8%BA%AB%E4%BB%BD%E8%AE%A4%E5%90%8C%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E6%97%81%E8%A7%82%E8%80%85%E5%AF%B9%E5%B7%A5%E4%BD%9C%E5%9C%BA%E6%89%80%E4%B8%8D%E5%85%AC%E5%B9%B3%E5%AF%B9%E5%BE%85%E7%9A%84%E5%8F%8D%E5%BA%94/" data-tooltip="身份认同如何影响旁观者对工作场所不公平对待的反应" aria-label="上一篇: 身份认同如何影响旁观者对工作场所不公平对待的反应">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/08/%E8%87%AA%E6%88%91%E5%86%B3%E5%AE%9A%E7%90%86%E8%AE%BA%E6%A0%B8%E5%BF%83%E5%AD%90%E7%90%86%E8%AE%BA/" data-tooltip="自我决定理论：核心子理论" aria-label="下一篇: 自我决定理论：核心子理论">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/07/%E8%BA%AB%E4%BB%BD%E8%AE%A4%E5%90%8C%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E6%97%81%E8%A7%82%E8%80%85%E5%AF%B9%E5%B7%A5%E4%BD%9C%E5%9C%BA%E6%89%80%E4%B8%8D%E5%85%AC%E5%B9%B3%E5%AF%B9%E5%BE%85%E7%9A%84%E5%8F%8D%E5%BA%94/" data-tooltip="身份认同如何影响旁观者对工作场所不公平对待的反应" aria-label="上一篇: 身份认同如何影响旁观者对工作场所不公平对待的反应">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

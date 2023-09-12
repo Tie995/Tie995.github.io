@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Mplus丨跨层有调节的中介模型检验",
+  
+  "datePublished": "2023-04-09T00:00:00Z",
+  "dateModified": "2023-04-09T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2023\/04\/mplus%E4%B8%A8%E8%B7%A8%E5%B1%82%E6%9C%89%E8%B0%83%E8%8A%82%E7%9A%84%E4%B8%AD%E4%BB%8B%E6%A8%A1%E5%9E%8B%E6%A3%80%E9%AA%8C\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "小可爱们好，好久没进行顶刊复现了。今天带大家一起复现Mplus中跨层有调节的中介模型。\n Wong, M.-N., Cheng, B. H., Lam, L. W.-Y., \u0026amp; Bamberger, P. A. (2022). Pay Transparency as a Moving Target: A Multi-Step Model of Pay Compression, I-Deals, and Collectivist Shared Values. Academy of Management Journal. https://doi.org/10.5465/amj.2020.1831\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="小可爱们好，好久没进行顶刊复现了。今天带大家一起复现Mplus中跨层有调节的中介模型。
+
+Wong, M.-N., Cheng, B. H., Lam, L. W.-Y., &amp; Bamberger, P. A. (2022). Pay Transparency as a Moving Target: A Multi-Step Model of Pay Compression, I-Deals, and Collectivist Shared Values. Academy of Management Journal. https://doi.org/10.5465/amj.2020.1831
+">
+
+
+<meta property="og:description" content="小可爱们好，好久没进行顶刊复现了。今天带大家一起复现Mplus中跨层有调节的中介模型。
+
+Wong, M.-N., Cheng, B. H., Lam, L. W.-Y., &amp; Bamberger, P. A. (2022). Pay Transparency as a Moving Target: A Multi-Step Model of Pay Compression, I-Deals, and Collectivist Shared Values. Academy of Management Journal. https://doi.org/10.5465/amj.2020.1831
+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mplus丨跨层有调节的中介模型检验">
+<meta name="twitter:title" content="Mplus丨跨层有调节的中介模型检验">
+<meta property="og:url" content="https://tie-blog.netlify.app/2023/04/mplus%E4%B8%A8%E8%B7%A8%E5%B1%82%E6%9C%89%E8%B0%83%E8%8A%82%E7%9A%84%E4%B8%AD%E4%BB%8B%E6%A8%A1%E5%9E%8B%E6%A3%80%E9%AA%8C/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2023/04/mplus%E4%B8%A8%E8%B7%A8%E5%B1%82%E6%9C%89%E8%B0%83%E8%8A%82%E7%9A%84%E4%B8%AD%E4%BB%8B%E6%A8%A1%E5%9E%8B%E6%A3%80%E9%AA%8C/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="小可爱们好，好久没进行顶刊复现了。今天带大家一起复现Mplus中跨层有调节的中介模型。
+
+Wong, M.-N., Cheng, B. H., Lam, L. W.-Y., &amp; Bamberger, P. A. (2022). Pay Transparency as a Moving Target: A Multi-Step Model of Pay Compression, I-Deals, and Collectivist Shared Values. Academy of Management Journal. https://doi.org/10.5465/amj.2020.1831
+">
+<meta name="twitter:description" content="小可爱们好，好久没进行顶刊复现了。今天带大家一起复现Mplus中跨层有调节的中介模型。
+
+Wong, M.-N., Cheng, B. H., Lam, L. W.-Y., &amp; Bamberger, P. A. (2022). Pay Transparency as a Moving Target: A Multi-Step Model of Pay Compression, I-Deals, and Collectivist Shared Values. Academy of Management Journal. https://doi.org/10.5465/amj.2020.1831
+">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-04-09T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2023-04-09T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="复现">
+    
+      <meta property="article:section" content="数据分析">
+    
+  
+  
+    
+      <meta property="article:tag" content="Mplus">
+    
+      <meta property="article:tag" content="Multi-Level Model">
+    
+      <meta property="article:tag" content="Moderated-Mediation">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>Mplus丨跨层有调节的中介模型检验</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2023/04/mplus%E4%B8%A8%E8%B7%A8%E5%B1%82%E6%9C%89%E8%B0%83%E8%8A%82%E7%9A%84%E4%B8%AD%E4%BB%8B%E6%A8%A1%E5%9E%8B%E6%A3%80%E9%AA%8C/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Mplus丨跨层有调节的中介模型检验
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-04-09T00:00:00Z">
+        
+  
+  
+  
+  
+    2023-04-09
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%a4%8d%e7%8e%b0">复现</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e6%95%b0%e6%8d%ae%e5%88%86%e6%9e%90">数据分析</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>小可爱们好，好久没进行顶刊复现了。今天带大家一起复现Mplus中跨层有调节的中介模型。</p>
+<blockquote>
+<p>Wong, M.-N., Cheng, B. H., Lam, L. W.-Y., &amp; Bamberger, P. A. (2022). Pay Transparency as a Moving Target: A Multi-Step Model of Pay Compression, I-Deals, and Collectivist Shared Values. Academy of Management Journal. <a href="https://doi.org/10.5465/amj.2020.1831">https://doi.org/10.5465/amj.2020.1831</a></p>
+</blockquote>
+<h1 id="整体介绍">整体介绍</h1>
+<p>故事的大致逻辑是：薪酬透明度可能会揭示具有相似工作级别的员工之间的薪酬差异，这将被视为异常现象。为了避免上述情况，领导会使员工彼此间的薪酬更加相似（即可变薪酬压缩）。员工进而会将薪酬调整的请求转移到不易观察到的形式（即特殊交易，尤其是非货币特殊交易，如额外的假期、额外的培训）。这些请求也更有可能会被允许。在鼓励个人密切观察和监督其同伴的集体主义共同价值观下，越有可能发生上述的隐藏性请求。</p>
+<p>简而言之，<strong>公司层面的薪酬透明度，会导致可变薪酬压缩，进而导致员工特殊交易请求率与通过率的提高；上述间接效应将在以集体主义共同价值观为特征的企业中被放大</strong>。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/20230409201446.png" alt="Research model"></p>
+<h1 id="公开数据">公开数据</h1>
+<p>获取地址：<a href="https://osf.io/nuvge/."> https://osf.io/nuvge/.</a></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/20230409203730.png" alt="公开数据"></p>
+<p>各研究分别为：</p>
+<ul>
+<li>研究1：采用实验，检验假设1和5a；</li>
+<li>研究2：采用问卷，检验所有假设。</li>
+</ul>
+<p>本次主要分享跨层模型在Mplus中的处理方式，仅以Study 2 为例。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/20230409203330.png" alt="Study 2 Result"></p>
+<h1 id="结果复现">结果复现</h1>
+<h2 id="语法解读">语法解读</h2>
+<h4 id="数据导入">数据导入</h4>
+<pre tabindex="0"><code>DATA:
+FILE = &quot;Data_Study_2.dat&quot;;
+</code></pre><p>意为后续分析数据为同文件夹下的Data_Study_2.dat。</p>
+<h4 id="变量命名">变量命名</h4>
+<pre tabindex="0"><code>VARIABLE:
+NAMES = cid 
+	num_emp revenue oten_sd age_sd edu_sd gen_div 
+	oten_mc oten_mc2 bp_gini bp_cv 
+	pt_p1 pt_p2 pt_p3 pt_p4 
+	pt_o1 pt_o2 pt_o3 pt_o4 
+	pt_c1 pt_c2 pt_c3 pt_c4
+	colval1 colval2R colval3 
+	vp_gini vp_cv 
+	idr_d1 idr_d2 idr_d3 idr_d4 idr_b idr_f
+	idg_d1 idg_d2 idg_d3 idg_d4 idg_b idg_f; 
+</code></pre><p>Mplus的数据文件中不包含标题行，因此我们需要在Mplus中对每列数据命名，以便后续分析时调用。</p>
+<p>作者这里的各变量命名及含义为：</p>
+<pre tabindex="0"><code>企业序号
+团队规模  企业年销售收入  团队任职年限异质性  团队年龄异质性  团队教育程度异质性  团队性别异质性
+团队平均任职年限  团队平均任职年限的平方  基本薪酬基尼系数  基本薪酬变异系数
+薪酬流程透明度1  薪酬流程透明度2  薪酬流程透明度3  薪酬流程透明度4  
+薪酬结果透明度1  薪酬结果透明度2  薪酬结果透明度3  薪酬结果透明度4  
+薪酬沟通透明度1  薪酬沟通透明度2  薪酬沟通透明度3  薪酬沟通透明度4  
+集体主义共同价值观1  集体主义共同价值观2R 集体主义共同价值观3
+可变薪酬压缩-基尼系数  可变薪酬压缩-变异系数
+发展型特殊交易请求1  发展型特殊交易请求2  发展型特殊交易请求3  发展型特殊交易请求4  利益型特殊交易请求  特殊交易请求_f
+发展型特殊交易通过1  发展型特殊交易通过2  发展型特殊交易通过3  发展型特殊交易通过4  利益型特殊交易通过  特殊交易通过_f；
+</code></pre><h4 id="变量调用">变量调用</h4>
+<pre tabindex="0"><code> USEVARIABLES = cid
+   num_emp revenue oten_sd age_sd edu_sd gen_div oten_mc oten_mc2 
+   bp_gini vp_gini
+   pt_c1 pt_c2 pt_c3 pt_c4
+   pt_p1 pt_p2 pt_p3 pt_p4
+   pt_o1 pt_o2 pt_o3 pt_o4
+   idr_d1 idr_d2 idr_d3 idr_d4
+   idr_b
+   idg_d1 idg_d2 idg_d3 idg_d4 
+   idg_b;
+</code></pre><p>上一步骤是对所有数据列进行命名，而我们在具体分析时并不会都用到，所以这里需要告诉软件，我们会用到哪些列。</p>
+<p>作者这里省略了bp_cv、vp_cv、idr_f 等无关列。</p>
+<h4 id="变量层级">变量层级</h4>
+<pre tabindex="0"><code> CLUSTER = cid;
+ WITHIN = ;
+ BETWEEN = num_emp revenue oten_sd age_sd edu_sd gen_div oten_mc oten_mc2
+   bp_gini vp_gini
+   pt_c1 pt_c2 pt_c3 pt_c4 
+   pt_p1 pt_p2 pt_p3 pt_p4
+   pt_o1 pt_o2 pt_o3 pt_o4
+   idg_d1 idg_d2 idg_d3 idg_d4 
+    	  idg_b;    
+</code></pre><p>因此是跨层模型，所以还需要告诉软件，以哪个变量划分组织、组内？又有哪些变量是组间层次？哪些变量是组内层次？</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/20230409215736.png" alt="Data"></p>
+<p>作者这里定义了组间变量，未在组间层次出现的变量即可分解为组间变量也可分解为组内变量。</p>
+<h4 id="分析设置">分析设置</h4>
+<pre tabindex="0"><code> ANALYSIS:
+        TYPE = twolevel random;
+        ALGORITHM=INTEGRATION;
+        Integration=montecarlo;
+        Processor = 8;
+</code></pre><p>第一行指定了分析数据的类型为两层随机效应模型，即在不同层次之间存在随机变异。</p>
+<p>第二行指定了分析所使用的算法为积分法（Integration），即对模型的似然函数进行积分计算，得出相应的参数估计值和标准误。</p>
+<p>第三行指定了对于积分法的具体实现方法，这里采用蒙特卡罗模拟（Monte Carlo）方法进行计算。</p>
+<p>第二、三行涉及针对调节效应的计算。</p>
+<p>第四行指定了所使用的处理器数量为8，这是指定Mplus在计算过程中可使用的最大处理器数量。这可以提高计算速度和效率，特别是对于较大的数据集和复杂的模型。</p>
+<p>Processor参数可以设置为任何大于1的正整数，以指定Mplus在计算过程中可使用的最大处理器数量。具体来说，Processor参数可以设置为计算机的实际处理器核心数量，以最大化计算速度和效率。</p>
+<h4 id="测量模型">测量模型</h4>
+<pre tabindex="0"><code>  MODEL:
+      %BETWEEN%
+        pt_pd by pt_c1 pt_c2 pt_c3 pt_c4;
+        pt_od by pt_p1 pt_p2 pt_p3 pt_p4;
+        pt_cd by pt_o1 pt_o2 pt_o3 pt_o4;
+        pt by pt_pd pt_od pt_cd;
+</code></pre><p>薪酬透明度由于是一个多维变量，所以进行了两次潜变量的生成。</p>
+<p>作者先根据12道题得分（观测变量）生成了3个子维度得分（潜变量），再由这3个子维度得分生成了最终得分（潜变量）。</p>
+<pre tabindex="0"><code>        colvalb by colval1 colval3;
+        colval1@0 colval3@0;
+        
+        idr_db  by idr_d1 idr_d2 idr_d3 idr_d4 ;
+        idr_bb  by idr_b;
+        idr_d1@0 idr_d2@0 idr_d3@0 idr_d4@0 ;
+        idr_b@0;
+
+        idg_db by idg_d1 idg_d2 idg_d3 idg_d4;
+        idg_bb by idg_b;
+        idg_b@0;
+</code></pre><p>在Between层生成其他的潜变量。</p>
+<p>idr_b@0意为将idr_b的方差固定为0</p>
+<pre tabindex="0"><code>        [vp_gini idr_db idr_bb idg_db idg_bb];
+        [idr_d1@0 idr_d2@0 idr_d3@0 idr_d4@0 idr_b@0];
+        [idg_d1@0 idg_d2@0 idg_d3@0 idg_d4@0 idg_b@0];
+</code></pre><p>[vp_gini idr_db idr_bb idg_db idg_bb]是指估计这些变量的截距。</p>
+<pre tabindex="0"><code> int2 | colvalb xwith vp_gini;
+</code></pre><p>该句含义为，将colvalb与vp_gini的交互项定义为int2。</p>
+<pre tabindex="0"><code> colvalb (w);
+</code></pre><p>该句含义为，将colvalb的方差定义为w，后续计算效应量时会用到。</p>
+<pre tabindex="0"><code>      %WITHIN%
+        idr_dw  by idr_d1 idr_d2 idr_d3 idr_d4 ;
+        idr_bw  by idr_b	;
+        idr_b@0;
+</code></pre><p>在组内层次估计由员工汇报的变量，后续结构模型的分析中不会用到。</p>
+<h4 id="结构模型">结构模型</h4>
+<pre tabindex="0"><code>  MODEL:
+      %BETWEEN%
+        vp_gini on num_emp revenue oten_sd age_sd edu_sd gen_div oten_mc oten_mc2 bp_gini 
+          pt(a);
+
+        idr_db on num_emp revenue oten_sd age_sd edu_sd gen_div oten_mc oten_mc2 bp_gini 
+          pt 
+          vp_gini (b1_1)
+          colvalb
+          int2 (b1_3);
+
+        idr_bb ononnum_emp revenue oten_sd age_sd edu_sd gen_div oten_mc oten_mc2 bp_gini 
+          pt 
+          vp_gini (b2_1)
+          colvalb
+          int2 (b2_3);
+        
+        idg_db on num_emp revenue oten_sd age_sd edu_sd gen_div oten_mc oten_mc2 bp_gini 
+          pt vp_gini idr_db (c1);
+
+        idg_bb on num_emp revenue oten_sd age_sd edu_sd gen_div oten_mc oten_mc2 bp_gini 
+          pt vp_gini idr_db (c2);
+
+        idr_bb with idr_db;
+        idg_bb with idg_db;
+</code></pre><p>这里跟着Between部分的测量模型之后，萜妹为了表达清晰才重写了次“MODEL:       %BETWEEN%”，实际上是不需要重复的。</p>
+<p>作者利用on语句，根据模型定义了多个回归关系，并对部分回归参数命名。</p>
+<p>如将pt对vp_gini的回归系数命名为了a。</p>
+<pre tabindex="0"><code>  MODEL CONSTRAINT:
+
+       NEW(id_d_h, id_d_l, id_d_diff,
+        id_b_h, id_b_l, id_b_diff,
+        ss_d_h, ss_d_l, ss_d_diff,
+        ss_b_h, ss_b_l, ss_b_diff);
+
+        id_d_h=a*(b1_1+b1_3*sqrt(w))*c1;
+        id_d_l=a*(b1_1-b1_3*sqrt(w))*c1;
+        id_d_diff=id_d_h-id_d_l;
+        id_b_h=a*(b2_1+b2_3*sqrt(w))*c2;
+        id_b_l=a*(b2_1-b2_3*sqrt(w))*c2;
+        id_b_diff=id_b_h-id_b_l;
+
+        ss_d_h=b1_1+b1_3*sqrt(w);
+        ss_d_l=b1_1-b1_3*sqrt(w);
+        ss_d_diff=ss_d_l-ss_d_h;
+        ss_b_h=b2_1+b2_3*sqrt(w);
+        ss_b_l=b2_1-b2_3*sqrt(w);
+        ss_b_diff=ss_b_l-ss_b_h;
+</code></pre><p>在model constraint部分，新生成了一些变量。具体的数据关系在下面根据等式定义。</p>
+<p>注意这里的sqrt(w)，就是我们常说的调节变量的标准差。</p>
+<h4 id="输出结果">输出结果</h4>
+<pre tabindex="0"><code>  OUTPUT:
+  CINTERVAL tech1 tech3 tech5 tech8;
+</code></pre><h2 id="结果解读">结果解读</h2>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/20230409230620.png" alt="Unstandardized Path Coefficients of the Multilevel Models for Testing Indirect Effect"></p>
+<h4 id="组内残差">组内残差</h4>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/20230409230916.png" alt=""></p>
+<h4 id="回归系数">回归系数</h4>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/20230409231015.png" alt=""></p>
+<h4 id="组间残差">组间残差</h4>
+<p><img src="https://files.mdnice.com/user/24987/9623d607-745b-47a1-8d6e-1c49752fde08.png" alt=""></p>
+<h4 id="pseudo-r2">Pseudo R2</h4>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/20230409233438.png" alt=""></p>
+<p>Pseudo R2没办法直接得出，还需要进一步计算。作者文中给出了参考文献，但萜妹还没来得及溯源，所以这里就不展开。有兴趣的小可爱可以先自行研究。</p>
+<blockquote>
+<p>Snijders, T. A. B. &amp; Bosker, R. J. 1994. Modeled variance in two-level models. Sociological Methods &amp; Research, 22(3): 342-363</p>
+</blockquote>
+<h4 id="bootstrap置信区间">Bootstrap置信区间</h4>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/20230409233256.png" alt=""></p>
+<p>跨层Bootstrap没有办法在Mplus中实现，作者还是借助了R软件进行。</p>
+<hr>
+<p>这篇推送的分析就到这里啦。因为作者只提供了Mplus部分结果，所以萜妹的复现也仅局限在Mplus之中。我这里的结果看起来比较简单，但作者在文章中其实还进行了很多补充分析，大家可以利用作者的数据与语法进行深度地复现。</p>
+<p>另外想谈谈我为什么选择复现这篇。第一个的原因是我想找一篇公开了语法、数据的跨层文章，我在AMJ上按时间顺序找最新录用，这篇是时间最新的文章（也已经是半年之前了）；第二个原因，虽然我们常常用Mplus做结构方程模型检验，但也常有不规范的地方，比如只写结构部分的语法，这篇文章纳入了测量部分才是比较规范的做法。</p>
+<p>最后，我应该还会尝试继续找公开数据的跨层模型，尤其是用R分析的。小可爱们如果有看到合适的，也可以分享给我吖。</p>
+<p><strong>往期推送：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484235&amp;idx=1&amp;sn=0ace762b0e165c0e085c5e72b5f34942&amp;chksm=96f477ada183febb4d6cc03fdbc3d37ce21eb6fa16ca5428ffbf8d8563e2604b1e2d2441a24b#rd">Mplus丨基础使用指南</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484982&amp;idx=1&amp;sn=83a5ee08572d04c2e2ce393214f8e99f&amp;chksm=96f472d0a183fbc62064edc420aa4b9a06020ab68d6542d1fe2c8cbed0facbc22b25b475e94d#rd">Mplus丨常用模型语句</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486620&amp;idx=1&amp;sn=cd74ffc016d143f134d8add8eac419cf&amp;chksm=96f4787aa183f16c03596223e0ff7c271ff7708eacc209d59953408b470955ad69372254590a#rd">复现丨基于R的实验检验</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486774&amp;idx=1&amp;sn=3a1aa8c04f7efda68fefd6c37fc51e16&amp;chksm=96f479d0a183f0c6118d92309a3c1876f3878fd3c6f48b1378dc05c92071b88e98baee772f0e#rd">复现丨带置信区间的调节效应图</a></strong></p>
+<p><strong>原文链接：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247488056&amp;idx=1&amp;sn=c5354da7834bb1275ee46ba63d0d9a94&amp;chksm=96f466dea183efc831c0369d017eb2a5aa3e74d0f40f3ca56ed23268b9309804bf9c101cb4de&amp;token=215929355&amp;lang=zh_CN#rd">复现丨跨层模型 in Mplus</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/mplus/">Mplus</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/multi-level-model/">Multi-Level Model</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/moderated-mediation/">Moderated-Mediation</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/04/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%AC%94%E8%AE%B0%E7%AE%A1%E7%90%86/" data-tooltip="如何进行笔记管理" aria-label="下一篇: 如何进行笔记管理">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/04/ai%E4%BD%95%E6%97%B6%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E5%A2%9E%E5%BC%BA%E5%91%98%E5%B7%A5%E5%88%9B%E9%80%A0%E5%8A%9B/" data-tooltip="AI何时以及如何增强员工创造力" aria-label="上一篇: AI何时以及如何增强员工创造力">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/04/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%AC%94%E8%AE%B0%E7%AE%A1%E7%90%86/" data-tooltip="如何进行笔记管理" aria-label="下一篇: 如何进行笔记管理">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2023/04/ai%E4%BD%95%E6%97%B6%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E5%A2%9E%E5%BC%BA%E5%91%98%E5%B7%A5%E5%88%9B%E9%80%A0%E5%8A%9B/" data-tooltip="AI何时以及如何增强员工创造力" aria-label="上一篇: AI何时以及如何增强员工创造力">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

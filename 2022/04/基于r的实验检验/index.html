@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "基于R的实验检验",
+  
+  "datePublished": "2022-04-24T00:00:00Z",
+  "dateModified": "2022-04-24T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2022\/04\/%E5%9F%BA%E4%BA%8Er%E7%9A%84%E5%AE%9E%E9%AA%8C%E6%A3%80%E9%AA%8C\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": " Bain, K., Kreps, T. A., Meikle, N. L., \u0026amp; Tenney, E. R. (2021). Amplifying Voice in Organizations. Academy of Management Journal, 64(4), 1288-1312. https://doi.org/10.5465/amj.2018.0621\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="
+Bain, K., Kreps, T. A., Meikle, N. L., &amp; Tenney, E. R. (2021). Amplifying Voice in Organizations. Academy of Management Journal, 64(4), 1288-1312. https://doi.org/10.5465/amj.2018.0621
+">
+
+
+<meta property="og:description" content="
+Bain, K., Kreps, T. A., Meikle, N. L., &amp; Tenney, E. R. (2021). Amplifying Voice in Organizations. Academy of Management Journal, 64(4), 1288-1312. https://doi.org/10.5465/amj.2018.0621
+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于R的实验检验">
+<meta name="twitter:title" content="基于R的实验检验">
+<meta property="og:url" content="https://tie-blog.netlify.app/2022/04/%E5%9F%BA%E4%BA%8Er%E7%9A%84%E5%AE%9E%E9%AA%8C%E6%A3%80%E9%AA%8C/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2022/04/%E5%9F%BA%E4%BA%8Er%E7%9A%84%E5%AE%9E%E9%AA%8C%E6%A3%80%E9%AA%8C/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="
+Bain, K., Kreps, T. A., Meikle, N. L., &amp; Tenney, E. R. (2021). Amplifying Voice in Organizations. Academy of Management Journal, 64(4), 1288-1312. https://doi.org/10.5465/amj.2018.0621
+">
+<meta name="twitter:description" content="
+Bain, K., Kreps, T. A., Meikle, N. L., &amp; Tenney, E. R. (2021). Amplifying Voice in Organizations. Academy of Management Journal, 64(4), 1288-1312. https://doi.org/10.5465/amj.2018.0621
+">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2022-04-24T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2022-04-24T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="复现">
+    
+      <meta property="article:section" content="数据分析">
+    
+  
+  
+    
+      <meta property="article:tag" content="R">
+    
+      <meta property="article:tag" content="Experiment">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>基于R的实验检验</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2022/04/%E5%9F%BA%E4%BA%8Er%E7%9A%84%E5%AE%9E%E9%AA%8C%E6%A3%80%E9%AA%8C/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      基于R的实验检验
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-04-24T00:00:00Z">
+        
+  
+  
+  
+  
+    2022-04-24
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%a4%8d%e7%8e%b0">复现</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e6%95%b0%e6%8d%ae%e5%88%86%e6%9e%90">数据分析</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <blockquote>
+<p>Bain, K., Kreps, T. A., Meikle, N. L., &amp; Tenney, E. R. (2021). Amplifying Voice in Organizations. Academy of Management Journal, 64(4), 1288-1312. <a href="https://doi.org/10.5465/amj.2018.0621">https://doi.org/10.5465/amj.2018.0621</a></p>
+</blockquote>
+<p>小可爱们好，这次又是一个新的系列，主要目的是带大家一起复现顶刊文章中的数据结果。</p>
+<p>一方面，受益于Open science，我们现在有机会获得顶刊研究中的材料、数据和语句，这是一个非常好的练手机会。</p>
+<p>另一方面，萜妹正在学习R。按照我个人的学习习惯，我一直认为针对方法，要先知其然，再去研究所以然。复现文章结果能帮我们快速的知其然。</p>
+<p>于是，我又开新系列了！</p>
+<p>温馨提醒：本次推送内容较多，建议先码后看，边看边操作~</p>
+<hr>
+<h1 id="整体介绍">整体介绍</h1>
+<p>这篇文章想要研究：员工如何帮助同事通过建言来提升地位，同时也提高自己的地位？</p>
+<p>因为假设有点复杂，所以文章中没有画模型图。萜妹自己画了一个，方便小可爱们理解。（如有兴趣或者有疑问，可以回原文查看）</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112317022.png" alt="img"></p>
+<h1 id="公开数据">公开数据</h1>
+<p>萜妹这次不关注它的假设和论述部分，主要来看看作者的研究过程。</p>
+<p>获取地址：https://osf.io/v6abf</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112317771.png" alt="img"></p>
+<p>作者超级nice，他们把原始问卷（Qualtrics版/Word版）、实验材料、原始数据、最终数据、预注册内容全部公开了。</p>
+<p>本次仅以Study 1为例。</p>
+<h1 id="原始问卷">原始问卷</h1>
+<p>做数据分析之前，需要清楚的了解数据结构，我们先来看看问卷。</p>
+<p>虽然作者良心的给了Qualtrics版问卷，但萜妹尝试了一下，我们并没有使用权限，所以还是看看word版本吧。</p>
+<h2 id="知情同意">知情同意</h2>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112317963.png" alt="img"></p>
+<p>规范的调研，第一页必是知情同意书吖！小可爱们做实验的时候也要注意这一点吼。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112317480.png" alt="img"></p>
+<h2 id="实验背景">实验背景</h2>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112317996.png" alt="img"></p>
+<p>“想象你是国家保险公司InsureCo销售团队的一名成员……</p>
+<p>最近，绩效不是很好……</p>
+<p>销售团队决定开会讨论业绩下降的问题……”</p>
+<p>很聪明的是，作者在这里加了两个注意力检验，如果没有通过就不会进入后面的问答。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112317191.png" alt="img"></p>
+<p>“会议以人们讨论周末和闲聊开始。在每个人到达之后，你召集会议，并给小组成员打气，鼓励他们提高业绩和增加销售。</p>
+<p>在你说完之后，团队成员DN提出了一个建议……</p>
+<p>然后，另一个团队成员ER也提出了一个建议……</p>
+<p>MG忽视了前面的建议，并询问午饭。”</p>
+<p>【实验操纵】</p>
+<p>“这时，你接到一个电话，必须退出会议。</p>
+<p>用你自己的话，写下会议中提出的想法。”</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112317531.png" alt="img"></p>
+<h2 id="实验操纵">实验操纵</h2>
+<p>作者的实验做的非常细，首先，作者进行了预研究，通过两种检验方式，证明了实验材料中涉及的3种解决方案都是高质量且无差别的。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318627.png" alt="img"></p>
+<h4 id="voice-type-promotive-vs-prohibitive">Voice type: promotive vs. prohibitive</h4>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318176.png" alt="img"></p>
+<p>每种建言，作者都给出了对应的四种版本。</p>
+<h4 id="response-amplification-vs-additional-voice-vs-staying-quiet">Response: amplification vs. additional voice vs. staying quiet</h4>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318311.png" alt="img"></p>
+<ul>
+<li>
+<p>Amplification：DN重申ER的想法；</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318529.png" alt="img"></p>
+</li>
+<li>
+<p>Additional voice：DN提出新想法；</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318663.png" alt="img"></p>
+</li>
+<li>
+<p>Staying quiet：DN什么都没说。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318253.png" alt="img"></p>
+</li>
+</ul>
+<h2 id="操纵检验">操纵检验</h2>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318804.png" alt="img"></p>
+<h2 id="后续测量">后续测量</h2>
+<p>后续作者依次测量了DN、ER、MG的地位、控制变量（集体性、代理性）。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318040.png" alt="img"></p>
+<p>DN、ER的第一次建言质量。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318537.png" alt="img"></p>
+<p>以及被试的人口统计学等控制变量。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318930.png" alt="img"></p>
+<h1 id="数据分析">数据分析</h1>
+<p>我们终于进入正题啦!</p>
+<p>作者直接给了R文件，这样我就能知道作者用了哪些包。如果是用Rstudio打开，软件还会提示有包未安装，然后我们就可以让软件自动安装啦。</p>
+<h2 id="数据处理">数据处理</h2>
+<h4 id="导入原始数据">导入原始数据</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">amp <span style="color:#f92672">&lt;-</span> Study_1_raw_data_with_duplicate_variables
+</code></pre></div><p>不过作者的公开数据里Excel命名为：Study 1 raw data cleaned.xlsx。另外，我直接运行这三行也不行，所以萜妹导入原始数据是用的以下语句：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-makefile" data-lang="makefile"><span style="color:#960050;background-color:#1e0010">install.packages(</span><span style="color:#e6db74">&#34;readxl&#34;</span><span style="color:#960050;background-color:#1e0010">)</span>
+<span style="color:#960050;background-color:#1e0010">library(readxl)</span>
+<span style="color:#960050;background-color:#1e0010">amp&lt;-read_excel(</span><span style="color:#e6db74">&#34;Study 1 raw data cleaned.xlsx&#34;</span><span style="color:#960050;background-color:#1e0010">)</span>
+<span style="color:#75715e">#如果显示没有路径，可以把文件路径写全。
+</span><span style="color:#75715e">#注意原始路径中的“\”要替换为“/”。
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">amp&lt;-read_excel(&#34;C</span><span style="color:#f92672">:</span>/Users/Tie/Amplifying Voice in Organizations/Study 1 raw data cleaned.xlsx)
+</code></pre></div><p>代码含义是：将同一文件夹下的Study 1 raw data cleaned.xlsx导入，并命名为amp。</p>
+<p>运行后可以在Environment里看到amp。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318663.png" alt="img"></p>
+<h4 id="清理重复与未完成">清理重复与未完成</h4>
+<p>作者在Excel里进行了前期处理，比如识别并标注了重复IP、ID、未完成等。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318723.png" alt="img"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#a6e22e">amp</span><span style="color:#f92672">=</span> <span style="color:#e6db74">subset(amp, amp$Finished==1)</span>
+<span style="color:#a6e22e">amp</span><span style="color:#f92672">=</span> <span style="color:#e6db74">subset(amp, amp$duplicateIP==0)</span>
+<span style="color:#a6e22e">amp</span><span style="color:#f92672">=</span> <span style="color:#e6db74">subset(amp, amp$duplicateID==0)</span>
+</code></pre></div><p>这里是不断在原来的amp中筛选出子集。比如，amp= subset(amp, amp$Finished==1)意味着只选中完成的被试。</p>
+<h4 id="注意力检验">注意力检验</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#a6e22e">amp</span><span style="color:#f92672">=</span><span style="color:#e6db74">subset(amp, amp$attnchk1==1)</span>
+<span style="color:#a6e22e">amp</span><span style="color:#f92672">=</span><span style="color:#e6db74">subset(amp, amp$attnchk2==1)</span>
+</code></pre></div><p>清理完成后，还剩下1189个被试，这就是Study 1 working dataset.xlsx的原始版。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318846.png" alt="img"></p>
+<h4 id="最终数据文件">最终数据文件</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">amp &lt;- Study_1_working_dataset
+amp<span style="color:#f92672">=</span> subset<span style="color:#f92672">(</span>amp, amp$irrelevant<span style="color:#f92672">==</span>0<span style="color:#f92672">)</span>
+</code></pre></div><p>作者导出Study 1 working dataset.xlsx后对题项进行了重命名并变量化。最终数据中还删除了不相关数据。同样，萜妹改为了：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">amp&lt;-read_excel<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Study 1 working dataset.xlsx&#34;</span>,na <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;NA&#34;</span><span style="color:#f92672">)</span>
+amp<span style="color:#f92672">=</span> subset<span style="color:#f92672">(</span>amp, amp$irrelevant<span style="color:#f92672">==</span>0<span style="color:#f92672">)</span>
+</code></pre></div><h2 id="前期数据检验">前期数据检验</h2>
+<h4 id="加载r包">加载R包</h4>
+<p>如果以前没安装过，也是需要先利用install.packages(&quot; “)语句安装的哦。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">library</span><span style="color:#f92672">(</span><span style="color:#f92672">psych</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">library</span><span style="color:#f92672">(</span><span style="color:#f92672">plyr</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">library</span><span style="color:#f92672">(</span><span style="color:#f92672">dplyr</span><span style="color:#f92672">)</span>
+</code></pre></div><h4 id="人口统计学分析">人口统计学分析</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">#* Gender ####
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">amp</span>$gender<span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">as</span><span style="color:#f92672">.</span><span style="color:#a6e22e">character</span>(<span style="color:#a6e22e">amp</span>$gender)
+<span style="color:#a6e22e">amp</span>$gender<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">revalue</span>(<span style="color:#a6e22e">amp</span>$gender,
+                                <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;male&#34;</span>, <span style="color:#e6db74">&#34;2&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;female&#34;</span>, <span style="color:#e6db74">&#34;3&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nonbinary&#34;</span>, <span style="color:#e6db74">&#34;4&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;notsay&#34;</span>))
+<span style="color:#a6e22e">amp</span>$gender<span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">as</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factor</span>(<span style="color:#a6e22e">amp</span>$gender)
+<span style="color:#a6e22e">table</span>(<span style="color:#a6e22e">amp</span>$gender)
+<span style="color:#75715e">#* Age ####
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">describeBy</span>(<span style="color:#a6e22e">amp</span>$age)
+<span style="color:#75715e">#* Race ####
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">amp</span>$race<span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">as</span><span style="color:#f92672">.</span><span style="color:#a6e22e">character</span>(<span style="color:#a6e22e">amp</span>$race)
+<span style="color:#a6e22e">amp</span>$race<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">revalue</span>(<span style="color:#a6e22e">amp</span>$race,
+                    <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;American Indian&#34;</span>, <span style="color:#e6db74">&#34;2&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;East Asian&#34;</span>, <span style="color:#e6db74">&#34;3&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;South Asian&#34;</span>, <span style="color:#e6db74">&#34;4&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Pacific Islander&#34;</span>,<span style="color:#e6db74">&#34;5&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Black&#34;</span>, <span style="color:#e6db74">&#34;6&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;White&#34;</span>,<span style="color:#e6db74">&#34;7&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;oth_unknnw&#34;</span>, <span style="color:#e6db74">&#34;8&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Multiracial&#34;</span>))
+<span style="color:#a6e22e">amp</span>$race<span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">as</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factor</span>(<span style="color:#a6e22e">amp</span>$race)
+<span style="color:#a6e22e">table</span>(<span style="color:#a6e22e">amp</span>$race)
+<span style="color:#75715e"># * Number of Reports ####
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">describeBy</span>(<span style="color:#a6e22e">amp</span>$reports)
+<span style="color:#75715e"># * Tenure
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">amp</span>$tenure<span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">as</span><span style="color:#f92672">.</span><span style="color:#a6e22e">character</span>(<span style="color:#a6e22e">amp</span>$tenure)
+<span style="color:#a6e22e">amp</span>$tenure<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">revalue</span>(<span style="color:#a6e22e">amp</span>$tenure,
+                  <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;14&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Less 1yr&#34;</span>, <span style="color:#e6db74">&#34;15&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1 to 3yrs&#34;</span>, <span style="color:#e6db74">&#34;19&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;4 to 6yrs&#34;</span>, <span style="color:#e6db74">&#34;16&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;7 to 9yrs&#34;</span>,<span style="color:#e6db74">&#34;17&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;10+yrs&#34;</span>))
+<span style="color:#a6e22e">table</span>(<span style="color:#a6e22e">amp</span>$tenure)
+</code></pre></div><p>上面的语句用来分析被试的人口统计学分布。性别、种族、任职年限的标签也替换了。（PS，作者分析的语句里漏了amp$race&lt;-as.character(amp$race)，小可爱们复现时记得自己加上。）</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318283.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318008.png" alt="img"></p>
+<p>文章是这样汇报的，作者另外算了百分比。萜妹个人感觉这不是最优的R语句，应该是可以一步到位的。</p>
+<h4 id="操纵检验-1">操纵检验</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># MANIPULATION CHECK: 1=yes someone endorse someone&#39;s idea; 2= no endorse ####</span>
+df<span style="color:#f92672">=</span>subset<span style="color:#f92672">(</span>amp, amp$ampcond<span style="color:#f92672">==</span><span style="color:#e6db74">&#34;amp&#34;</span><span style="color:#f92672">)</span>
+table<span style="color:#f92672">(</span>df$ampchk<span style="color:#f92672">)</span>
+df<span style="color:#f92672">=</span>subset<span style="color:#f92672">(</span>amp, amp$ampcond!<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;amp&#34;</span><span style="color:#f92672">)</span>
+table<span style="color:#f92672">(</span>df$ampchk<span style="color:#f92672">)</span>
+</code></pre></div><p>第一行：取amp中，ampcond这一项为“amp”的行，形成新数据集df。这其实就是Amplification实验组。</p>
+<p>第二行，显示df中，ampchk这一列的分布。</p>
+<p>第三行：取amp中，ampcond这一项不为“amp”的行，形成新数据集df。这是另外两个控制组。</p>
+<p>第四行，显示df中，ampchk这一列的分布。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318884.png" alt="img"></p>
+<p>作者文章中并没有汇报操纵检验的结果，如果在SPSS中是会计算t值和显著性的。不过作者这里肯定还是通过了的。</p>
+<p>特别提醒，即使有18+58个被试汇报结果与操纵不一致，但也是不能删除他们的！！！</p>
+<h4 id="检验信度">检验信度</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#* Idea Quality####</span>
+quality <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(amp[,<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">210</span><span style="color:#f92672">:</span><span style="color:#ae81ff">215</span>)])<span style="color:#75715e">#voicer: idea quality (promotive &amp; prohibitive)</span>
+<span style="color:#a6e22e">alpha</span>(quality)
+</code></pre></div><p>第一行：取amp中第210-215列，形成新数据集quality。</p>
+<p>第二行，计算quality的信度。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318460.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318738.png" alt="img"></p>
+<h4 id="相关分析">相关分析</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#a6e22e">amp</span>$voicetype <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">revalue</span>(<span style="color:#a6e22e">amp</span>$type, <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;prohibitive&#34;</span> <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0&#34;</span>, <span style="color:#e6db74">&#34;promotive&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>))
+<span style="color:#a6e22e">amp</span>$voicetype <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">as</span><span style="color:#f92672">.</span><span style="color:#a6e22e">numeric</span>(<span style="color:#a6e22e">amp</span>$voicetype)
+<span style="color:#a6e22e">amp</span>$response1 <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">revalue</span>(<span style="color:#a6e22e">amp</span>$ampcond, <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;additional&#34;</span> <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0&#34;</span>, <span style="color:#e6db74">&#34;silent&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0&#34;</span>, <span style="color:#e6db74">&#34;amp&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>))
+<span style="color:#a6e22e">amp</span>$response1 <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">as</span><span style="color:#f92672">.</span><span style="color:#a6e22e">numeric</span>(<span style="color:#a6e22e">amp</span>$response1)
+<span style="color:#a6e22e">amp</span>$response2 <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">revalue</span>(<span style="color:#a6e22e">amp</span>$ampcond, <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;additional&#34;</span> <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>, <span style="color:#e6db74">&#34;silent&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0&#34;</span>, <span style="color:#e6db74">&#34;amp&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0&#34;</span>))
+<span style="color:#a6e22e">amp</span>$response2 <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">as</span><span style="color:#f92672">.</span><span style="color:#a6e22e">numeric</span>(<span style="color:#a6e22e">amp</span>$response2)
+</code></pre></div><p>针对操纵形成3个虚拟变量。作者这里是将voicetype设为促进性建言；将response1设为声援；将response2设为提出新想法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">amp$c_voiceridea &lt;- amp$voicer_ideaqual
+amp$c_responderidea&lt;-amp$resp_ideaqual
+amp$c_voicerstatus &lt;- amp$status_voicer
+amp$c_respstatus &lt;- amp$status_resp
+amp$c_othstatus&lt;-amp$status_other
+amp$c_voicetype&lt;-amp$voicetype
+amp$c_response1 &lt;- amp$response1
+amp$c_response2 &lt;- amp$response2
+</code></pre></div><p>在数据集amp中形成新的变量。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">library<span style="color:#f92672">(</span>Hmisc<span style="color:#f92672">)</span>
+library<span style="color:#f92672">(</span>car<span style="color:#f92672">)</span>
+amp_corr&lt;-amp<span style="color:#f92672">[</span>,c<span style="color:#f92672">(</span>268:275<span style="color:#f92672">)]</span>
+amp_corr$c_voicetype&lt;-recode<span style="color:#f92672">(</span>amp_corr$c_voicetype, <span style="color:#e6db74">&#34;2=1;1=0&#34;</span><span style="color:#f92672">)</span>
+amp_corr$c_response1&lt;-recode<span style="color:#f92672">(</span>amp_corr$c_response1, <span style="color:#e6db74">&#34;2=0; 1=1&#34;</span><span style="color:#f92672">)</span>
+amp_corr$c_response2&lt;-recode<span style="color:#f92672">(</span>amp_corr$c_response2, <span style="color:#e6db74">&#34;2=1; 1=0&#34;</span><span style="color:#f92672">)</span>
+</code></pre></div><p>第三行，取数据集amp中的268-275列为新数据集amp_corr。</p>
+<p>第四-六行，对三个虚拟变量重新编码。萜妹猜测，因为c_response1和c_response2是一对互斥的虚拟变量，所以作者才在相关时对c_response1进行了反向。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318855.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318102.png" alt="img"></p>
+<h2 id="假设检验">假设检验</h2>
+<h4 id="检验主效应和调节效应">检验主效应和调节效应</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#a6e22e">amp</span>$ampcond<span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">as</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factor</span>(<span style="color:#a6e22e">amp</span>$ampcond)
+<span style="color:#a6e22e">amp</span>$ampcond <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">relevel</span>(<span style="color:#a6e22e">amp</span>$ampcond, <span style="color:#a6e22e">ref</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;amp&#34;</span>)<span style="color:#75715e">##Using amplification as baseline
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">amp</span>$type<span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">as</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factor</span>(<span style="color:#a6e22e">amp</span>$type)
+<span style="color:#a6e22e">library</span>(<span style="color:#a6e22e">DescTools</span>)
+</code></pre></div><p>ampcond是操纵的response；type是操纵的建言类型。</p>
+<p>第二行意为，将amp设为基准模型。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-perl" data-lang="perl"><span style="color:#75715e">#* * Voicer Idea ####</span>
+res<span style="color:#f92672">.</span>aov_qual<span style="color:#f92672">&lt;-</span>aov(voicer_ideaqual<span style="color:#f92672">~</span>ampcond<span style="color:#f92672">*</span>type, data<span style="color:#f92672">=</span>amp)
+summary(res<span style="color:#f92672">.</span>aov_qual)
+EtaSq(res<span style="color:#f92672">.</span>aov_qual, type <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, anova <span style="color:#f92672">=</span> FALSE)
+<span style="color:#75715e"># Planned comparisons</span>
+TukeyHSD(res<span style="color:#f92672">.</span>aov_qual, which <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ampcond&#34;</span>)
+</code></pre></div><p>第一行，用数据集amp，做ampcond、type对voicer_ideaqual的方差分析，并将结果储存为res.aov_qual。</p>
+<p>第二行，显示上述结果，比如自由度、F值、概率等。</p>
+<p>第三行，得Eta的平方。</p>
+<p>第四行，做主效应的比较，证明amp与其他两种情况确实有显著差异。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318284.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318474.png" alt="img"></p>
+<h4 id="检验中介效应">检验中介效应</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">#** AMP vs. Voices
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">df</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">subset</span>(<span style="color:#a6e22e">amp</span>, <span style="color:#a6e22e">amp</span>$ampcond<span style="color:#f92672">!=</span><span style="color:#e6db74">&#34;silent&#34;</span>)
+<span style="color:#a6e22e">mm</span><span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">lm</span>(<span style="color:#a6e22e">voicer_ideaqual</span><span style="color:#f92672">~</span><span style="color:#a6e22e">ampcond</span>,<span style="color:#a6e22e">df</span>) 
+<span style="color:#a6e22e">dv</span><span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">lm</span>(<span style="color:#a6e22e">status_voicer</span><span style="color:#f92672">~</span><span style="color:#a6e22e">voicer_ideaqual</span><span style="color:#f92672">+</span><span style="color:#a6e22e">ampcond</span>,<span style="color:#a6e22e">df</span>) 
+<span style="color:#a6e22e">summary</span>(<span style="color:#a6e22e">mediate</span>(<span style="color:#a6e22e">mm</span>, <span style="color:#a6e22e">dv</span>, <span style="color:#a6e22e">boot</span><span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>, <span style="color:#a6e22e">treat</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ampcond&#34;</span>,<span style="color:#a6e22e">mediator</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;voicer_ideaqual&#34;</span>, <span style="color:#a6e22e">sims</span><span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span>)) 
+</code></pre></div><p>第一行，取amp中，ampcond这一项不为“silent”的行，形成新数据集df。</p>
+<p>第二行，用数据集df做ampcond对voicer_ideaqual的线性回归，并将结果储存为mm。</p>
+<p>第三行，用数据集df做ampcond、voicer_ideaqual对status_voicer的线性回归，并将结果储存为dv。</p>
+<p>第四行，根据mm、dv的结果做中介检验。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318779.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318042.png" alt="img"></p>
+<h4 id="对因变量的描述性分析">对因变量的描述性分析</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#* VOICE TYPE ####</span>
+describeBy<span style="color:#f92672">(</span>amp$voicer_ideaqual,amp$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>amp$resp_ideaqual,amp$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>amp$status_voicer,amp$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>amp$status_resp,amp$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>amp$status_other,amp$type<span style="color:#f92672">)</span>
+</code></pre></div><p>这里就是按建言类型分组对不同的因变量进行描述性统计。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318139.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318270.png" alt="img"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#* VOICE TYPE x RESPONSE CONDITION ####</span>
+df<span style="color:#f92672">=</span>subset<span style="color:#f92672">(</span>amp, amp$ampcond<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;amp&#39;</span><span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$voicer_ideaqual,df$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$resp_ideaqual,df$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$status_voicer,df$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$status_resp,df$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$status_other,df$type<span style="color:#f92672">)</span>
+df<span style="color:#f92672">=</span>subset<span style="color:#f92672">(</span>amp, amp$ampcond<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;silent&#39;</span><span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$voicer_ideaqual,df$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$resp_ideaqual,df$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$status_voicer,df$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$status_resp,df$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$status_other,df$type<span style="color:#f92672">)</span>
+df<span style="color:#f92672">=</span>subset<span style="color:#f92672">(</span>amp, amp$ampcond<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;additional&#39;</span><span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$voicer_ideaqual,df$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$resp_ideaqual,df$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$status_voicer,df$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$status_resp,df$type<span style="color:#f92672">)</span>
+describeBy<span style="color:#f92672">(</span>df$status_other,df$type<span style="color:#f92672">)</span>
+</code></pre></div><p>2*3的分组描述性统计是先把amp分为了三组数据，再分别分组做描述性统计。作者给的语句省略简化了，萜妹扩充了。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318770.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112318129.png" alt="img"></p>
+<h1 id="study-2--3">Study 2 &amp; 3</h1>
+<p>study 2 和study 1 在操作上大同小异，萜妹这里就不讲啦。</p>
+<p>小可爱有兴趣的话，还可以尝试在Study 1语句的基础上改编Study 2的语句，如果最后和文章结果一致，就能说明是真的掌握啦，hhh。</p>
+<p>Study 3是一个现场干预实验，作者检验了Amplification能否被培训，员工是否会从中受益。</p>
+<p>实验做的非常好，就是太复杂了，萜妹看完已经无力输出，所以小可爱们有兴趣自行查阅吼。</p>
+<hr>
+<p>今天的推送就到这里啦。其实这篇文章不用R，用SPSS也能很轻松地得到结果。但是萜妹准备学R嘛，我们就从简单的一步步开始。</p>
+<p>萜妹的R正在起步阶段。在写这篇推送之前，上述的语句，我几乎都没用过。但是仿完这次后，起码上面的语句我都会用了。所以对R感兴趣的小可爱们一起动起来吖。</p>
+<p>然后，《复现》这个系列第一期想做其实的是多项式回归，毕竟后台有小可爱想要示范操作。但是我翻了好几个顶刊，最近都没有这方面的公开数据TAT，所以如果有留意到这方面信息的小可爱可以联系我。</p>
+<p>另外，如果有其他有意思的公开数据也可以和萜妹分享吖。想和小可爱们，一起学习，共同进步~</p>
+<p><strong>原文链接：</strong></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247486620&amp;idx=1&amp;sn=cd74ffc016d143f134d8add8eac419cf&amp;chksm=96f4787aa183f16c03596223e0ff7c271ff7708eacc209d59953408b470955ad69372254590a#rd"><strong>➪基于R的实验检验</strong></a></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/r/">R</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/experiment/">Experiment</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/05/%E6%8C%91%E6%88%98%E6%B3%9B%E5%8C%96amj-%E5%A4%9A%E5%9B%A2%E9%98%9F%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E7%A4%BE%E4%BC%9A%E8%AE%A4%E5%90%8C/" data-tooltip="挑战泛化：AMJ-多团队系统中的社会认同" aria-label="下一篇: 挑战泛化：AMJ-多团队系统中的社会认同">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/04/srm%E4%B8%A8%E7%A4%BE%E4%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A8%A1%E6%9D%BF/" data-tooltip="SRM丨社会关系模型之基本模板" aria-label="上一篇: SRM丨社会关系模型之基本模板">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/05/%E6%8C%91%E6%88%98%E6%B3%9B%E5%8C%96amj-%E5%A4%9A%E5%9B%A2%E9%98%9F%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E7%A4%BE%E4%BC%9A%E8%AE%A4%E5%90%8C/" data-tooltip="挑战泛化：AMJ-多团队系统中的社会认同" aria-label="下一篇: 挑战泛化：AMJ-多团队系统中的社会认同">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/04/srm%E4%B8%A8%E7%A4%BE%E4%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A8%A1%E6%9D%BF/" data-tooltip="SRM丨社会关系模型之基本模板" aria-label="上一篇: SRM丨社会关系模型之基本模板">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

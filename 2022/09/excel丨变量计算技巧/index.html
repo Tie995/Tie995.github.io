@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Excel丨变量计算技巧",
+  
+  "datePublished": "2022-09-18T00:00:00Z",
+  "dateModified": "2022-09-18T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2022\/09\/excel%E4%B8%A8%E5%8F%98%E9%87%8F%E8%AE%A1%E7%AE%97%E6%8A%80%E5%B7%A7\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "小可爱们好，这周介绍几个Excel使用技巧，来提高大家处理数据的效率。\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="小可爱们好，这周介绍几个Excel使用技巧，来提高大家处理数据的效率。">
+
+
+<meta property="og:description" content="小可爱们好，这周介绍几个Excel使用技巧，来提高大家处理数据的效率。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Excel丨变量计算技巧">
+<meta name="twitter:title" content="Excel丨变量计算技巧">
+<meta property="og:url" content="https://tie-blog.netlify.app/2022/09/excel%E4%B8%A8%E5%8F%98%E9%87%8F%E8%AE%A1%E7%AE%97%E6%8A%80%E5%B7%A7/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2022/09/excel%E4%B8%A8%E5%8F%98%E9%87%8F%E8%AE%A1%E7%AE%97%E6%8A%80%E5%B7%A7/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="小可爱们好，这周介绍几个Excel使用技巧，来提高大家处理数据的效率。">
+<meta name="twitter:description" content="小可爱们好，这周介绍几个Excel使用技巧，来提高大家处理数据的效率。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2022-09-18T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2022-09-18T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="干货">
+    
+      <meta property="article:section" content="软件技巧">
+    
+  
+  
+    
+      <meta property="article:tag" content="Excel">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>Excel丨变量计算技巧</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2022/09/excel%E4%B8%A8%E5%8F%98%E9%87%8F%E8%AE%A1%E7%AE%97%E6%8A%80%E5%B7%A7/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Excel丨变量计算技巧
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-09-18T00:00:00Z">
+        
+  
+  
+  
+  
+    2022-09-18
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%b9%b2%e8%b4%a7">干货</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e8%bd%af%e4%bb%b6%e6%8a%80%e5%b7%a7">软件技巧</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>小可爱们好，这周介绍几个Excel使用技巧，来提高大家处理数据的效率。</p>
+<p>本篇推送是<a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485148&amp;idx=1&amp;sn=aedfd9e2ba36d501385177ab6a5e8d39&amp;chksm=96f4723aa183fb2c072ad141bb91a2e7a4344e2044ca157b692a33966f17ba6163c08c070bcd&amp;scene=21#wechat_redirect">干货丨数据分析之前期准备（下）</a>的升级版，只介绍进阶或者改良的公式哈。</p>
+<p>（注：处理方式并非唯一，萜妹只是分享个人经验~）</p>
+<h1 id="批量计算变量得分">批量计算变量得分</h1>
+<p>在涉及多个变量时，计算变量得分是一个繁琐且枯燥的过程，所以萜妹写了个公式，偷偷懒。</p>
+<p>假设需要变量化的题目原始状态为下图所示：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322634.png" alt="img"></p>
+<p>我们可以利用AVERAGEIF公式，批量获得满足特定条件数组的均值。</p>
+<p>AVERAGEIF函数由三个部分组成，分别是IF的判断区域，IF的判断依据，数据的计算区域。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objectivec" data-lang="objectivec"><span style="color:#f92672">=</span>AVERAGEIF(IF的判断区域<span style="color:#960050;background-color:#1e0010">，</span>IF的判定依据<span style="color:#960050;background-color:#1e0010">，数据的计算区域</span>)
+</code></pre></div><p>代入到我们这里：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">=AVERAGEIF(<span style="color:#960050;background-color:#1e0010">$</span>S$1:<span style="color:#960050;background-color:#1e0010">$</span>AE$1,TEXT(AF$1,)<span style="color:#f92672">&amp;</span><span style="color:#e6db74">&#34;*&#34;</span>,<span style="color:#960050;background-color:#1e0010">$</span>S2:<span style="color:#960050;background-color:#1e0010">$</span>AE2)
+</code></pre></div><p><strong>IF的判断区域</strong>：所有原始题项的标题行。</p>
+<p>为了便于公式的横向拖动，我们最好将横竖都固定，即在字母和数字前都加上$，如$S$1:$AE$1。</p>
+<p><strong>IF的判断依据</strong>：以目标变量名开头。</p>
+<p>Teat()公式可以直接提取单元格文本，再加上一个通配符“*”，即可批量识别。</p>
+<p>同样，为了拖动方便，我们要将Text里的文本，固定在第1行，而不固定列，如AF$1。</p>
+<p><strong>数据的计算区域</strong>：每个被试的得分行。</p>
+<p>因为每行都是一个被试，所以要固定列，而不固定行，如$S2:$AE2。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322692.png" alt="img"></p>
+<p>在第一个被试的第一个变量格中输入上述函数，再横向、竖向拖动，即可得到所有被试的全部变量。（是不是非常方便！）</p>
+<p>不过有一个小问题，大家要注意和核查。</p>
+<p>因为，这里的操作原理是将原始题项按【变量名+序号】命名，再用【变量名】进行匹配。</p>
+<p>所以，<strong>变量名绝对不能有重叠</strong>！！！</p>
+<p>最好不要用过于短的缩写。</p>
+<p>例如，RC和RCO不可以同时出现。不然在计算RC得分时，会算上RCO的题项，就有问题了。</p>
+<h1 id="计算团队数据">计算团队数据</h1>
+<h2 id="计算团队平均值">计算团队平均值</h2>
+<p>团队变量的计算也是利用AVERAGEIF公式，只是从横向判断变为了纵向判断。</p>
+<p>在目标单位格中输入公式，再横向、纵向填充：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">=AVERAGEIF(<span style="color:#960050;background-color:#1e0010">$</span>A$2:<span style="color:#960050;background-color:#1e0010">$</span>A$36,<span style="color:#960050;background-color:#1e0010">$</span>A2,AF$2:AF$36)
+</code></pre></div><p>同样，要注意各数据的固定情况不可以改变，不然在公式填充的时候会发生变形，导致错误。</p>
+<ul>
+<li>IF的判断区域（$A$2:$A$36,），需要完全固定，即选中后，按一次【F4】；</li>
+<li>IF的判断依据（$A2），需要固定列，即选中后，按三次【F4】；</li>
+<li>数据的计算区域（AF$2:AF$36），需要固定行，即选中后，按两次【F4】。</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322770.png" alt="img"></p>
+<h2 id="计算团队标准差">计算团队标准差</h2>
+<p>现在有些研究还要计算团队标准差，但Excel并没有自带标准差的IF公式，而我又想一步搞定，所以写了一个复合公式。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">=</span>STDEV.S<span style="color:#f92672">(</span>IF<span style="color:#f92672">(</span>IF的判断条件,数据的计算区域,<span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">))</span>
+</code></pre></div><p>代入我们的例子中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">=STDEV.S(IF(<span style="color:#960050;background-color:#1e0010">$</span>A$2:<span style="color:#960050;background-color:#1e0010">$</span>A$36=<span style="color:#960050;background-color:#1e0010">$</span>A2,AF$2:AF$36,<span style="color:#e6db74">&#34;&#34;</span>))
+</code></pre></div><p>上述IF公式用于得到满足条件的数组。</p>
+<ul>
+<li>如果满足我们的条件，就返回对应数值；</li>
+<li>如果不满足我们的条件，则会形成空值。</li>
+</ul>
+<p>这些数据最终会形成数组。</p>
+<p>最后用STDEV.S计算数组的标准差。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112322812.png" alt="img"></p>
+<p>因为我们这里涉及数组的处理，所以输入完公式后，不可以只按【Enter】，要**同时按住【Shift+Ctrl+Enter】**才行。</p>
+<p>可以发现，最终公式前后会有一个{}（这不可以手打哈）。</p>
+<hr>
+<p>啦啦啦，今天的分享就结束了。</p>
+<p>萜妹这个无敌大懒鬼，会为了节约自己的时间，而去想一些公式。当我把上面这些公式真正设计出来，并用于实践时，其实我的时间并没有花费的更多。大部分的公式都只需要无脑填充，大规模的变量也可以批量处理，这为我后续的分析也奠定了坚实的基础。所以我认为这样是好的，就想也分享给小可爱这些技巧~</p>
+<p>还有关于Excel和数据处理想说的是，比起公式的运用，可能更重要的是，小可爱们要知道自己要完成什么。Excel的公式教学，百度真的轻轻松松。所以当我们知道我想要什么，如何利用公式解决其实就已经近在眼前了~</p>
+<p>最后，下期应该是《范文》或者《复现》。</p>
+<p><strong>往期推送</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487442&amp;idx=1&amp;sn=18fc3fbb9e24ae2a503a5f132ce51f6c&amp;chksm=96f47b34a183f22210e5deca46463af055b13901f3444b35eadcd296283e5bd589740ddc4abc&amp;token=428852987&amp;lang=zh_CN#rd">周更五年，感谢各位</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487466&amp;idx=1&amp;sn=95687a96c0ac852fd956148bb8ca21f6&amp;chksm=96f47b0ca183f21a75118684845a55236536fff12d60f6f11286d82896f679665f0154b2d069&amp;token=428852987&amp;lang=zh_CN#rd">看，我造了一艘“船”（内含福利）</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487355&amp;idx=1&amp;sn=8b7d29da8724e5b54455fbc1bbab0d6c&amp;chksm=96f47b9da183f28b6beabad99e938907dd7a43fa2821bc2543266206acc93cbcdef60664b80c&amp;token=428852987&amp;lang=zh_CN#rd">经验丨如何进行文献阅读</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485148&amp;idx=1&amp;sn=aedfd9e2ba36d501385177ab6a5e8d39&amp;chksm=96f4723aa183fb2c072ad141bb91a2e7a4344e2044ca157b692a33966f17ba6163c08c070bcd&amp;scene=21#wechat_redirect">干货丨数据分析之前期准备（下）</a></strong></p>
+<p><strong>原文链接：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487513&amp;idx=1&amp;sn=db02c8d2f951d5f6a68ec7baa25878c1&amp;chksm=96f464ffa183ede9d5c51d60f8f4bc237ea5642369162ea682d917546d0ef43670dd8050d3cb&amp;token=173206194&amp;lang=zh_CN#rd">Excel丨变量计算技巧</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/excel/">Excel</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/09/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E8%B7%A8%E6%97%B6%E7%82%B9%E7%9A%84%E5%8C%B9%E9%85%8D/" data-tooltip="RSA丨多项式回归之跨时点的匹配" aria-label="下一篇: RSA丨多项式回归之跨时点的匹配">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/09/%E4%B8%89%E9%98%B6%E4%BA%A4%E4%BA%92jms-%E8%B7%A8%E4%BB%A3%E6%84%8F%E6%84%BF%E4%B8%8E%E5%88%9B%E6%96%B0%E6%8A%95%E8%B5%84/" data-tooltip="三阶交互：JMS-跨代意愿与创新投资" aria-label="上一篇: 三阶交互：JMS-跨代意愿与创新投资">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/09/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E8%B7%A8%E6%97%B6%E7%82%B9%E7%9A%84%E5%8C%B9%E9%85%8D/" data-tooltip="RSA丨多项式回归之跨时点的匹配" aria-label="下一篇: RSA丨多项式回归之跨时点的匹配">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/09/%E4%B8%89%E9%98%B6%E4%BA%A4%E4%BA%92jms-%E8%B7%A8%E4%BB%A3%E6%84%8F%E6%84%BF%E4%B8%8E%E5%88%9B%E6%96%B0%E6%8A%95%E8%B5%84/" data-tooltip="三阶交互：JMS-跨代意愿与创新投资" aria-label="上一篇: 三阶交互：JMS-跨代意愿与创新投资">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

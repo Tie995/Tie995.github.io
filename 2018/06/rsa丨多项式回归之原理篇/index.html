@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "RSA丨多项式回归之原理篇",
+  
+  "datePublished": "2018-06-10T00:00:00Z",
+  "dateModified": "2018-06-10T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2018\/06\/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E5%8E%9F%E7%90%86%E7%AF%87\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "啦啦啦啦啦，萜妹终于又开始写推送啦~\n不知道萜妹没有更新的日子，小可爱们在干嘛，萜妹我呢，最近在学习新的方法，所以想跟小可爱们分享~\n（其实是怕自己以后忘记，哈哈哈）\n话不多说，我们直接开始啦。\n注：本文中提及的多项式回归法，指的是管理学中常用的二次响应面回归法，可能和统计学中的有所不同哈~\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="啦啦啦啦啦，萜妹终于又开始写推送啦~
+不知道萜妹没有更新的日子，小可爱们在干嘛，萜妹我呢，最近在学习新的方法，所以想跟小可爱们分享~
+（其实是怕自己以后忘记，哈哈哈）
+话不多说，我们直接开始啦。
+注：本文中提及的多项式回归法，指的是管理学中常用的二次响应面回归法，可能和统计学中的有所不同哈~">
+
+
+<meta property="og:description" content="啦啦啦啦啦，萜妹终于又开始写推送啦~
+不知道萜妹没有更新的日子，小可爱们在干嘛，萜妹我呢，最近在学习新的方法，所以想跟小可爱们分享~
+（其实是怕自己以后忘记，哈哈哈）
+话不多说，我们直接开始啦。
+注：本文中提及的多项式回归法，指的是管理学中常用的二次响应面回归法，可能和统计学中的有所不同哈~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RSA丨多项式回归之原理篇">
+<meta name="twitter:title" content="RSA丨多项式回归之原理篇">
+<meta property="og:url" content="https://tie-blog.netlify.app/2018/06/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E5%8E%9F%E7%90%86%E7%AF%87/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2018/06/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E5%8E%9F%E7%90%86%E7%AF%87/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="啦啦啦啦啦，萜妹终于又开始写推送啦~
+不知道萜妹没有更新的日子，小可爱们在干嘛，萜妹我呢，最近在学习新的方法，所以想跟小可爱们分享~
+（其实是怕自己以后忘记，哈哈哈）
+话不多说，我们直接开始啦。
+注：本文中提及的多项式回归法，指的是管理学中常用的二次响应面回归法，可能和统计学中的有所不同哈~">
+<meta name="twitter:description" content="啦啦啦啦啦，萜妹终于又开始写推送啦~
+不知道萜妹没有更新的日子，小可爱们在干嘛，萜妹我呢，最近在学习新的方法，所以想跟小可爱们分享~
+（其实是怕自己以后忘记，哈哈哈）
+话不多说，我们直接开始啦。
+注：本文中提及的多项式回归法，指的是管理学中常用的二次响应面回归法，可能和统计学中的有所不同哈~">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2018-06-10T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-06-10T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="干货">
+    
+      <meta property="article:section" content="研究方法">
+    
+  
+  
+    
+      <meta property="article:tag" content="Social Relations Analysis">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>RSA丨多项式回归之原理篇</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2018/06/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E5%8E%9F%E7%90%86%E7%AF%87/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      RSA丨多项式回归之原理篇
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2018-06-10T00:00:00Z">
+        
+  
+  
+  
+  
+    2018-06-10
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%b9%b2%e8%b4%a7">干货</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e7%a0%94%e7%a9%b6%e6%96%b9%e6%b3%95">研究方法</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>啦啦啦啦啦，萜妹终于又开始写推送啦~</p>
+<p>不知道萜妹没有更新的日子，小可爱们在干嘛，萜妹我呢，最近在学习新的方法，所以想跟小可爱们分享~</p>
+<p>（其实是怕自己以后忘记，哈哈哈）</p>
+<p>话不多说，我们直接开始啦。</p>
+<p>注：本文中提及的多项式回归法，指的是管理学中常用的二次响应面回归法，可能和统计学中的有所不同哈~</p>
+<h1 id="step-1-方法起源及应用">Step 1 方法起源及应用</h1>
+<h2 id="应用领域"><strong>应用领域</strong></h2>
+<p>多项式回归法在管理学中的应用主要起源并集中于个体-环境匹配（简称P-E）研究。</p>
+<p>因为行为交互理论表明：个体或团队态度、行为等变化的原因不能简单归因于个体或环境的因素，而应当归因于二者相互作用共同产生的效应。</p>
+<h2 id="方法提出"><strong>方法提出</strong></h2>
+<p>有关P-E研究的测量，主要分为两种。</p>
+<p>第一种是直接的匹配测量。它要求被试<strong>直接判断</strong>个体与环境的匹配程度。其优点在于操作简单，但它<strong>不能考察个体或环境的独立效应</strong>。</p>
+<p>第二种是间接的匹配测量。它要求被试<strong>分别评价</strong>个体和环境的特征，然后再对二者进行比较。常用的计算指标有：差异分数。</p>
+<p>但是先前的间接匹配方法也存在一定的缺陷，比如使用差异分数法，当两个测量指标同时大或同时小时, 可能会得到相同的差异分数值, 而实际上测量指标本身的高、低对结果变量通常具有不同的效应。</p>
+<p>所以Edwards和Parry (1993) 提出了的多项式回归法，来解决这个问题。</p>
+<h1 id="step-2-原理说明">Step 2 原理说明</h1>
+<h2 id="直线型图"><strong>直线型图</strong></h2>
+<p>首先，我们先考虑下图。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112324552.png" alt="image-20221205143322734"></p>
+<p>它描述了差异分数与结果的正向关系，其可由以下回归方程表示： $$ Z=b_0+b_1(X-Y)+e. $$ 其中：Z是结果；X是个体；Y是环境；e是随机误差。</p>
+<p>将上式展开可得： $$ Z=b_0+b_1X-b_1Y+e. $$ 结果如下图所示：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112324940.png" alt="image-20221205143501202"></p>
+<p>其中X和Y的系数受到了约束，即限制了个体和环境对结果的作用相同。但往往现实并非如此，所以将上式的约束条件放开，可得下式： $$ Z=b_0+b_1X+b_2Y+e. $$</p>
+<h2 id="倒v型图"><strong>倒V型图</strong></h2>
+<p>接下来，我们考虑倒V型图。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112324610.png" alt="image-20221205143607549"></p>
+<p>如图所示，当X与Y相等时，结果最大化，即可由以下回归方程表示： $$ Z=b_0+b_1\lvert X-Y\rvert+e. $$ 但是，因为绝对值没办法被展开，所以将上式替换为： $$ Z=b_0+b_1(1-2W)(X-Y)+e. $$ 其中W是一个潜在变量，当X-Y为正时等于0；当X-Y为负时等于1；当X=Y时随机为0或1。将上式展开可得： $$ Z=b_0+b_1X-b_1Y-2b_1WX+2b_1WY +e. $$ 结果如下图所示：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112324736.png" alt="image-20221205144010151"></p>
+<p>但是其中X和Y的系数依然受到了约束，所以将上式的约束条件放开，可得下式： $$ Z=b_0+b_1X+b_2Y+b_3W+b_4WX+b_5WY+e. $$</p>
+<h2 id="倒u型图"><strong>倒U型图</strong></h2>
+<p>最后，我们考虑下图。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112324643.png" alt="image-20221205144121811"></p>
+<p>它与倒V型图相似，但其上升和下降幅度存在差异。这两类图形所示关系在P-E研究中较为常见，其可由以下回归方程表示： $$ Z=b_0+b_1(X-Y)^2+e. $$ 将上式展开可得： $$ Z=b_0+b_1X^2-2b_1XY+b_1Y^2 +e. $$ 结果如下图所示：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112324770.png" alt="image-20221205144138779"></p>
+<p>其中 X2、XY、Y2的系数依然受到了约束，所以将上式的约束条件放开，可得下式： $$ Z=b_0+b_1X+b_2Y+b_3X^2+b_4XY+b_5Y^2+e. $$ 注：放开约束条件后，在展开过程中，当X乘以Y和Y乘以X时，不能简单的将结果合并为XY；而应该将其转化在X、Y、XY三个因子上。</p>
+<hr>
+<p>公式10就是多项式回归中常用的范式了。大概说到这一步，原理解释部分就可以告一段落。接下来就是数据分析的部分。</p>
+<p>数据分析部分的操作简单，只要在SPSS中做出中心化的X、Y、X2、XY、Y2这几个项，随后用线性回归的方法算出b1-b5的取值与显著性即可。</p>
+<p>关于多项式回归的难点在于对数据的结果进行解读。现阶段的萜妹，自我感觉只是勉强一只脚入了门，所以还有很多需要学习的地方，下一次推送估计只能讲解最简单的解读方法啦~</p>
+<p>另外，如果有小可爱对这种方法有兴趣，可以多看看Edwards的文章，尤其推荐Polynomial Regression and Response Surface Methodology，这篇推送差不多就是基于这篇2007年的文章的哟~</p>
+<p>外文文献的下载方法可以看之前的文章，那么今天的推送就到这里了~</p>
+<p>小可爱们，下周见~</p>
+<p><strong>原文推送：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484340&amp;idx=1&amp;sn=4b94d47336a7999103d64180dd2b6bcb&amp;chksm=96f47752a183fe442e5f70fafd1db74548b279cf26bf85b04b839fd350bb0630bfebf659d49e&amp;token=77326159&amp;lang=zh_CN#rd">➪干货丨多项式回归之原理篇</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/social-relations-analysis/">Social Relations Analysis</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2018/08/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E6%93%8D%E4%BD%9C%E7%AF%87/" data-tooltip="RSA丨多项式回归之操作篇" aria-label="下一篇: RSA丨多项式回归之操作篇">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2018/05/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD%E8%8B%B1%E6%96%87%E6%96%87%E7%8C%AE/" data-tooltip="如何下载英文文献" aria-label="上一篇: 如何下载英文文献">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2018/08/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E6%93%8D%E4%BD%9C%E7%AF%87/" data-tooltip="RSA丨多项式回归之操作篇" aria-label="下一篇: RSA丨多项式回归之操作篇">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2018/05/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD%E8%8B%B1%E6%96%87%E6%96%87%E7%8C%AE/" data-tooltip="如何下载英文文献" aria-label="上一篇: 如何下载英文文献">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

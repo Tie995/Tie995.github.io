@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Excel丨自动提取DOI与作者引用",
+  
+  "datePublished": "2021-01-10T00:00:00Z",
+  "dateModified": "2021-01-10T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2021\/01\/excel%E4%B8%A8%E8%87%AA%E5%8A%A8%E6%8F%90%E5%8F%96doi%E4%B8%8E%E4%BD%9C%E8%80%85%E5%BC%95%E7%94%A8\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "萜妹是office的狂热粉丝，前阵子写了套自动提取DOI和作者年份的EXCEL公式，这周打算借着这个公式来介绍一些EXCEL函数吧。\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="萜妹是office的狂热粉丝，前阵子写了套自动提取DOI和作者年份的EXCEL公式，这周打算借着这个公式来介绍一些EXCEL函数吧。">
+
+
+<meta property="og:description" content="萜妹是office的狂热粉丝，前阵子写了套自动提取DOI和作者年份的EXCEL公式，这周打算借着这个公式来介绍一些EXCEL函数吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Excel丨自动提取DOI与作者引用">
+<meta name="twitter:title" content="Excel丨自动提取DOI与作者引用">
+<meta property="og:url" content="https://tie-blog.netlify.app/2021/01/excel%E4%B8%A8%E8%87%AA%E5%8A%A8%E6%8F%90%E5%8F%96doi%E4%B8%8E%E4%BD%9C%E8%80%85%E5%BC%95%E7%94%A8/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2021/01/excel%E4%B8%A8%E8%87%AA%E5%8A%A8%E6%8F%90%E5%8F%96doi%E4%B8%8E%E4%BD%9C%E8%80%85%E5%BC%95%E7%94%A8/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="萜妹是office的狂热粉丝，前阵子写了套自动提取DOI和作者年份的EXCEL公式，这周打算借着这个公式来介绍一些EXCEL函数吧。">
+<meta name="twitter:description" content="萜妹是office的狂热粉丝，前阵子写了套自动提取DOI和作者年份的EXCEL公式，这周打算借着这个公式来介绍一些EXCEL函数吧。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2021-01-10T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-01-10T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="干货">
+    
+      <meta property="article:section" content="软件技巧">
+    
+  
+  
+    
+      <meta property="article:tag" content="Excel">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>Excel丨自动提取DOI与作者引用</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2021/01/excel%E4%B8%A8%E8%87%AA%E5%8A%A8%E6%8F%90%E5%8F%96doi%E4%B8%8E%E4%BD%9C%E8%80%85%E5%BC%95%E7%94%A8/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Excel丨自动提取DOI与作者引用
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2021-01-10T00:00:00Z">
+        
+  
+  
+  
+  
+    2021-01-10
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%b9%b2%e8%b4%a7">干货</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e8%bd%af%e4%bb%b6%e6%8a%80%e5%b7%a7">软件技巧</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>萜妹是office的狂热粉丝，前阵子写了套自动提取DOI和作者年份的EXCEL公式，这周打算借着这个公式来介绍一些EXCEL函数吧。</p>
+<p>由于最开始设计公式是为了LME元分析项目，所以公式针对的是如下引用形式：</p>
+<p>Goetz, K. H. (2017, Mar). political leadership in the European Union: a time-centred view [Article]. European Political Science, 16(1), 48-59. <a href="https://doi.org/10.1057/eps.2015.115">https://doi.org/10.1057/eps.2015.115</a></p>
+<p>后续的介绍，我会讲述我设计出两个自动提取公式的心路历程以及所用的每个函数的意义，小可爱们可以依据这些函数调整出自己需要的格式。</p>
+<p><strong>提取DOI</strong></p>
+<p>不难发现，DOI通常位于引用的最末端，所以<strong>我们首先要用到提取末端字符的函数——RIGHT。</strong></p>
+<p>RIGHT的作用是：根据所指定的字符数返回文本字符串中最后一个或多个字符。具体公式如下：</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">RIGHT(text,[num_chars])
+</code></pre><ul>
+<li>text：指要提取字符的文本字符串；</li>
+<li>num_chars：指定希望 RIGHT 提取的字符数。</li>
+</ul>
+<p>我们可在【text】中填入引用所在单元格【A1】，但【num_chars】的数值尚不清楚。</p>
+<p>再回顾引用可以发现，doi的前缀其实是有规律的，即【https://doi.org/】，因此我们可以通过识别固定的字符串而定位到具体的字符位置。这里需要用到FIND函数。</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">FIND(find_text, within_text, [start_num])
+</code></pre><ul>
+<li>
+<p>find_text：要查找的文本；</p>
+</li>
+<li>
+<p>within_text：包含要查找文本的文本；</p>
+</li>
+<li>
+<p>start_num：指定开始进行查找的字符。</p>
+<p>注：within_text 中的首字符是编号为1的字符。如果省略 start_num，则假定其值为 1。</p>
+</li>
+</ul>
+<p>为了运算的简单，我们把需识别的固定字符缩短为【org/】，那么这里【find_text】为【“org/”】。注意要加“”号，这样才代表了文本，否则会报错。</p>
+<p>此时，FIND(“org/&quot;,A1)=238，这代表“org/”中的o是A1的238个字符。</p>
+<p>考虑到RIGHT函数的字符数是从后数起的，所以我们还要用总体字符数减去固定位字符数才行。</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">LEN(text)
+</code></pre><ul>
+<li>text：指要提取字符的文本字符串。</li>
+</ul>
+<p>LEN 返回文本字符串中的字符个数。</p>
+<p>但是LEN(A1)-FIND(“org/&quot;,A1)定位到的字符数是包含“rg/”的，所以我们最终还应该减去3个字符，才是最终的【num_chars】。因此完整公式为</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">RIGHT(A1,LEN(A1)-FIND(&quot;org/&quot;,A1)-3)
+</code></pre><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112320543.png" alt="img"></p>
+<p><strong>自动生成作者及年份</strong></p>
+<p>生成作者及年份的引用方式要复杂一些。因为<strong>根据作者的数量，引用的方式会有不同</strong>。</p>
+<ul>
+<li>1人：Ronnle, 2017；</li>
+<li>2人：Gedikli &amp; Balaban, 2018；</li>
+<li>3人及以上：Canete et al., 2018。</li>
+</ul>
+<p>所以我们肯定要涉及IF函数。</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">IF(Logical_test, Value_if_ture, Value_if_false)
+</code></pre><ul>
+<li>Logical_test：逻辑检验；</li>
+<li>Value_if_turet：检验为真时的结果；</li>
+<li>Value_if_false：检验为假时的结果。</li>
+</ul>
+<p>逻辑检验就看三者的作者引用有什么不同：</p>
+<ul>
+<li>1人：Ronnle, E. (2017). Planners' analysis ……</li>
+<li>2人：Gedikli, B., &amp; Balaban, O. (2018). An ……</li>
+<li>3人及以上：Canete, J. A., Navarro, F., &amp; Cejudo, E. (2018). Territorially ……</li>
+</ul>
+<p>观察得出，三种方式在作者部分均有【,】字符，且根据作者数量分别为<strong>1个、3个和更多个</strong>。</p>
+<p>所以萜妹决定把上述条件作为逻辑检验，那这<strong>怎么计算文本中特定字符的次数</strong>呢？</p>
+<p>萜妹原本也不会，但是度娘是万能的，于是让我找到了SUBSTITUTE公式。</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">SUBSTITUTE(text, old_text, new_text, [instance_num])
+</code></pre><ul>
+<li>
+<p>text：需要替换其中字符的文本，或对含有文本（需要替换其中字符）的单元格的引用；</p>
+</li>
+<li>
+<p>old_text：需要替换的文本；</p>
+</li>
+<li>
+<p>new_text：用于替换 old_text 的文本；</p>
+</li>
+<li>
+<p>Instance_num：指定要发生替换的出现位置。</p>
+<p>注：如果指定了 instance_num，则只有满足要求的 old_text 被替换。否则，文本中出现的所有 old_text 都会更改为 new_text。例如，指定3则替换第三个old_text。</p>
+</li>
+</ul>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112320426.png" alt="img"></p>
+<p>所以【SUBSTITUTE(LEFT(A2,FIND(&quot;(&quot;,A2)),”,”,&quot;&quot;】意味着将所有的【,】替换为了【】（空值）。</p>
+<p>那么此时计算原文本长度与新文本长度的差值，便是【,】的数量。</p>
+<p>考虑到标题和其他部分也有可能出现【,】符号，因此我们将替换计数的部分局限于年份之前，这样就不会有纰漏，LEFT函数可以帮助我们实现这个功能。</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">LEFT(text,[num_chars])
+</code></pre><ul>
+<li>text：指要提取字符的文本字符串；</li>
+<li>num_chars：指定希望 LEFT 提取的字符数。</li>
+</ul>
+<p>再结合FIND函数可以提取年份前的文本，即【LEFT(A1,FIND(&quot;(&quot;,A1)))】</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112320313.png" alt="img"></p>
+<p>最后结合LEN函数，计算年份之前的【,】数量的公式为</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">LEN(LEFT(A1,FIND(&quot;(&quot;,A1)))-LEN(SUBSTITUTE(LEFT(A1,FIND(&quot;(&quot;,A1)),&quot;,&quot;,&quot;&quot;))
+</code></pre><p>解决完逻辑判断，我们还要形成各类结果。</p>
+<p>不难发现，它们都是由作者与年份两个部分组成，那我们先来提取简单的年份。</p>
+<p>年份由于在文本的中央，所以要用MID函数。</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">MID(text, start_num, num_chars)
+</code></pre><ul>
+<li>
+<p>text：指要提取字符的文本字符串；</p>
+</li>
+<li>
+<p>start_num：</p>
+<p>文本中要提取的第一个字符的位置；</p>
+</li>
+<li>
+<p>num_chars：指定 MID 从文本中返回字符的个数。</p>
+</li>
+</ul>
+<p>结合FIND函数，我们对年份的提取公式为：</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">MID(A1,FIND(&quot;(&quot;,A1)+1,4)
+</code></pre><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112320424.png" alt="img"></p>
+<p>而对作者的提取稍微有些复杂，首先三种情况都需要提取第一位作者的名，我们借助LEFT函数进行：</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">LEFT(A1,FIND(&quot;,&quot;,A1)-1)
+</code></pre><p>此时，1人与3人作者时的引用表达已经出来了，利用连字符【&amp;】，我们将公式写成：</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">LEFT(A1,FIND(&quot;,&quot;,A1)-1)&amp;&quot;, &quot;&amp;MID(A1,FIND(&quot;(&quot;,A1)+1,4)
+LEFT(A1,FIND(&quot;,&quot;,A1)-1)&amp;&quot; et al., &quot;&amp;MID(A1,FIND(&quot;(&quot;,A1)+1,4
+</code></pre><p>2人作者的复杂点在于还需提取第二个作者的名，这里就要灵活运用上述的多个公式。</p>
+<p>最终第二个作者名字的公式为：</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">LEFT(MID(A3,FIND(&quot;&amp;&quot;,A3)+2,LEN(A3)),FIND(&quot;,&quot;,MID(A3,FIND(&quot;&amp;&quot;,A3)+2,LEN(A3)))-1)
+</code></pre><p>有兴趣的小可爱可以自己推推，萜妹就不展开了。</p>
+<p>因此，完整公式为</p>
+<pre tabindex="0"><code class="language-Excel" data-lang="Excel">IF(LEN(LEFT(A1,FIND(&quot;(&quot;,A1)))-LEN(SUBSTITUTE(LEFT(A1,FIND(&quot;(&quot;,A1)),&quot;,&quot;,&quot;&quot;))=1**,**LEFT(A1,FIND(&quot;,&quot;,A1)-1)&amp;&quot;, &quot;&amp;MID(A1,FIND(&quot;(&quot;,A1)+1,4)**,**IF(LEN(LEFT(A1,FIND(&quot;(&quot;,A1)))-LEN(SUBSTITUTE(LEFT(A1,FIND(&quot;(&quot;,A1)),&quot;,&quot;,&quot;&quot;))=3**,**LEFT(A1,FIND(&quot;,&quot;,A1)-1)&amp;&quot; &amp; &quot;&amp;LEFT(MID(A1,FIND(&quot;&amp;&quot;,A1)+2,LEN(A1)),FIND(&quot;,&quot;,MID(A1,FIND(&quot;&amp;&quot;,A1)+2,LEN(A1)))-1)&amp;&quot;, &quot;&amp;MID(A1,FIND(&quot;(&quot;,A1)+1,4)**,**LEFT(A1,FIND(&quot;,&quot;,A1)-1)&amp;&quot; et al., &quot;&amp;MID(A1,FIND(&quot;(&quot;,A1)+1,4)))
+</code></pre><p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112320727.png" alt="img"></p>
+<hr>
+<p>啦啦啦，这篇推送就到这里啦。想要完成这些步骤并非一定要用上述的组合方式，小可爱们也可以自行探索其他的组合呀。</p>
+<p>另外，可能最后的完整公式对绝大部分的小可爱没用，但是前面介绍的那些小函数，融会贯通还是能在不经意的时候起到大用处的。萜妹有时间会再来介绍其他EXCEL函数哒~</p>
+<p>最后，萜妹最近不太顺。推送我还是尽量不鸽，如果开启冬眠会提前告诉大家的。那不出意外，我们下周见~</p>
+<p><strong>往期推送</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485802&amp;idx=1&amp;sn=071cc8dfec2afb60cee978d167ab0810&amp;chksm=96f47d8ca183f49a6f590f4343018c6a620060dab882e14c22e0bc2573d96434e5d2257a9bb8&amp;token=1093685792&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪二零二零最终回：送给366天前的自己</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485343&amp;idx=1&amp;sn=d99456fc386248f9ac26fdfddf5376c9&amp;chksm=96f47379a183fa6f339773e5ae8442811954f233fb300afa67e3aef6f5c2bb36dbefc3c96bd2&amp;token=491662985&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪合集丨保姆级毕业论文实操教程（内含福利）</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485302&amp;idx=1&amp;sn=683be3680ebcf3d212a4e76f60ac9efa&amp;chksm=96f47390a183fa8659f035c504e83049108c42832efaa616fb0b53ce46635e0c4bc88b527778&amp;token=392107249&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨数据分析全过程视频示范</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484316&amp;idx=1&amp;sn=3705f21c9cf7c2ef8038a0144233177d&amp;chksm=96f4777aa183fe6cef2f66a2d38eb39520cdfe8c089f87438dba63c7a6076b86417f9bd6fc92&amp;token=392107249&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨外文文献下载方法</a></strong></p>
+<p><strong>原文链接：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485811&amp;idx=1&amp;sn=5351f6aab34cb382c54988060dbb02d1&amp;chksm=96f47d95a183f483edeae2aea9143471ef1ad56e3a1a09037c9605d61a2b2878366d926056a7&amp;token=791817677&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪Excel丨自动提取DOI与作者引用</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/excel/">Excel</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2021/01/endnote%E4%B8%A8%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E6%8C%87%E5%8D%97/" data-tooltip="EndNote丨批量导入指南" aria-label="下一篇: EndNote丨批量导入指南">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/12/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97%E8%8B%B1%E6%96%87%E6%96%87%E7%8C%AE/" data-tooltip="如何获得英文文献" aria-label="上一篇: 如何获得英文文献">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2021/01/endnote%E4%B8%A8%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E6%8C%87%E5%8D%97/" data-tooltip="EndNote丨批量导入指南" aria-label="下一篇: EndNote丨批量导入指南">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/12/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97%E8%8B%B1%E6%96%87%E6%96%87%E7%8C%AE/" data-tooltip="如何获得英文文献" aria-label="上一篇: 如何获得英文文献">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

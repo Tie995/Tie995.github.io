@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "QCA丨模糊集校准步骤",
+  
+  "datePublished": "2019-11-24T00:00:00Z",
+  "dateModified": "2019-11-24T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2019\/11\/qca%E4%B8%A8%E6%A8%A1%E7%B3%8A%E9%9B%86%E6%A0%A1%E5%87%86%E6%AD%A5%E9%AA%A4\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": "啦啦啦，萜妹前段时间做了次模糊集QCA的数据分析，在实操过程中发现了一些讲座中没有提及的问题，也更深入的总结一些技巧。\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="啦啦啦，萜妹前段时间做了次模糊集QCA的数据分析，在实操过程中发现了一些讲座中没有提及的问题，也更深入的总结一些技巧。">
+
+
+<meta property="og:description" content="啦啦啦，萜妹前段时间做了次模糊集QCA的数据分析，在实操过程中发现了一些讲座中没有提及的问题，也更深入的总结一些技巧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QCA丨模糊集校准步骤">
+<meta name="twitter:title" content="QCA丨模糊集校准步骤">
+<meta property="og:url" content="https://tie-blog.netlify.app/2019/11/qca%E4%B8%A8%E6%A8%A1%E7%B3%8A%E9%9B%86%E6%A0%A1%E5%87%86%E6%AD%A5%E9%AA%A4/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2019/11/qca%E4%B8%A8%E6%A8%A1%E7%B3%8A%E9%9B%86%E6%A0%A1%E5%87%86%E6%AD%A5%E9%AA%A4/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="啦啦啦，萜妹前段时间做了次模糊集QCA的数据分析，在实操过程中发现了一些讲座中没有提及的问题，也更深入的总结一些技巧。">
+<meta name="twitter:description" content="啦啦啦，萜妹前段时间做了次模糊集QCA的数据分析，在实操过程中发现了一些讲座中没有提及的问题，也更深入的总结一些技巧。">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-11-24T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-11-24T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="干货">
+    
+      <meta property="article:section" content="研究方法">
+    
+  
+  
+    
+      <meta property="article:tag" content="Qualitative Comparative Analysis">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>QCA丨模糊集校准步骤</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2019/11/qca%E4%B8%A8%E6%A8%A1%E7%B3%8A%E9%9B%86%E6%A0%A1%E5%87%86%E6%AD%A5%E9%AA%A4/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      QCA丨模糊集校准步骤
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2019-11-24T00:00:00Z">
+        
+  
+  
+  
+  
+    2019-11-24
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e5%b9%b2%e8%b4%a7">干货</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e7%a0%94%e7%a9%b6%e6%96%b9%e6%b3%95">研究方法</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <p>啦啦啦，萜妹前段时间做了次模糊集QCA的数据分析，在实操过程中发现了一些讲座中没有提及的问题，也更深入的总结一些技巧。</p>
+<p>所以萜妹想着结合自己的体验跟小可爱们分享下，要是有其他小可爱也做过模糊集QCA的话，也欢迎跟萜妹交流啊~</p>
+<hr>
+<h1 id="赋值校准"><strong>赋值校准</strong></h1>
+<h2 id="量表校准"><strong>量表校准</strong></h2>
+<p>量表的校准通常是采用直接校准法，取最高值、平均值、最低值为完全隶属点、交叉项和完全不隶属点。例如likert 5点评分表的校准点就是5、3、1。</p>
+<p>这里萜妹的参考文献是：Poorkavoos, M., Duan, Y., Edwards, J. S., &amp; Ramanathan, R. (2016). Identifying the configurational paths to innovation in SMEs: A fuzzy-set qualitative comparative analysis. Journal of Business Research, 69(12), 5843-5854.</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112326944.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112326016.png" alt="img"></p>
+<h2 id="数值校准"><strong>数值校准</strong></h2>
+<p>虽然理想的校准应该采用外部标准，即理论和实际知识，而非案例本身的数据。但是有时外部标准不明，所以有研究还是采取样本数据的百分位数决定的。</p>
+<blockquote>
+<p>谭海波, 范梓腾, &amp; 杜运周. (2019). 技术管理能力、注意力分配与地方政府网站建设——一项基于toe框架的组态分析. 管理世界, (9), 33-46.</p>
+</blockquote>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112326044.png" alt="img"></p>
+<p>所以目前找不到外部标准的时候应该还是可以这样处理的，毕竟顶刊都这样发了，对吧。</p>
+<h1 id="标准点计算"><strong>标准点计算</strong></h1>
+<h2 id="excel算分位数"><strong>Excel算分位数</strong></h2>
+<p>萜妹算95%和5%分位数会使用EXCEL软件，当然其他的软件也可。</p>
+<p>EXCEL计算分位数的公式：<strong>=PERCENTILE(array, k)</strong> ，如：=PERCENTILE(H2:H33,0.05)。</p>
+<p><strong>Tosmana算交叉点</strong></p>
+<p>很多文章里都有说是参考tosmana给出的建议值选取交叉点的。</p>
+<p>具体的软件操作为：导入数据后点击【fsQCA】-【Calibrate】，再按对应选择即可。</p>
+<p>听起来是不是很容易，但是萜妹换了好几组数据，以及重新去下了最新版本的tosmana也没做出来。心痛，不知道哪里出了问题。</p>
+<p>不过，如果一切顺利应该就会得到美美的图和软件建议的数值啦。比如这样：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112326926.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112326731.png" alt="img"></p>
+<h1 id="交叉点处理"><strong>交叉点处理</strong></h1>
+<p>这个部分萜妹之前也有说过，有时候为了避免交叉值被忽略会对交叉点进行处理。部分研究者通常在0.5的基础上增加或者减少一个微小数字以避免交叉点的出现。</p>
+<p>当然，萜妹认为是加是减，是加0.01还是0.001要根据自己的原始数据。要看怎么样处理才能避免交叉项，不能处理完没有改变，那就没意义了。</p>
+<p>至于这样处理的依据，萜妹参考的是：</p>
+<blockquote>
+<p>Greckhamer, T. (2016). CEO compensation in relation to worker compensation across countries: The configurational impact of country‐level institutions. Strategic Management Journal, 37(4), 793-815.</p>
+</blockquote>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112326636.png" alt="img"></p>
+<p>小可爱们也可以去看原始的文章。</p>
+<p>虽然这一方法从技术上能够轻而易举地解决案例归类问题，但是却显得过于主观和武断。操作后可能会使案例归属为不同的真值表行，解决办法是重新调整校准阈值（张明&amp;杜运周，2019）</p>
+<hr>
+<p>啦啦啦，这篇推送就结束啦。如果不是我下了快两个小时的最新软件，它应该能出现的更早。尤其是最后萜妹依旧没做出那个图就真的好气啊！</p>
+<p>关于QCA，萜妹其实也还是刚入门的小垃圾。如果不是帮别人跑数据，萜妹也没有想过会有这些新问题。所以我也是在不断遇到问题、解决问题的自学道路上艰难前进。要是有小可爱有这方面的经验或者同样也这么艰难着，萜妹超欢迎大家跟我交流的，能解决我的问题就更好了！hhh</p>
+<p>之后其实模糊集QCA方面，萜妹还有问题没解决，所以如果后续可以解决会再有这方面更新的。如果我一时半会解决不了，那下周就会更新一些mplus的语句范例。</p>
+<p>那我们下周见啦~</p>
+<p><strong>原文推送：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484971&amp;idx=1&amp;sn=b21d0eec2e111266442d66420f95a3af&amp;chksm=96f472cda183fbdb2a0796d5d4ab23ad260e1cc399a5cfdf80a22a08b5cf822f2ef4c29a2203#rd">➪干货丨模糊集校准心得</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/qualitative-comparative-analysis/">Qualitative Comparative Analysis</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2019/12/mplus%E4%B8%A8%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%AF%AD%E5%8F%A5/" data-tooltip="Mplus丨常用模型语句" aria-label="下一篇: Mplus丨常用模型语句">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2019/11/%E8%8B%B1%E6%96%87%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E8%BD%AF%E4%BB%B6/" data-tooltip="英文文献阅读软件" aria-label="上一篇: 英文文献阅读软件">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2019/12/mplus%E4%B8%A8%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%AF%AD%E5%8F%A5/" data-tooltip="Mplus丨常用模型语句" aria-label="下一篇: Mplus丨常用模型语句">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2019/11/%E8%8B%B1%E6%96%87%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E8%BD%AF%E4%BB%B6/" data-tooltip="英文文献阅读软件" aria-label="上一篇: 英文文献阅读软件">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

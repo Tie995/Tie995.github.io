@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "RSA丨多项式回归之基本模板",
+  
+  "datePublished": "2020-08-30T00:00:00Z",
+  "dateModified": "2020-08-30T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2020\/08\/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A8%A1%E6%9D%BF\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": " Cole, M. S. , Carter, M. Z. , \u0026amp; Zhang, Z. . (2013). Leader-team congruence in power distance values and team effectiveness: the mediating role of procedural justice climate. Journal of Applied Psychology, 98(6), 962-973.\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="
+Cole, M. S. , Carter, M. Z. , &amp; Zhang, Z. . (2013). Leader-team congruence in power distance values and team effectiveness: the mediating role of procedural justice climate. Journal of Applied Psychology, 98(6), 962-973.
+">
+
+
+<meta property="og:description" content="
+Cole, M. S. , Carter, M. Z. , &amp; Zhang, Z. . (2013). Leader-team congruence in power distance values and team effectiveness: the mediating role of procedural justice climate. Journal of Applied Psychology, 98(6), 962-973.
+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RSA丨多项式回归之基本模板">
+<meta name="twitter:title" content="RSA丨多项式回归之基本模板">
+<meta property="og:url" content="https://tie-blog.netlify.app/2020/08/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A8%A1%E6%9D%BF/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2020/08/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A8%A1%E6%9D%BF/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="
+Cole, M. S. , Carter, M. Z. , &amp; Zhang, Z. . (2013). Leader-team congruence in power distance values and team effectiveness: the mediating role of procedural justice climate. Journal of Applied Psychology, 98(6), 962-973.
+">
+<meta name="twitter:description" content="
+Cole, M. S. , Carter, M. Z. , &amp; Zhang, Z. . (2013). Leader-team congruence in power distance values and team effectiveness: the mediating role of procedural justice climate. Journal of Applied Psychology, 98(6), 962-973.
+">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2020-08-30T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-08-30T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="方法精读">
+    
+      <meta property="article:section" content="配对研究">
+    
+  
+  
+    
+      <meta property="article:tag" content="Polynomial Regression">
+    
+      <meta property="article:tag" content="Social Relations Analysis">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>RSA丨多项式回归之基本模板</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2020/08/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A8%A1%E6%9D%BF/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      RSA丨多项式回归之基本模板
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2020-08-30T00:00:00Z">
+        
+  
+  
+  
+  
+    2020-08-30
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e6%96%b9%e6%b3%95%e7%b2%be%e8%af%bb">方法精读</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e9%85%8d%e5%af%b9%e7%a0%94%e7%a9%b6">配对研究</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <blockquote>
+<p>Cole, M. S. , Carter, M. Z. , &amp; Zhang, Z. . (2013). Leader-team congruence in power distance values and team effectiveness: the mediating role of procedural justice climate. Journal of Applied Psychology, 98(6), 962-973.</p>
+</blockquote>
+<p>前几天有朋友问我，QCA遇到类变量的时候怎么办，有没有文章可以参考。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129579.png" alt="img"></p>
+<p>在把文章发过去后，我突然想到，我要不开个新模块专门介绍各种方法的优质模板吧。</p>
+<p>之前一直没做过文献方面的输出，因为萜妹在这方面比操作要弱些，但想要更进一步，文献阅读也必不可少。所以让我边复习、边分享、边学习地开启这个新模块吧~</p>
+<p><strong>原文链接：</strong></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485473&amp;idx=1&amp;sn=7236d0eef4edd614af3931f4d4212c71&amp;chksm=96f47cc7a183f5d192996cfecf91f0fc68cb666f33fe14418d49d9d0fa713fe51f57503afb91&amp;token=299396922&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪范文丨多项式回归之基本模板</a></p>
+<h2 id="整体介绍"><strong>整体介绍</strong></h2>
+<h3 id="摘要">摘要</h3>
+<p>本文考察了领导者与团队之间权力距离一致性对团队有效性的影响。本文假设这些价值观间的一致性会不同程度的预测团队有效性，而程序正义氛围起中介作用。利用多源数据和多项式回归，本文发现领导者和团队权力距离值的相似性（差异性）会对团队的公平氛围产生影响，并最终影响团队有效性（团队绩效和团队组织公民行为）。本文的结论是：为了充分理解权力距离的含义，学者应该考虑领导者和团队成员的多重视角。</p>
+<p>We examine the effect of (in)congruence between leaders’ and teams’ power distance values on team effectiveness. We hypothesize that the (in)congruence between these values would differentially predict team effectiveness, with procedural justice climate serving as a mediator. Using multisource data and polynomial regression, we found that similarities (and differences) between leaders’ and their teams’ power distance values can have consequential effects on teams’ justice climate and, ultimately, their effectiveness (viz., team performance and team organizational citizenship behavior). We conclude that to fully understand the implications of power distance, one should consider the multiple perspectives of both leaders and team members.</p>
+<h3 id="理论模型">理论模型</h3>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129623.png" alt="img"></p>
+<h3 id="模型假设">模型假设</h3>
+<p>PJC代表程序公平氛围，OCB代表组织公民行为。</p>
+<ul>
+<li>H1：领导-团队权力距离一致性与团队PJC正相关；</li>
+<li>H2：相比于领导权力距离低于团队权力距离时，领导权力距离高于团队权力距离时，PJC的下降更剧烈；</li>
+<li>H3：领导-团队权力距离一致性会通过PJC对（a）团队绩效和（b）团队OCB造成积极的间接影响。</li>
+</ul>
+<h2 id="研究方法"><strong>研究方法</strong></h2>
+<h3 id="样本及程序">样本及程序</h3>
+<p>第一段描述了样本的选取，介绍了所选公司为何符合此次调研。</p>
+<p>第二段描述了问卷收集的三个来源，分别是：团队成员、正式团队领导和外部高层管理人员（如团队之上的一个层级）。</p>
+<p>如模型图所示，各变量与来源对应关系如下：</p>
+<ul>
+<li>团队成员：汇报个人的权力距离、程序正义感知和人口统计学变量；</li>
+<li>团队领导：汇报个人的权力距离和人口统计学变量，并对每一位团队成员的OCB进行评价；</li>
+<li>外部领导：评估团队的整体表现。</li>
+</ul>
+<p>第三段根据不同公司，分别描述了被试的具体应答情况。</p>
+<p>For Company A, the average actual team size was five, ranging from three to six team members. Of the 52 teams in this company, we obtained usable data from 43 teams, yielding a team-level response rate of 83%. On average, three team members (SD=0.52) completed the survey (not including the formal team leader) for a mean within-team response rate of 74%. A representative team member was male (81%), 26 years of age, and with an average organizational tenure of 2.2 years. A representative team leader was male (77%), 31 years of age, and with an average organizational tenure of 5.4 years. For Company B, ……</p>
+<p>第四段回答了无应答者偏差。</p>
+<p>We pooled the teams (n=78) into one data set to increase the statistical power of our analyses.3We examined the potential for nonresponse bias based on personnel records. Across both companies, there were no significant differences between respondents and nonrespondents on gender, age, and organizational tenure.</p>
+<h3 id="测量"><strong>测量</strong></h3>
+<p>测量部分和其他文章没什么区别，萜妹这里仅附上对权力距离测量的描述，其他不做说明。</p>
+<p>We assessed team leaders’ and team members’ power distance values using the six-item measure developed by Dorfman and Howell (1988). Leaders and team members provided a self-ascriptive rating of their personal values; that is, the items referred to individuals’ conceptions about how managers and subordinates should behave in general (not specific to any one organization or work unit). Sample items include “Managers should make most decisions without consulting subordinates” and “Subordinates should not disagree with managers’ decisions.” <strong>For leader power distance, the reliability was .89. For team power distance, we followed prior research (J. Yang et al., 2007) and used a direct consensus composition model (Chan, 1998) when assessing members’ responses. The reliability for team power distance was .94.</strong></p>
+<p>这里是团队层的研究，所以需要把个体层的权力距离先聚合到团队层。并且，领导和团队的内部一致性系数应分开报告。</p>
+<h3 id="数据聚合"><strong>数据聚合</strong></h3>
+<p>因为是团队层研究，所以需要报告ICC、Rwg等相关指数。</p>
+<p>Corresponding analysis of variance demonstrated that team power distance, F(77, 173) ? 2.19; PJC, F(77, 173) =3.89; and team OCB, F(77, 173) =2.83, differed significantly (p＜ .01) across teams. The intraclass correlation (ICC1) for these three variables were .27 for team power distance, .47 for PJC, and .36 for team OCB. The reliability of the team-level means, as reflected by ICC(2) estimates, was .54 for team power distance, .74 for PJC, and .65 for team OCB. In regard to within-team agreement (rwg[J]; James, Demaree, &amp; Wolf, 1984), we computed a lower and an upper bound estimate of agreement by considering two null distributions in the rwg(J)equation (Biemann, Cole, &amp; Voelpel, 2012). For the lower bound, we selected a slightly skewed distribution (σE2=2.9) given that a positive leniency of participant responses could be expected. The rectangular distribution (σE2=4.0) was used because it is known to yield an upper bound estimate. The mean rwg(J)scores suggested strong within-team agreement (Biemann et al., 2012, p. 73), with estimates of .79 and .86 for team power distance, .97 and .98 for PJC, and .97 and .99 for team OCB.</p>
+<h3 id="分析策略"><strong>分析策略（★）</strong></h3>
+<p>与常规的数据分析文章不同，多项式回归会在研究方法的最后部分额外介绍分析策略，即从数理角度说明假设成立需要哪些条件。</p>
+<p>这篇文章的这个部分写的比较详细，为便于小可爱们后续参考，萜妹会把该部分完整翻译。蓝色字体为根据自身研究需要替换的内容。</p>
+<p>（原文和公式不好手打，我就直接截图过来了）</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129824.png" alt="img"></p>
+<p>**一致性效应的检验。**运用多项式回归和响应面方法(see Edwards, 2002; Edwards &amp; Cable, 2009)，我们通过估计以下方程来检验假设1和2（为了简化，我们省略了所有控制变量）：</p>
+<p>其中M代表中介变量（即PJC），L和T分别是领导和团队权力距离。然后，我们使用回归系数绘制三维响应面，其中L和T绘制在水平轴上，M绘制在垂直轴上(Edwards &amp; Parry,1993)。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129779.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129856.png" alt="img"></p>
+<p>为了<strong>验证假设1</strong>，我们检验了绘制响应面的三个关键特征。首先，我们检查了响应面上的不一致线（L=–T）。为了支持假设的一致性效应，<strong>不一致线的曲率（b3–b4+b5）应为负值</strong>（向下弯曲）。其次，我们检查了响应面的第一主轴。如果<strong>该轴的斜率p11=1.0和截距p10=0</strong>，则响应曲面的脊沿一致线运行。这一发现为假设1提供了额外的支持，表明当领导-团队权力距离值相等时，PJC最大化。由于第二个条件涉及方程1回归系数的非线性组合，我们使用10000次的Bootstrap计算p11和p10的95%偏差校正置信区间（CIs）(Edwards, 2002; Edwards &amp; Parry,1993)。第三，我们确定一致线（L=T）的曲面是否平坦 。如果表面沿着一致线是平坦的，表明无论对齐的领导-团队权力距离值是低还是高，PJC的水平是相同的，则其斜率（b1+b2）和曲率（b3+b4+b5）与零无显著差异。</p>
+<p>根据Edwards和Cable（2009）的观点，即使不满足所有的条件也并不一定排除一致性效应。然而，第一个条件必须满足。此外，如果第一个和第二个条件得到了证实，但第三个条件被拒绝，我们假设的一致性效应在PJC的最大水平取决于领导者和团队权力距离的高低的情况下，仍然可以推断出假设成立。Edwards和Cable（2009）认为，第三个条件不那么重要，因为它评估的是“与理想表面的偏差”。根据Edwards和Cable（2009）的逻辑，我们虽检查第三种条件，但优先考虑前两种条件。这意味着如果第一和第二个条件得到满足，假设1则成立。</p>
+<p>PS：这里萜妹再额外提一嘴。大多后续检验一致性的文章已经不会提第三个条件了；有些文章也并没有在分析策略中提出第二个条件。但我个人的数理理解是，第二个条件也是需要满足的。不然即使曲线出现最高点，但最高点与一致性线不重合，那么是无法说明二者一致时取值最高的。不过第二个条件的计算复杂一些，所以很多文章可能都没有计算。萜妹对于一致性检验的建议是：<strong>第一个条件一定要提出与检验；第二个条件可以在撰写时不提，但也尽量检验其满足；第三个条件可忽视。</strong></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129667.png" alt="img"></p>
+<p>为了<strong>检验假设2</strong>中的不对称不一致效应，我们计算了横向位移量（[b2–b1]/[2×(b3–b4+b5)]），表示响应面沿不一致线横向位移的大小和方向(Atwater, Ostroff, Yammarino, &amp; Fleenor, 1998)。<strong>负数表示结果与假设2一致</strong>。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129442.png" alt="img"></p>
+<p>**中介效应的检验。**对于假设3a和3b（即通过PJC传递对团队结果的一致性影响），我们遵循了Edwards和Cable（2009）提出的“块变量”方法。我们结合回归系数（见方程式1）得到加权线性组合（即块变量）。然后，我们计算块变量对中介变量PJC的回归系数，在中介模型中通常被称为“a”路径。接下来我们让中介变量和块变量对Y进行回归。中介变量对结果变量的回归系数代表“b”路径。我们对每一个结果都使用从这些分析中获得的系数来计算间接效应的估计值(a×b)。间接效应的显著性通过使用20000次Bootstrap构建的偏差校正的置信区间进行检验(Efron &amp; Tibshirani, 1993)。</p>
+<h2 id="结果分析"><strong>结果分析</strong></h2>
+<p>这个部分虽然也很重要，但其中是一些数学语言，所以萜妹不会完全翻译，仅介绍关键部分。</p>
+<p>结果分析包括三表一图，分别为：相关系数表、回归分析表、间接效应表和响应面图。相关系数表没什么不同，这里就不截图示意了。该部分先介绍回归分析表。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129957.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129248.png" alt="img"></p>
+<p>黄色部分为假设1的关键汇报指标。</p>
+<ul>
+<li>二阶多项式中的△R2的显著增加，表明领导-团队权力距离值与PJC之间存在非线性关系；</li>
+<li>不一致线的曲率为负且显著，满足第一个条件；</li>
+<li>斜率p11和截距p10的置信区间都不包含0，说明和1/0无显著差别，满足第二个条件。</li>
+</ul>
+<p>绿色下划线部分为对第三个条件的检验，不满足第三个条件，后续是对数据的解释。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129994.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129635.png" alt="img"></p>
+<p>为了更全面地解释这些结果，我们使用系数估计来绘制图2中的整体响应面。沿不一致线的表面向下弯曲（凹面），意味着随着领导-团队权力距离变得更加一致，PJC的水平在增加；而随着领导-团队权力距离变得更加不一致（在任何一个方向），PJC的水平也在降低。如图所示，响应面的脊线不会明显偏离一致线。此外，沿一致线的曲面，PJC在中-中匹配时达到最高点。换言之，PJC随着领导与团队权力距离的完美契合（由于其正斜率）从低-低到中-中的增加而增加；然而，由于其负曲率，PJC随着领导与团队之间权力距离的完美匹配从中-中到高-高逐步降低。</p>
+<p>上面这段一共五句话。第一句是交代响应面的构建；第二句交代了第一个条件满足的几何意义；第三句体现了第二个条件的满足；第四句则在不满足第三个条件的情况下，对一致性线的曲率和斜率进行解读；第五局是对上一句的扩展说明。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129567.png" alt="img"></p>
+<p>我们采用了单尾检验，因为我们的假设是有方向性的。横向位移量为负(=0.50, p＜0.05)，表明表面的转变向L＜T的区域移动。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129030.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112129314.png" alt="img"></p>
+<p>检验中介的部分和普通的中介检验并没有区别，这里就不展开说明啦。</p>
+<hr>
+<p>啦啦啦，这篇文献的介绍就到这里啦。不知道小可爱们觉得怎么样。萜妹自认为还是有把它讲清楚的哦。</p>
+<p>萜妹在介绍自己学方法的经验贴中有说过，遇到某些操作我拿不定的时候，我会去看些优质文献参考。我偶尔也会被小可爱问“XXX操作应该怎么处理呀？”、“有没有XXX方面的范文呀？”。所以这次想一鼓作气开开启新模块。</p>
+<p>第一篇本来想做回复给我朋友的那篇文章，但是萜妹有半年没接触QCA了，所以稳妥点，还是先介绍我最有把握的这篇啦~</p>
+<p>大家对这个模块有什么想法，以及有什么想看的范文可以留言和萜妹沟通哦。</p>
+<p>另外，明天就是周更三周年了，到时候还会有篇总结推送。那小可爱们，明天见~</p>
+<p><strong>往期推送</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484340&amp;idx=1&amp;sn=4b94d47336a7999103d64180dd2b6bcb&amp;chksm=96f47752a183fe442e5f70fafd1db74548b279cf26bf85b04b839fd350bb0630bfebf659d49e&amp;token=748456554&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨多项式回归之原理篇</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484420&amp;idx=1&amp;sn=baff9b6fcdd9bf6655d13c18e5e57f6f&amp;chksm=96f470e2a183f9f49fd08ab58ccdb3a4bc4910c597af7e3fd2dafae5aa830fedca86d38e96d5&amp;token=748456554&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨多项式回归之操作篇</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485352&amp;idx=1&amp;sn=77bd6fff81e432656c2a62c5ecc5e8ae&amp;chksm=96f4734ea183fa58a642feb3a16716892f135e9787ac6b600d2a4f6ec2036ab33070976157d1&amp;token=748456554&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪经验丨我如何学习新方法</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484316&amp;idx=1&amp;sn=3705f21c9cf7c2ef8038a0144233177d&amp;chksm=96f4777aa183fe6cef2f66a2d38eb39520cdfe8c089f87438dba63c7a6076b86417f9bd6fc92&amp;token=392107249&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨外文文献下载方法</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485343&amp;idx=1&amp;sn=d99456fc386248f9ac26fdfddf5376c9&amp;chksm=96f47379a183fa6f339773e5ae8442811954f233fb300afa67e3aef6f5c2bb36dbefc3c96bd2&amp;token=491662985&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪合集丨保姆级毕业论文实操教程（内含福利）</a></strong></p>
+<p><strong>原文链接</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485473&amp;idx=1&amp;sn=7236d0eef4edd614af3931f4d4212c71&amp;chksm=96f47cc7a183f5d192996cfecf91f0fc68cb666f33fe14418d49d9d0fa713fe51f57503afb91&amp;token=299396922&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪多项式回归之基本模板</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/polynomial-regression/">Polynomial Regression</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/social-relations-analysis/">Social Relations Analysis</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/09/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E8%B0%83%E8%8A%82%E6%95%88%E5%BA%94/" data-tooltip="RSA丨多项式回归之调节效应" aria-label="下一篇: RSA丨多项式回归之调节效应">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/08/connected-papers/" data-tooltip="Connected Papers" aria-label="上一篇: Connected Papers">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/09/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E8%B0%83%E8%8A%82%E6%95%88%E5%BA%94/" data-tooltip="RSA丨多项式回归之调节效应" aria-label="下一篇: RSA丨多项式回归之调节效应">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2020/08/connected-papers/" data-tooltip="Connected Papers" aria-label="上一篇: Connected Papers">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

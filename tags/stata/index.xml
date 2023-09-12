@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Stata on TIE&#39;s Blog</title>
+    <link>https://tie-blog.netlify.app/tags/stata/</link>
+    <description>Recent content in Stata on TIE&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://tie-blog.netlify.app/tags/stata/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>带置信区间的调节效应图</title>
+      <link>https://tie-blog.netlify.app/2022/06/%E5%B8%A6%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4%E7%9A%84%E8%B0%83%E8%8A%82%E6%95%88%E5%BA%94%E5%9B%BE/</link>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://tie-blog.netlify.app/2022/06/%E5%B8%A6%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4%E7%9A%84%E8%B0%83%E8%8A%82%E6%95%88%E5%BA%94%E5%9B%BE/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Madan, S., Savani, K., &amp;amp; Johar, G. V. (2022). How you look is who you are: The appearance reveals character lay theory increases support for facial profiling. Journal of Personality and Social Psychology. &lt;a href=&#34;https://doi.org/10.1037/pspa0000307&#34;&gt;https://doi.org/10.1037/pspa0000307&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

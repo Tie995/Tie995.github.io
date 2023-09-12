@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "RSA丨多项式回归之跨时点的匹配",
+  
+  "datePublished": "2022-09-25T00:00:00Z",
+  "dateModified": "2022-09-25T00:00:00Z",
+  "author": {
+    "@type": "Person",
+    "name": "TIE",
+    
+    "image": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    
+  },
+  "mainEntityOfPage": { 
+    "@type": "WebPage",
+    "@id": "https:\/\/tie-blog.netlify.app\/2022\/09\/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E8%B7%A8%E6%97%B6%E7%82%B9%E7%9A%84%E5%8C%B9%E9%85%8D\/" 
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TIE's Blog",
+    
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg"
+    }
+    
+  },
+  "description": " Doyle, S. P., \u0026amp; Lount, R. B. (2022). Rising Above vs. Falling Below: When and Why Status Change Affects Interpersonal Helping in Workgroups. Organization Science. https://doi.org/10.1287/orsc.2022.1613\n",
+  "keywords": []
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.90.1 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="TIE">
+<meta name="keywords" content="">
+<meta name="description" content="
+Doyle, S. P., &amp; Lount, R. B. (2022). Rising Above vs. Falling Below: When and Why Status Change Affects Interpersonal Helping in Workgroups. Organization Science. https://doi.org/10.1287/orsc.2022.1613
+">
+
+
+<meta property="og:description" content="
+Doyle, S. P., &amp; Lount, R. B. (2022). Rising Above vs. Falling Below: When and Why Status Change Affects Interpersonal Helping in Workgroups. Organization Science. https://doi.org/10.1287/orsc.2022.1613
+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RSA丨多项式回归之跨时点的匹配">
+<meta name="twitter:title" content="RSA丨多项式回归之跨时点的匹配">
+<meta property="og:url" content="https://tie-blog.netlify.app/2022/09/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E8%B7%A8%E6%97%B6%E7%82%B9%E7%9A%84%E5%8C%B9%E9%85%8D/">
+<meta property="twitter:url" content="https://tie-blog.netlify.app/2022/09/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E8%B7%A8%E6%97%B6%E7%82%B9%E7%9A%84%E5%8C%B9%E9%85%8D/">
+<meta property="og:site_name" content="TIE&#39;s Blog">
+<meta property="og:description" content="
+Doyle, S. P., &amp; Lount, R. B. (2022). Rising Above vs. Falling Below: When and Why Status Change Affects Interpersonal Helping in Workgroups. Organization Science. https://doi.org/10.1287/orsc.2022.1613
+">
+<meta name="twitter:description" content="
+Doyle, S. P., &amp; Lount, R. B. (2022). Rising Above vs. Falling Below: When and Why Status Change Affects Interpersonal Helping in Workgroups. Organization Science. https://doi.org/10.1287/orsc.2022.1613
+">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2022-09-25T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2022-09-25T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="方法精读">
+    
+      <meta property="article:section" content="配对研究">
+    
+  
+  
+    
+      <meta property="article:tag" content="Polynomial Regression">
+    
+      <meta property="article:tag" content="Social Relations Analysis">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+  <meta property="twitter:image" content="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg">
+
+
+
+
+
+
+    <title>RSA丨多项式回归之跨时点的匹配</title>
+
+    <link rel="icon" href="https://tie-blog.netlify.app/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://tie-blog.netlify.app/2022/09/rsa%E4%B8%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%E4%B9%8B%E8%B7%A8%E6%97%B6%E7%82%B9%E7%9A%84%E5%8C%B9%E9%85%8D/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://tie-blog.netlify.app/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-116908965-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tie-blog.netlify.app/" aria-label="去首页">TIE&#39;s Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tie-blog.netlify.app/" aria-label="打开链接: /">
+    
+    
+    
+      
+        <img class="header-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://tie-blog.netlify.app/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">TIE</h4>
+        
+          <h5 class="sidebar-profile-bio">管理学在读博士生</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/" title="首页">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/categories" title="分类">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/tags" title="标签">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/archives" title="归档">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/about" title="关于我">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-smile" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于我</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzIwMDk1OTM2OQ==#wechat_redirect" target="_blank" rel="noopener" title="公众号">
+    
+      <i class="sidebar-button-icon fab fa-brands fa-weixin" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">公众号</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://space.bilibili.com/113946194" target="_blank" rel="noopener" title="Bilibili">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tv" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">Bilibili</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/Tie995" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:tiewzj@163.com" target="_blank" rel="noopener" title="邮箱">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-envelope" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">邮箱</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tie-blog.netlify.app/index.xml" title="RSS">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      RSA丨多项式回归之跨时点的匹配
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2022-09-25T00:00:00Z">
+        
+  
+  
+  
+  
+    2022-09-25
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e6%96%b9%e6%b3%95%e7%b2%be%e8%af%bb">方法精读</a>, 
+    
+      <a class="category-link" href="https://tie-blog.netlify.app/categories/%e9%85%8d%e5%af%b9%e7%a0%94%e7%a9%b6">配对研究</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <blockquote>
+<p>Doyle, S. P., &amp; Lount, R. B. (2022). Rising Above vs. Falling Below: When and Why Status Change Affects Interpersonal Helping in Workgroups. Organization Science. <a href="https://doi.org/10.1287/orsc.2022.1613">https://doi.org/10.1287/orsc.2022.1613</a></p>
+</blockquote>
+<p>前一阵看到篇研究地位变化的文章，采用的是多项式回归的方法。</p>
+<p>萜妹很受启发，来和小可爱们分享吖~</p>
+<h2 id="整体介绍"><strong>整体介绍</strong></h2>
+<h2 id="摘要"><strong>摘要：</strong></h2>
+<p>该研究通过检查人们对最近经历的地位变化的反应，揭示了地位等级如何以及为何影响人际帮助的新观点。具体来说，作者结合了关于自利归因偏见的研究结果，以理论化关于地位变化的方向（即收益或损失）如何影响人们接受或转移个人对其地位变化的责任的程度，作者认为这会影响他人关心，从而影响他们提供帮助的意愿。此外，作者将地位变化的合法性确定为一种关键的偶发条件，它将加强或削弱地位改变的心理和行为影响。在消防员团队（研究 1）、实验室参与者（研究 2 和 3）和学生团队（研究 4）中，作者发现（1）地位变化通过影响他人关心来影响人际帮助，以及（2 ) 地位变化的合法性缓和了地位改变对他人关心和人际帮助的影响。此外，作者记录了关于地位变化对他人关心和帮助行为的影响的不对称性（即，地位损失的消极影响大于地位获得的积极影响）。作者讨论了理论和实践意义。</p>
+<p>The current research sheds new light on how and why status hierarchies impact interpersonal helping by examining people’s reactions to recently experienced status change. Specifically, we incorporate findings from research on the self-serving attributional bias to theorize about how the direction of status change (i.e., a gain or a loss) can shape the extent to which people accept or deflect personal responsibility for their change in status, which we argue will then impact other-concern and, thus, their willingness to help. Further, we identify status change legitimacy as a key contingency that will strengthen or weaken the psychological and behavioral effects of status change. Among firefighter teams (Study 1), participants in the laboratory (Studies 2 and 3), and student teams (Study 4), we show that (1) status change impacts interpersonal helping through its impact on changes in other-concern and (2) status change legitimacy moderates the effect of status change on both other-concern and interpersonal helping. Additionally, we document an asymmetry with regards to the effects of status change on both other-concern and helping behavior (i.e., with the negative impact of a status loss being stronger than the positive impact of a status gain). Theoretical and practical implications are discussed.</p>
+<h2 id="研究模型"><strong>研究模型：</strong></h2>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112226470.png" alt="img"></p>
+<p>作者在文中并没有明确地写出假设。萜妹简单归纳如下：</p>
+<ul>
+<li>与地位没有变化和积极地位变化的个体相比，最近经历了消极地位变化的个体的他人关心与帮助的意愿更低。</li>
+<li>地位变化的合法性会缓和地位变化的影响，当地位变化的合法性较高时，地位变化对他人关心和帮助的影响会减弱，而当地位改变的合法性较低时，地位改变对他人关心和帮助的影响会增强。</li>
+</ul>
+<p>【萜妹的感受】总的来说，我觉得作者这样对比超有新意。这是我第一次看到多项式回归做Change的文章（可能是我孤陋寡闻，小可爱们有看过类似的可以和我分享！）。</p>
+<p>它既不像常规做差值的方法，可以观察变化的非对称性；也不像大多数多项式回归的文章，跳出了一致性与不一致性的对比。</p>
+<p>而且作者选用的研究方法与他这个研究问题非常契合，看到第一眼就让我直呼好聪明！</p>
+<h1 id="研究设计"><strong>研究设计</strong></h1>
+<h2 id="研究一问卷-验证主效应"><strong>研究一：问卷-验证主效应</strong></h2>
+<p>采用问卷调查的方法，获得了164名消防员的数据，最终对他人关心与帮助行为都进行了多项式回归，验证了主效应。</p>
+<p>作者最绝的一点是，<strong>测量了T1与T2的地位，然后用这两个值进行多项式回归，反映地位变化</strong>！！！</p>
+<p>其他部分比较常规，我这里不赘述。</p>
+<p>部分研究结果如下：</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112226842.png" alt="img"></p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112226869.png" alt="img"></p>
+<p>但是由于问卷无法进行因果推断，且他人关心与帮助行为均为自评，作者后续采用了实验进行补充。</p>
+<h2 id="研究二实验-验证主效应"><strong>研究二：实验-验证主效应</strong></h2>
+<p>作者此次用实验操纵了地位变化。操作过程如下：</p>
+<blockquote>
+<p>首先，参与者需完成一次“想法说服任务”。参与者被要求从三个主题列表中选择一个主题，并就他们对该主题的立场写一篇有说服力的论述（例如，上大学的成本是否太高？）。提交论述后，他们阅读了小组成员撰写的论述（实际上，所有小组成员的论述和回应都是预先编程的），并获得 10 个“尊重点”，他们将根据论述的质量将其奖励给小组成员（他们无法给自己任何分数）。因此，他们可以从小组成员那里获得 0 到 30 分的尊重点数。</p>
+<p>据称，在每个小组成员提交了他们的尊重点之后，参与者显示其初始地位位置，表面上是基于他们相对于组成员的表现。</p>
+<p>为了确保所有参与者最终都处于相同的地位级别，参与者会根据条件获得有关其初始地位的不同反馈。</p>
+<ul>
+<li>在损失条件下，参与者最初排在第 73 个百分位，</li>
+<li>在提升条件下排在第 43 个百分位，</li>
+<li>在不变条件下排在第 58 个百分位。</li>
+</ul>
+<p>参与者随后完成了第二个说服任务，从三个新主题的列表中选择一个新主题。</p>
+<p>参与者再一次阅读他们小组成员的回复，之后他们可以“重新分配”他们的尊重点。参与者了解到，根据小组成员对积分的重新分配，他们的地位要么发生了变化，要么保持不变。</p>
+<ul>
+<li>在损失条件下从第 73 个百分位下降到第 58 个百分位，</li>
+<li>在提升条件下从第 43 个百分位增加到第 58 个百分位，</li>
+<li>在不变条件下保持在第 58 个百分位。</li>
+</ul>
+</blockquote>
+<p>【萜妹的疑惑】不懂为啥是43与73这两个百分位，有可能进行了预实验？或者是某种共识？</p>
+<p>随后作者依旧用问卷测量了他人关心，但将帮助的测量替换为了行为实验——“刽子手游戏”。</p>
+<blockquote>
+<p>参与者协助小组成员解决具有挑战性的任务，评估帮助。参与者被告知，基于所有小组成员解决的单词总数，较高的小组分数对于进入面对面任务的小组来说更好。他们被引导相信计算机随机将他们与另一个小组成员联系起来，他们将有机会向这个人提供提示。也就是说，他们一半的小组成员（包括参与者）被随机分配为“提示提供者”，另一半被分配为“提示接收者”。</p>
+<p>刽子手游戏涉及 10 次试验，每次试验的目标是正确生成带有字母子集的单词。在每次试验中，参与者可以从每个试验词的五个提示列表中进行选择，每个提示的有用程度从一个（最不有用的提示）到五个（最有用的提示）不等。</p>
+<p>例如，针对“STUDENT,” 最有用的提示是 “STUD_N_,” 最无用的提示是 “_ _ _ _ E _ _ .”</p>
+<p>帮助得分计算为 10 次试验的平均帮助水平 (α 0.97)。</p>
+<p>值得注意的是：为了提高普适性，并更好地捕捉与为他人提供最佳帮助相关的集体利益和个人成本之间的取舍，参与者被告知，在成为提示提供者后，他们将转为提示接受者。<strong>当他们在下一轮完成任务时，将无法获得与他们给同伴的提示相关的帮助程度</strong>（例如，如果他们在试验 1 中向小组成员提供了最有帮助的提示，他们在试验 1 中无法获得最有用的提示) 。</p>
+</blockquote>
+<p>【萜妹的感受】飞快的记在了小本本上！这个helping的测量感觉很科学，就是得开发个中文版，hhh</p>
+<h2 id="研究三实验-验证全模型"><strong>研究三：实验-验证全模型</strong></h2>
+<p>研究三和研究二的差别只在于补充了地位变化合法性的操纵。</p>
+<blockquote>
+<p>参与者被引导相信他们被分配到七人小组，并且与研究 2 类似，他们 (a) 被告知他们将在研究后期在附近的分组讨论一起工作；(b) 被要求给他们的小组成员写一个简短的信息来介绍自己；(c) 完成了两项任务来评估小组的地位等级，这两项任务都被描述为评估对小组任务有价值的技能。</p>
+<p>对于第一项任务，参与者有 3 分钟时间完成 20 道选择题，这些题取自 GRE 样本和一般知识琐事（例如，DIATRIBE 的反义词；序列中的下一个数字 11、13、17、19）。三分钟后，参与者显示其初始地位位置，表面上是基于他们相对于组成员的表现。</p>
+<ul>
+<li>损失条件：参与者排名在第 85 位百分位；</li>
+<li>提升条件：参与者排名在第 15 位百分位；</li>
+<li>不变条件：参与者排名在第 50 位百分位。</li>
+</ul>
+<p>参与者然后完成了地位评估的第 2 部分，这是研究 2 中的想法说服任务。在提交他们的论点后，他们阅读了四名小组成员的回答，并根据论点的质量给予 40 分奖励。</p>
+<p>接下来，参与者有机会向他们的小组成员提交一条简短的信息，解释他们如何决定分配积分。在收到他们修改后的地位之前，参与者会看到他们的小组提交的消息。</p>
+<ul>
+<li>在低地位改变合法性条件下，参与者阅读来自两个小组成员的信息，这些信息表明他们的分数分配不公平，因为他们的决定是基于长度或他们认同的（即，“可能不是最公平的事情） ……但我只是给我同意的人打分”和“我没有仔细阅读所有内容，但我只是写得太长了……对不起”）。</li>
+<li>在高地位改变合法性条件下，参与者阅读来自两名成员的信息，这些信息表明他们在仔细阅读论据以评估论证质量时试图做到公平（即，“我尽力了……这真的很难决定，但我试图做到公平”和“我试图看看论证的质量”）。</li>
+</ul>
+<p>在这两种情况下，都包括中性信息（“大家干得好！”）以及没有传递信息的小组成员（即空白回复）。然后向参与者显示他们在小组中的变化地位。地位变化情况同研究2类似。</p>
+</blockquote>
+<h2 id="研究四问卷-验证全模型"><strong>研究四：问卷-验证全模型</strong></h2>
+<p>全模型中检验了多项式回归的调节效应。</p>
+<p>作者依据均值加减一个标准差，分别绘制各自的响应面图。</p>
+<p><img src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/202309112226752.png" alt="img"></p>
+<hr>
+<p>啦啦啦，这篇文献的介绍就到这里啦。这篇文章是我近两个月内，最喜欢的研究设计！阅读的过程中，我总在感叹作者好聪明（也可能是我笨）。</p>
+<p>说实话，这篇文章的数据分析并不复杂。没像以前一样拆开讲解，是它真的只用了最简单的分析方式。</p>
+<p>所以我可能花了更多的笔墨来介绍实验过程。不知道小可爱们观感如何，如果喜欢，之后可能也会考虑开《实验》系列。</p>
+<p>下期预告：<strong>《视频丨读博日记（4）》</strong></p>
+<p><strong>往期推送</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485737&amp;idx=1&amp;sn=d4fceb03a0d0c4e827a43ee726307b42&amp;chksm=96f47dcfa183f4d9bb2ed394d8ad0013c5da87d52068b105e9412ef9f074e37ab3e53e09a08d&amp;token=2121147346&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪范文丨多项式回归之基本模板</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247485506&amp;idx=1&amp;sn=7a6e7d99ed592e29afe8e9b3d2aed33a&amp;chksm=96f47ca4a183f5b2acd77e121a4e9e927b8478397f5b86efc09ec886bfda0b4a9816f693dc17&amp;token=1054923557&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪范文丨多项式回归之调节效应</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484340&amp;idx=1&amp;sn=4b94d47336a7999103d64180dd2b6bcb&amp;chksm=96f47752a183fe442e5f70fafd1db74548b279cf26bf85b04b839fd350bb0630bfebf659d49e&amp;token=1054923557&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨多项式回归之原理篇</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247484420&amp;idx=1&amp;sn=baff9b6fcdd9bf6655d13c18e5e57f6f&amp;chksm=96f470e2a183f9f49fd08ab58ccdb3a4bc4910c597af7e3fd2dafae5aa830fedca86d38e96d5&amp;token=1054923557&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪干货丨多项式回归之操作篇</a></strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487355&amp;idx=1&amp;sn=8b7d29da8724e5b54455fbc1bbab0d6c&amp;chksm=96f47b9da183f28b6beabad99e938907dd7a43fa2821bc2543266206acc93cbcdef60664b80c&amp;token=1054923557&amp;lang=zh_CN&amp;scene=21#wechat_redirect">➪经验丨如何进行文献阅读</a></strong></p>
+<p><strong>原文链接：</strong></p>
+<p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzIwMDk1OTM2OQ==&amp;mid=2247487522&amp;idx=1&amp;sn=b9048533c716617fbfe4c1730ef83ac0&amp;chksm=96f464c4a183edd2dc0792fbb0ad5e83c59b2e3658897a4472e275d3951a3b1ebee228d6616c&amp;token=561554006&amp;lang=zh_CN#rd">➪范文丨多项式回归研究Change</a></strong></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/polynomial-regression/">Polynomial Regression</a>
+
+  <a class="tag tag--primary tag--small" href="https://tie-blog.netlify.app/tags/social-relations-analysis/">Social Relations Analysis</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/10/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/" data-tooltip="如何进行时间管理" aria-label="下一篇: 如何进行时间管理">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/09/excel%E4%B8%A8%E5%8F%98%E9%87%8F%E8%AE%A1%E7%AE%97%E6%8A%80%E5%B7%A7/" data-tooltip="Excel丨变量计算技巧" aria-label="上一篇: Excel丨变量计算技巧">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 TIE | Theme modified from <a href="https://github.com/kakawait/hugo-tranquilpeak-theme">Tranquilpeak</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/10/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/" data-tooltip="如何进行时间管理" aria-label="下一篇: 如何进行时间管理">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://tie-blog.netlify.app/2022/09/excel%E4%B8%A8%E5%8F%98%E9%87%8F%E8%AE%A1%E7%AE%97%E6%8A%80%E5%B7%A7/" data-tooltip="Excel丨变量计算技巧" aria-label="上一篇: Excel丨变量计算技巧">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/logo.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">TIE</h4>
+    
+      <div id="about-card-bio">管理学在读博士生</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.D Candidate
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        Wuhan, China
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('https://tie-1315290370.cos.ap-beijing.myqcloud.com/TIE/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://tie-blog.netlify.app/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
